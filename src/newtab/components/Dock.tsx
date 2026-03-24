@@ -691,8 +691,8 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
   const { visibleApps, overflowApps } = useMemo(() => {
     const screenSize = (isVertical ? vpSize.h : vpSize.w) * SCREEN_RATIO
     const slotSize = baseSize + GAP
-    // 固定占位：home + settings + 两端 padding
-    const fixedSize = PADDING * 2 + (baseSize + GAP) * 2
+    // 固定占位：home + bookmark-store + settings + 两端 padding
+    const fixedSize = PADDING * 2 + (baseSize + GAP) * 3
     const available = screenSize - fixedSize
     const maxSlots = Math.max(1, Math.floor((available + GAP) / slotSize))
 
@@ -802,7 +802,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
       if (overDock) {
         // Use INITIAL rect for index calculation (stable reference frame)
         const slotSize = bs + GAP
-        const fixedSlots = 2
+        const fixedSlots = 3 // home + bookmark-store + settings
         const maxIdx = numApps - 1
         const rawPos = !isVert
           ? (me.clientX - initialDockRect.left - PADDING - fixedSlots * slotSize - bs / 2) / slotSize
@@ -910,6 +910,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
           flexShrink: 0,
           overflow: (isRemoveDrag && isSource) ? 'hidden' : 'visible',
           opacity: isSource ? 0 : 1,
+          borderRadius: '22%',
           ...collapseStyle,
         }}
       >
