@@ -73,8 +73,15 @@ function StoreCard({ item, name, description, iconSize, mode, isAdded, onAdd, on
 
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      initial={false}
+      animate={{ 
+        scale: hovered ? 1.04 : 1,
+        zIndex: hovered ? 10 : 1,
+      }}
+      transition={{ 
+        scale: { type: 'spring', stiffness: 400, damping: 25 },
+        zIndex: { duration: 0 }
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -87,6 +94,7 @@ function StoreCard({ item, name, description, iconSize, mode, isAdded, onAdd, on
         transition: 'background 0.15s, border-color 0.15s',
         minHeight: 168,
         position: 'relative',
+        transformOrigin: 'center center',
       }}
     >
       {/* 图标 */}
@@ -404,7 +412,9 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
                 <div style={{
                   display: 'grid',
                   gridTemplateColumns: 'repeat(auto-fill, minmax(148px, 1fr))',
-                  gap: 10,
+                  gridAutoRows: '180px',
+                  gap: 14,
+                  padding: '8px',
                 }}>
                   {filteredItems.map(item => (
                     <StoreCard
