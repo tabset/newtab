@@ -351,6 +351,19 @@ const ja = {
   about_license: 'ライセンス',
   about_license_value: 'MIT License',
 
+  // Dock built-in items
+  bookmark_store_tooltip: 'オンラインブックマーク',
+  toolbox_tooltip: 'ツールボックス',
+
+  // Store Panel
+  store_loading: '読み込み中...',
+  store_error: '読み込みに失敗しました。後でもう一度お試しください',
+  store_add: '+ 保存',
+  store_added: '✓ 保存済み',
+  store_open: '開く',
+  store_empty: 'コンテンツがありません',
+  store_search: '検索...',
+
   // Backup & Restore
   tab_backup: 'バックアップと復元',
   backup_export_title: '設定をエクスポート',

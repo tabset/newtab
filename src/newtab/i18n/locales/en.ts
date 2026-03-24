@@ -351,6 +351,19 @@ const en = {
   about_license: 'License',
   about_license_value: 'MIT License',
 
+  // Dock built-in items
+  bookmark_store_tooltip: 'Online Bookmarks',
+  toolbox_tooltip: 'Toolbox',
+
+  // Store Panel
+  store_loading: 'Loading...',
+  store_error: 'Failed to load, please try again later',
+  store_add: '+ Add',
+  store_added: '✓ Added',
+  store_open: 'Open',
+  store_empty: 'No items found',
+  store_search: 'Search...',
+
   // Backup & Restore
   tab_backup: 'Backup & Restore',
   backup_export_title: 'Export Config',

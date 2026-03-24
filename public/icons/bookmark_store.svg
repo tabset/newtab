@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <clipPath id="c">
+      <rect width="128" height="128" rx="28" ry="28"/>
+    </clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f2f7"/>
+      <stop offset="100%" stop-color="#e2e6ef"/>
+    </linearGradient>
+    <!-- 主书签：蓝 -->
+    <linearGradient id="bm1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e96ff"/>
+      <stop offset="100%" stop-color="#0064ff"/>
+    </linearGradient>
+    <!-- 次书签：紫 -->
+    <linearGradient id="bm2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dc64ff"/>
+      <stop offset="100%" stop-color="#b428ff"/>
+    </linearGradient>
+    <!-- 次书签：橙 -->
+    <linearGradient id="bm3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb41e"/>
+      <stop offset="100%" stop-color="#ff8c00"/>
+    </linearGradient>
+    <!-- 价格标签：绿 -->
+    <linearGradient id="tag" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#32f078"/>
+      <stop offset="100%" stop-color="#00d246"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#c)">
+    <rect width="128" height="128" fill="url(#bg)"/>
+
+    <!-- 书签3（橙，最后面，偏右） -->
+    <path d="M 78 18 L 100 18 L 100 88 L 89 78 L 78 88 Z" fill="url(#bm3)" opacity="0.85"/>
+    <path d="M 78 18 L 100 18 L 100 36 L 78 36 Z" fill="url(#shine)"/>
+
+    <!-- 书签2（紫，中间，偏右一点） -->
+    <path d="M 62 14 L 86 14 L 86 92 L 74 81 L 62 92 Z" fill="url(#bm2)" opacity="0.92"/>
+    <path d="M 62 14 L 86 14 L 86 34 L 62 34 Z" fill="url(#shine)"/>
+
+    <!-- 书签1（蓝，最前，居中偏左） -->
+    <path d="M 28 12 L 70 12 L 70 104 L 49 88 L 28 104 Z" fill="url(#bm1)"/>
+    <path d="M 28 12 L 70 12 L 70 36 L 28 36 Z" fill="url(#shine)"/>
+
+    <!-- 价格标签（右下角） -->
+    <!-- 标签圆角矩形 -->
+    <rect x="68" y="78" width="44" height="36" rx="8" fill="url(#tag)"/>
+    <rect x="68" y="78" width="44" height="16" rx="8" fill="url(#shine)"/>
+    <!-- 标签挂孔 -->
+    <circle cx="76" cy="86" r="4" fill="white" opacity="0.9"/>
+    <circle cx="76" cy="86" r="2" fill="url(#tag)"/>
+    <!-- 标签上的线条（模拟价格文字） -->
+    <rect x="84" y="83" width="20" height="3" rx="1.5" fill="white" opacity="0.9"/>
+    <rect x="84" y="90" width="14" height="3" rx="1.5" fill="white" opacity="0.65"/>
+    <rect x="84" y="97" width="17" height="3" rx="1.5" fill="white" opacity="0.65"/>
+
+    <!-- 主书签上的装饰线 -->
+    <rect x="36" y="22" width="26" height="3" rx="1.5" fill="white" opacity="0.5"/>
+    <rect x="36" y="29" width="20" height="3" rx="1.5" fill="white" opacity="0.35"/>
+  </g>
+</svg>

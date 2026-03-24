@@ -390,6 +390,19 @@ const zhCN = {
   about_license: '开源协议',
   about_license_value: 'MIT License',
 
+  // Dock built-in items
+  bookmark_store_tooltip: '在线书签',
+  toolbox_tooltip: '百宝箱',
+
+  // Store Panel
+  store_loading: '加载中...',
+  store_error: '加载失败，请稍后重试',
+  store_add: '+ 收藏',
+  store_added: '✓ 已收藏',
+  store_open: '打开',
+  store_empty: '暂无内容',
+  store_search: '搜索...',
+
   // Backup & Restore
   tab_backup: '备份与恢复',
   backup_export_title: '导出配置',

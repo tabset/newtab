@@ -328,6 +328,19 @@ const ru = {
   about_license: 'Лицензия',
   about_license_value: 'MIT License',
 
+  // Dock built-in items
+  bookmark_store_tooltip: 'Онлайн закладки',
+  toolbox_tooltip: 'Панель инструментов',
+
+  // Store Panel
+  store_loading: 'Загрузка...',
+  store_error: 'Ошибка загрузки, попробуйте позже',
+  store_add: '+ Сохранить',
+  store_added: '✓ Сохранено',
+  store_open: 'Открыть',
+  store_empty: 'Нет содержимого',
+  store_search: 'Поиск...',
+
   // Backup & Restore
   tab_backup: 'Резервная копия',
   backup_export_title: 'Экспорт настроек',

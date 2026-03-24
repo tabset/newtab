@@ -353,6 +353,19 @@ const zhTW = {
   about_license: '開源協議',
   about_license_value: 'MIT License',
 
+  // Dock built-in items
+  bookmark_store_tooltip: '線上書籤',
+  toolbox_tooltip: '百寶箱',
+
+  // Store Panel
+  store_loading: '載入中...',
+  store_error: '載入失敗，請稍後重試',
+  store_add: '+ 收藏',
+  store_added: '✓ 已收藏',
+  store_open: '開啟',
+  store_empty: '暫無內容',
+  store_search: '搜尋...',
+
   // Backup & Restore
   tab_backup: '備份與恢復',
   backup_export_title: '匯出設定',

@@ -351,6 +351,19 @@ const ko = {
   about_license: '라이선스',
   about_license_value: 'MIT License',
 
+  // Dock built-in items
+  bookmark_store_tooltip: '온라인 북마크',
+  toolbox_tooltip: '툴박스',
+
+  // Store Panel
+  store_loading: '로딩 중...',
+  store_error: '로드 실패, 나중에 다시 시도해 주세요',
+  store_add: '+ 저장',
+  store_added: '✓ 저장됨',
+  store_open: '열기',
+  store_empty: '콘텐츠가 없습니다',
+  store_search: '검색...',
+
   // Backup & Restore
   tab_backup: '백업 및 복원',
   backup_export_title: '설정 내보내기',

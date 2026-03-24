@@ -1,0 +1,217 @@
+{
+  "version": "1.0",
+  "categories": [
+    {
+      "id": "text",
+      "name": { "zh-CN": "文本处理", "en": "Text Tools", "zh-TW": "文字處理", "ja": "テキストツール", "ko": "텍스트 도구", "ru": "Текст" },
+      "items": [
+        {
+          "id": "regex101",
+          "name": { "zh-CN": "Regex 101", "en": "Regex 101" },
+          "description": { "zh-CN": "在线正则表达式测试与调试，支持多种引擎", "en": "Online regex tester and debugger supporting multiple engines" },
+          "url": "https://regex101.com",
+          "icon": { "type": "text", "value": "⚡", "bgColor": "#1c2333" }
+        },
+        {
+          "id": "transform-tools",
+          "name": { "zh-CN": "Transform", "en": "Transform" },
+          "description": { "zh-CN": "JSON / YAML / CSV / TypeScript 等格式互相转换", "en": "Convert between JSON, YAML, CSV, TypeScript and more" },
+          "url": "https://transform.tools",
+          "icon": { "type": "text", "value": "🔄", "bgColor": "#1a1a2e" }
+        },
+        {
+          "id": "jsonformatter",
+          "name": { "zh-CN": "JSON 格式化", "en": "JSON Formatter" },
+          "description": { "zh-CN": "在线 JSON 格式化、压缩与校验", "en": "Format, minify and validate JSON online" },
+          "url": "https://jsonformatter.curiousconcept.com",
+          "icon": { "type": "text", "value": "📋", "bgColor": "#2d4a3e" }
+        },
+        {
+          "id": "base64",
+          "name": { "zh-CN": "Base64 编解码", "en": "Base64 Encode/Decode" },
+          "description": { "zh-CN": "字符串与 Base64 互相编解码", "en": "Encode and decode strings to/from Base64" },
+          "url": "https://www.base64encode.org",
+          "icon": { "type": "text", "value": "🔐", "bgColor": "#1a3a4a" }
+        },
+        {
+          "id": "urlencoder",
+          "name": { "zh-CN": "URL 编解码", "en": "URL Encoder" },
+          "description": { "zh-CN": "URL 编码与解码，处理特殊字符", "en": "URL encode and decode special characters" },
+          "url": "https://www.urlencoder.org",
+          "icon": { "type": "text", "value": "🔗", "bgColor": "#2a4a2a" }
+        },
+        {
+          "id": "markdown-editor",
+          "name": { "zh-CN": "Markdown 编辑器", "en": "Markdown Editor" },
+          "description": { "zh-CN": "在线 Markdown 实时预览编辑器", "en": "Online Markdown editor with live preview" },
+          "url": "https://markdownlivepreview.com",
+          "icon": { "type": "text", "value": "📄", "bgColor": "#2c3e50" }
+        }
+      ]
+    },
+    {
+      "id": "color",
+      "name": { "zh-CN": "颜色工具", "en": "Color Tools", "zh-TW": "顏色工具", "ja": "カラーツール", "ko": "색상 도구", "ru": "Цвета" },
+      "items": [
+        {
+          "id": "colorhunt",
+          "name": { "zh-CN": "Color Hunt", "en": "Color Hunt" },
+          "description": { "zh-CN": "精选配色方案，设计师的色彩灵感库", "en": "Curated color palettes for designers and artists" },
+          "url": "https://colorhunt.co",
+          "icon": { "type": "text", "value": "🎨", "bgColor": "#ff6b6b" }
+        },
+        {
+          "id": "uigradients",
+          "name": { "zh-CN": "UI Gradients", "en": "UI Gradients" },
+          "description": { "zh-CN": "精美渐变色集合，一键复制 CSS 代码", "en": "Beautiful CSS gradients with one-click copy" },
+          "url": "https://uigradients.com",
+          "icon": { "type": "text", "value": "🌈", "bgColor": "#667eea" }
+        },
+        {
+          "id": "cssgradient",
+          "name": { "zh-CN": "CSS 渐变生成器", "en": "CSS Gradient Generator" },
+          "description": { "zh-CN": "可视化生成 CSS 渐变代码，支持线性/径向/锥形", "en": "Visually generate CSS gradient code for linear, radial and conic" },
+          "url": "https://cssgradient.io",
+          "icon": { "type": "text", "value": "💅", "bgColor": "#fd79a8" }
+        },
+        {
+          "id": "contrast-ratio",
+          "name": { "zh-CN": "对比度检查", "en": "Contrast Checker" },
+          "description": { "zh-CN": "检查文字与背景的颜色对比度，符合 WCAG 无障碍标准", "en": "Check color contrast for WCAG accessibility compliance" },
+          "url": "https://webaim.org/resources/contrastchecker",
+          "icon": { "type": "text", "value": "⬛", "bgColor": "#333333" }
+        },
+        {
+          "id": "realfavicongenerator",
+          "name": { "zh-CN": "Favicon 生成器", "en": "Favicon Generator" },
+          "description": { "zh-CN": "一键生成各平台所需全套 Favicon 图标", "en": "Generate all required favicons for every platform" },
+          "url": "https://realfavicongenerator.net",
+          "icon": { "type": "text", "value": "⭐", "bgColor": "#1a6491" }
+        }
+      ]
+    },
+    {
+      "id": "image",
+      "name": { "zh-CN": "图片工具", "en": "Image Tools", "zh-TW": "圖片工具", "ja": "画像ツール", "ko": "이미지 도구", "ru": "Изображения" },
+      "items": [
+        {
+          "id": "squoosh",
+          "name": { "zh-CN": "Squoosh", "en": "Squoosh" },
+          "description": { "zh-CN": "Google 出品的图片压缩工具，支持 WebP/AVIF 等格式", "en": "Google's image compressor supporting WebP, AVIF and more" },
+          "url": "https://squoosh.app",
+          "icon": { "type": "text", "value": "🖼️", "bgColor": "#1a73e8" }
+        },
+        {
+          "id": "tinypng",
+          "name": { "zh-CN": "TinyPNG", "en": "TinyPNG" },
+          "description": { "zh-CN": "PNG/JPG 智能压缩，大幅减小图片体积", "en": "Smart PNG/JPG compression to significantly reduce file size" },
+          "url": "https://tinypng.com",
+          "icon": { "type": "text", "value": "🐼", "bgColor": "#73b655" }
+        },
+        {
+          "id": "removebg",
+          "name": { "zh-CN": "Remove.bg", "en": "Remove.bg" },
+          "description": { "zh-CN": "AI 自动去除图片背景，秒级完成", "en": "AI-powered background removal in seconds" },
+          "url": "https://www.remove.bg",
+          "icon": { "type": "text", "value": "✂️", "bgColor": "#4f46e5" }
+        },
+        {
+          "id": "photopea",
+          "name": { "zh-CN": "Photopea", "en": "Photopea" },
+          "description": { "zh-CN": "免费在线图片编辑器，支持 PSD/AI/XD 文件", "en": "Free online photo editor supporting PSD, AI and XD files" },
+          "url": "https://www.photopea.com",
+          "icon": { "type": "text", "value": "🖌️", "bgColor": "#1b1b2f" }
+        },
+        {
+          "id": "svgomg",
+          "name": { "zh-CN": "SVGOMG", "en": "SVGOMG" },
+          "description": { "zh-CN": "SVG 文件在线压缩优化，减小体积", "en": "Online SVG optimizer and compressor" },
+          "url": "https://jakearchibald.github.io/svgomg",
+          "icon": { "type": "text", "value": "🔷", "bgColor": "#ff7043" }
+        }
+      ]
+    },
+    {
+      "id": "dev",
+      "name": { "zh-CN": "开发辅助", "en": "Dev Helpers", "zh-TW": "開發輔助", "ja": "開発補助", "ko": "개발 보조", "ru": "Разработка" },
+      "items": [
+        {
+          "id": "caniuse",
+          "name": { "zh-CN": "Can I Use", "en": "Can I Use" },
+          "description": { "zh-CN": "查询浏览器对 CSS/HTML/JS 特性的兼容性", "en": "Check browser support for CSS, HTML and JS features" },
+          "url": "https://caniuse.com",
+          "icon": { "type": "text", "value": "🌐", "bgColor": "#c33912" }
+        },
+        {
+          "id": "carbon",
+          "name": { "zh-CN": "Carbon", "en": "Carbon" },
+          "description": { "zh-CN": "将代码生成精美图片，便于分享与展示", "en": "Create beautiful images of your code for sharing" },
+          "url": "https://carbon.now.sh",
+          "icon": { "type": "text", "value": "🖥️", "bgColor": "#161616" }
+        },
+        {
+          "id": "crontab-guru",
+          "name": { "zh-CN": "Crontab Guru", "en": "Crontab Guru" },
+          "description": { "zh-CN": "Cron 表达式编辑器，直观理解定时任务", "en": "Cron expression editor to understand scheduling intuitively" },
+          "url": "https://crontab.guru",
+          "icon": { "type": "text", "value": "⏰", "bgColor": "#1e3a5f" }
+        },
+        {
+          "id": "mockaroo",
+          "name": { "zh-CN": "Mockaroo", "en": "Mockaroo" },
+          "description": { "zh-CN": "生成真实感的测试数据，支持 JSON/CSV/SQL", "en": "Generate realistic test data in JSON, CSV, SQL and more" },
+          "url": "https://mockaroo.com",
+          "icon": { "type": "text", "value": "🎭", "bgColor": "#3d5a80" }
+        },
+        {
+          "id": "epoch",
+          "name": { "zh-CN": "Epoch 时间转换", "en": "Epoch Converter" },
+          "description": { "zh-CN": "Unix 时间戳与日期时间格式互相转换", "en": "Convert between Unix timestamps and human-readable datetime" },
+          "url": "https://www.epochconverter.com",
+          "icon": { "type": "text", "value": "⏱️", "bgColor": "#16213e" }
+        },
+        {
+          "id": "httpstatus",
+          "name": { "zh-CN": "HTTP Status Codes", "en": "HTTP Status Codes" },
+          "description": { "zh-CN": "HTTP 状态码速查，每个状态码的含义与用途", "en": "Quick reference for HTTP status codes and their meaning" },
+          "url": "https://httpstatuses.io",
+          "icon": { "type": "text", "value": "📡", "bgColor": "#2c5f2e" }
+        }
+      ]
+    },
+    {
+      "id": "calc",
+      "name": { "zh-CN": "实用计算", "en": "Calculators", "zh-TW": "實用計算", "ja": "計算ツール", "ko": "계산기", "ru": "Калькуляторы" },
+      "items": [
+        {
+          "id": "wolfram",
+          "name": { "zh-CN": "Wolfram Alpha", "en": "Wolfram Alpha" },
+          "description": { "zh-CN": "万能计算引擎，数学、科学、数据一站式计算", "en": "Computational engine for math, science, and data" },
+          "url": "https://www.wolframalpha.com",
+          "icon": { "type": "text", "value": "🧮", "bgColor": "#dd1100" }
+        },
+        {
+          "id": "units-converter",
+          "name": { "zh-CN": "单位换算", "en": "Unit Converter" },
+          "description": { "zh-CN": "长度、重量、温度、货币、面积等单位换算", "en": "Convert between length, weight, temperature, currency and more" },
+          "url": "https://www.unitconverters.net",
+          "icon": { "type": "text", "value": "📐", "bgColor": "#2c3e50" }
+        },
+        {
+          "id": "percentagecalc",
+          "name": { "zh-CN": "百分比计算器", "en": "Percentage Calculator" },
+          "description": { "zh-CN": "各种百分比计算，增长率、折扣、变化率", "en": "Calculate percentages, growth rates, discounts and changes" },
+          "url": "https://www.calculatorsoup.com/calculators/math/percentage.php",
+          "icon": { "type": "text", "value": "💯", "bgColor": "#1a472a" }
+        },
+        {
+          "id": "timezone",
+          "name": { "zh-CN": "时区转换", "en": "Time Zone Converter" },
+          "description": { "zh-CN": "全球时区实时转换，安排跨时区会议", "en": "Real-time time zone conversion for global meeting scheduling" },
+          "url": "https://www.timeanddate.com/worldclock/converter.html",
+          "icon": { "type": "text", "value": "🌍", "bgColor": "#0f3460" }
+        }
+      ]
+    }
+  ]
+}

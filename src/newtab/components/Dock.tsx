@@ -6,7 +6,12 @@ import { injectSvgColor } from './BookmarkEditModal'
 import { AppItem } from '../types'
 import AppGrid from './AppGrid'
 import BookmarkLaunchpad from './BookmarkLaunchpad'
+import StorePanel from './StorePanel'
+import { createUrlPlugin } from '../store/storeTypes'
 import { useT } from '../i18n'
+
+const bookmarkStorePlugin = createUrlPlugin('bookmark-store', '/data/bookmark-store.json')
+const toolboxPlugin = createUrlPlugin('toolbox', '/data/toolbox.json')
 
 
 const PADDING = 10
@@ -701,7 +706,12 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
   }, [isVertical, baseSize, displayApps, vpSize])
 
   const homeApp: AppItem = { id: 'home', name: t('home_tooltip'), emoji: '', color: 'transparent' }
+  const storeApp: AppItem = { id: 'bookmark-store', name: t('bookmark_store_tooltip'), emoji: '🔖', color: 'transparent' }
+  // const toolboxApp: AppItem = { id: 'toolbox', name: t('toolbox_tooltip'), emoji: '🧰', color: 'transparent' }
   const settingsApp: AppItem = { id: 'settings', name: t('settings_tooltip'), emoji: '', color: '#636366' }
+
+  const [storeOpen, setStoreOpen] = useState(false)
+  const [toolboxOpen, setToolboxOpen] = useState(false)
   const itemProps = { motionVal: mouseVal, baseSize, maxSize, effectRadius, magnification, position }
 
   const alignItems =
@@ -953,6 +963,24 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
           >
             <LaunchpadIcon size={baseSize} />
           </DockItem>
+
+          {/* 在线书签（固定内置） */}
+          <DockItem
+            app={storeApp}
+            {...itemProps}
+            onClick={() => { onSettingsClose(); setOverflowOpen(false); setStoreOpen(v => !v) }}
+          >
+            <img src="/icons/bookmark_store.svg" alt="" style={{ width: baseSize, height: baseSize }} />
+          </DockItem>
+
+          {/*/!* 百宝箱（固定内置） *!/*/}
+          {/*<DockItem*/}
+          {/*  app={toolboxApp}*/}
+          {/*  {...itemProps}*/}
+          {/*  onClick={() => { onSettingsClose(); setOverflowOpen(false); setToolboxOpen(v => !v) }}*/}
+          {/*>*/}
+          {/*  <img src="/icons/toolbox.svg" alt="" style={{ width: baseSize, height: baseSize }} />*/}
+          {/*</DockItem>*/}
 
           {/* 设置（固定，系统内置） */}
           <DockItem
@@ -1235,6 +1263,24 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
       />
 
       <BookmarkLaunchpad open={launchpadOpen} onClose={() => setLaunchpadOpen(false)} onOpenBookmark={handleOpenFromLaunchpad} initialCategoryId={launchpadInitialCategoryId} />
+
+      <StorePanel
+        open={storeOpen}
+        onClose={() => setStoreOpen(false)}
+        plugin={bookmarkStorePlugin}
+        mode="bookmark"
+        title={t('bookmark_store_tooltip')}
+        panelIcon="/icons/bookmark_store.svg"
+      />
+
+      <StorePanel
+        open={toolboxOpen}
+        onClose={() => setToolboxOpen(false)}
+        plugin={toolboxPlugin}
+        mode="tool"
+        title={t('toolbox_tooltip')}
+        panelIcon="/icons/toolbox.svg"
+      />
     </>
   )
 }
