@@ -192,6 +192,7 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
   const [query, setQuery] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
+  const catBarRef = useRef<HTMLDivElement>(null)
 
   // 打开时拉取数据
   useEffect(() => {
@@ -219,7 +220,37 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
   const getLocalText = (record: Record<string, string>) =>
     record[lang] || record['zh-CN'] || record['en'] || Object.values(record)[0] || ''
 
+  // 滚动分类栏使指定分类可见（滚动到中间位置）
+  const scrollCategoryIntoView = (categoryId: string) => {
+    requestAnimationFrame(() => {
+      const catBar = catBarRef.current
+      if (!catBar) return
+      
+      const idx = data?.categories.findIndex(c => c.id === categoryId)
+      if (idx === undefined || idx === -1) return
+      
+      const buttons = catBar.querySelectorAll('div[role="tab"]')
+      const targetBtn = buttons[idx] as HTMLElement
+      if (!targetBtn) return
+
+      const barRect = catBar.getBoundingClientRect()
+      const btnRect = targetBtn.getBoundingClientRect()
+      
+      // 计算目标位置：让按钮居中显示
+      const targetPosition = catBar.scrollLeft + btnRect.left - barRect.left - (barRect.width - btnRect.width) / 2
+      
+      // 使用 scrollTo 实现居中滚动
+      catBar.scrollTo({ left: targetPosition, behavior: 'smooth' })
+    })
+  }
+
   const activeCategory = data?.categories.find(c => c.id === activeCat)
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCat(categoryId)
+    setQuery('')
+    scrollCategoryIntoView(categoryId)
+  }
 
   const filteredItems = activeCategory?.items.filter(item => {
     if (!query.trim()) return true
@@ -318,17 +349,21 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
 
             {/* ── 分类 tabs ── */}
             {data && data.categories.length > 0 && (
-              <div style={{
-                display: 'flex', gap: 4, padding: '10px 20px 0',
-                overflowX: 'auto', flexShrink: 0,
-                scrollbarWidth: 'none',
-              }}>
+              <div
+                ref={catBarRef}
+                style={{
+                  display: 'flex', gap: 4, padding: '10px 20px 0',
+                  overflowX: 'auto', flexShrink: 0,
+                  scrollbarWidth: 'none',
+                }}
+              >
                 {data.categories.map(cat => {
                   const active = cat.id === activeCat
                   return (
                     <div
                       key={cat.id}
-                      onClick={() => { setActiveCat(cat.id); setQuery('') }}
+                      role="tab"
+                      onClick={() => handleCategoryChange(cat.id)}
                       style={{
                         padding: '5px 16px', borderRadius: 8, fontSize: 13, flexShrink: 0,
                         fontWeight: active ? 600 : 400, cursor: 'pointer',
