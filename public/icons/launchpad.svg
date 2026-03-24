@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <clipPath id="bg-clip">
+      <rect width="128" height="128" rx="28" ry="28"/>
+    </clipPath>
+
+    <!-- 背景渐变 -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f2f7"/>
+      <stop offset="100%" stop-color="#e2e6ef"/>
+    </linearGradient>
+
+    <!-- 搜索框渐变 -->
+    <linearGradient id="sb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dde0ea"/>
+      <stop offset="100%" stop-color="#d2d6e2"/>
+    </linearGradient>
+    <clipPath id="sb-clip">
+      <rect x="14" y="15" width="100" height="21" rx="10.5" ry="10.5"/>
+    </clipPath>
+
+    <!-- 方块渐变（对角：左上→右下） -->
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff5040"/>
+      <stop offset="100%" stop-color="#ff1e14"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb41e"/>
+      <stop offset="100%" stop-color="#ff8c00"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffeb3c"/>
+      <stop offset="100%" stop-color="#ffd200"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#32f078"/>
+      <stop offset="100%" stop-color="#00d246"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e96ff"/>
+      <stop offset="100%" stop-color="#0064ff"/>
+    </linearGradient>
+    <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dc64ff"/>
+      <stop offset="100%" stop-color="#b428ff"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#bg-clip)">
+    <!-- 背景 -->
+    <rect width="128" height="128" fill="url(#bg)"/>
+
+    <!-- 搜索框（无边框） -->
+    <rect x="14" y="15" width="100" height="21" rx="10.5" ry="10.5" fill="url(#sb)"/>
+
+    <!-- 放大镜圆环 -->
+    <circle cx="26" cy="25.5" r="5.5" fill="none" stroke="#8c94aa" stroke-width="1.8"/>
+    <!-- 放大镜把柄（45°方向，从圆边缘出发） -->
+    <line x1="30" y1="29.5" x2="34.5" y2="34" stroke="#8c94aa" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- 3×2 方块网格  x: 14,50,86  y: 44,80  size: 28×28 rx:7 -->
+    <rect x="14" y="44" width="28" height="28" rx="7" fill="url(#g1)"/>
+    <rect x="50" y="44" width="28" height="28" rx="7" fill="url(#g2)"/>
+    <rect x="86" y="44" width="28" height="28" rx="7" fill="url(#g3)"/>
+    <rect x="14" y="80" width="28" height="28" rx="7" fill="url(#g4)"/>
+    <rect x="50" y="80" width="28" height="28" rx="7" fill="url(#g5)"/>
+    <rect x="86" y="80" width="28" height="28" rx="7" fill="url(#g6)"/>
+  </g>
+</svg>
