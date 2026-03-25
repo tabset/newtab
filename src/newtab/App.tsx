@@ -7,6 +7,7 @@ import { loadImageWithCache } from './utils/imageCache'
 import { shouldRandomize, pickRandomBackground } from './utils/randomBackground'
 import SettingsModal from './components/SettingsModal'
 import BookmarkEditModal from './components/BookmarkEditModal'
+import DebugPage from './components/DebugPage'
 import { useT } from './i18n'
 
 function BackgroundLayer() {
@@ -212,6 +213,11 @@ function DesktopContextMenu({
 
 function AppContent() {
   const { config, setConfig, chromeReady } = useDockConfig()
+  const [debugMode, setDebugMode] = useState(() => {
+    // 检测 URL 是否包含 debug 参数
+    const params = new URLSearchParams(window.location.search)
+    return params.get('debug') === 'true'
+  })
   const [settingsActive, setSettingsActive] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [settingsTab, setSettingsTab] = useState('dock')
@@ -328,55 +334,63 @@ function AppContent() {
 
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
-      <BackgroundLayer />
-      <Dock
-        settingsActive={settingsActive}
-        settingsOpen={settingsOpen}
-        onSettingsOpen={(tab?: string) => openSettings(tab)}
-        onSettingsReopen={reopenSettings}
-        onSettingsClose={() => setSettingsOpen(false)}
-        onSettingsExit={exitSettings}
-        launchpadOpen={launchpadOpen}
-        onLaunchpadChange={setLaunchpadOpen}
-        launchpadInitialCategoryId={launchpadInitialCategoryId}
-      />
-      <AnimatePresence>
-        {contextMenu && (
-          <DesktopContextMenu
-            x={contextMenu.x}
-            y={contextMenu.y}
-            onClose={() => setContextMenu(null)}
-            onChangeWallpaper={() => openSettings('appearance')}
-            onDownloadWallpaper={downloadWallpaper}
-            onNewBookmark={() => setBookmarkEditOpen(true)}
-            canDownload={config.background.type === 'image' && !!config.background.imageUrl}
+      {/* 开发者模式页面 */}
+      {debugMode && <DebugPage onExit={() => setDebugMode(false)} />}
+      
+      {/* 正常页面内容 */}
+      {!debugMode && (
+        <>
+          <BackgroundLayer />
+          <Dock
+            settingsActive={settingsActive}
+            settingsOpen={settingsOpen}
+            onSettingsOpen={(tab?: string) => openSettings(tab)}
+            onSettingsReopen={reopenSettings}
+            onSettingsClose={() => setSettingsOpen(false)}
+            onSettingsExit={exitSettings}
+            launchpadOpen={launchpadOpen}
+            onLaunchpadChange={setLaunchpadOpen}
+            launchpadInitialCategoryId={launchpadInitialCategoryId}
           />
-        )}
-      </AnimatePresence>
-      <SettingsModal
-        active={settingsActive}
-        open={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        initialTab={settingsTab}
-        sessionKey={settingsSessionKey}
-        onBookmarkTabSelect={() => setLaunchpadOpen(true)}
-      />
-      <BookmarkEditModal
-        open={bookmarkEditOpen}
-        onClose={() => { setBookmarkEditOpen(false); setPendingBookmarkData(null) }}
-        mode="add"
-        initialData={pendingBookmarkData ?? undefined}
-        categories={config.bookmarkLayout?.categories ?? []}
-        onSave={(data) => {
-          const newBookmark = { ...data, id: `bm_${Date.now()}` }
-          const prev = config.bookmarks ?? []
-          setConfig({ bookmarks: [...prev, newBookmark] })
-          setBookmarkEditOpen(false)
-          setPendingBookmarkData(null)
-          setLaunchpadInitialCategoryId(data.categoryId || undefined)
-          setLaunchpadOpen(true)
-        }}
-      />
+          <AnimatePresence>
+            {contextMenu && (
+              <DesktopContextMenu
+                x={contextMenu.x}
+                y={contextMenu.y}
+                onClose={() => setContextMenu(null)}
+                onChangeWallpaper={() => openSettings('appearance')}
+                onDownloadWallpaper={downloadWallpaper}
+                onNewBookmark={() => setBookmarkEditOpen(true)}
+                canDownload={config.background.type === 'image' && !!config.background.imageUrl}
+              />
+            )}
+          </AnimatePresence>
+          <SettingsModal
+            active={settingsActive}
+            open={settingsOpen}
+            onClose={() => setSettingsOpen(false)}
+            initialTab={settingsTab}
+            sessionKey={settingsSessionKey}
+            onBookmarkTabSelect={() => setLaunchpadOpen(true)}
+          />
+          <BookmarkEditModal
+            open={bookmarkEditOpen}
+            onClose={() => { setBookmarkEditOpen(false); setPendingBookmarkData(null) }}
+            mode="add"
+            initialData={pendingBookmarkData ?? undefined}
+            categories={config.bookmarkLayout?.categories ?? []}
+            onSave={(data) => {
+              const newBookmark = { ...data, id: `bm_${Date.now()}` }
+              const prev = config.bookmarks ?? []
+              setConfig({ bookmarks: [...prev, newBookmark] })
+              setBookmarkEditOpen(false)
+              setPendingBookmarkData(null)
+              setLaunchpadInitialCategoryId(data.categoryId || undefined)
+              setLaunchpadOpen(true)
+            }}
+          />
+        </>
+      )}
     </div>
   )
 }

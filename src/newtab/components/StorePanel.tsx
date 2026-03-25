@@ -5,25 +5,45 @@ import { useT } from '../i18n'
 import type { BookmarkItem } from '../store/dockConfig'
 import type { StoreData, StoreItem, StorePlugin } from '../store/storeTypes'
 
-// ── 红灯关闭按钮（与 SettingsModal 保持一致） ────────────
-function TrafficLight({ onClose }: { onClose: () => void }) {
+// ── 交通灯按钮组 ────────────────────────────────────────
+function TrafficLights({ onClose, onZoom, zoomed }: { onClose: () => void; onZoom: () => void; zoomed: boolean }) {
   const [hovered, setHovered] = useState(false)
   return (
     <div
+      style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 0, lineHeight: 0 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={onClose}
-      style={{
-        width: 15, height: 15, borderRadius: '50%',
-        background: '#FF5F57',
-        cursor: 'pointer',
-        boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.15)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 10, fontWeight: 700, color: 'rgba(0,0,0,0.5)',
-        lineHeight: 1, userSelect: 'none', flexShrink: 0,
-      }}
     >
-      {hovered ? '×' : null}
+      {/* 红灯：关闭 */}
+      <div
+        onClick={onClose}
+        style={{
+          width: 15, height: 15, borderRadius: '50%',
+          background: '#FF5F57',
+          cursor: 'pointer',
+          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.15)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 10, fontWeight: 700, color: 'rgba(0,0,0,0.5)',
+          lineHeight: 1, userSelect: 'none', flexShrink: 0,
+        }}
+      >
+        {hovered ? '×' : null}
+      </div>
+      {/* 绿灯：放大 */}
+      <div
+        onClick={onZoom}
+        style={{
+          width: 15, height: 15, borderRadius: '50%',
+          background: '#28C840',
+          cursor: 'pointer',
+          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.15)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 10, fontWeight: 700, color: 'rgba(0,0,0,0.5)',
+          lineHeight: 1, userSelect: 'none', flexShrink: 0,
+        }}
+      >
+        {hovered ? (zoomed ? '⊙' : '+') : null}
+      </div>
     </div>
   )
 }
@@ -199,12 +219,13 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
   const [activeCat, setActiveCat] = useState('')
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
   const [query, setQuery] = useState('')
+  const [zoomed, setZoomed] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
   const catBarRef = useRef<HTMLDivElement>(null)
 
-  // 打开时拉取数据
+  // 打开时拉取数据，关闭时重置放大状态
   useEffect(() => {
-    if (!open) return
+    if (!open) { setZoomed(false); return }
     setQuery('')
     setLoading(true)
     setError(null)
@@ -300,20 +321,48 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}
         >
+          {(() => {
+              const vw = window.innerWidth
+              const vh = window.innerHeight
+              const dockGap = config.baseSize + 10 * 2 + 8 + 2
+              const pos = config.position ?? 'bottom'
+              const normalW = Math.min(940, vw - 64)
+              const normalH = Math.min(620, vh - 100)
+              const panelLayout = zoomed
+                ? {
+                    top:    pos === 'top'    ? dockGap : 0,
+                    left:   pos === 'left'   ? dockGap : 0,
+                    width:  pos === 'left' || pos === 'right' ? vw - dockGap : vw,
+                    height: pos === 'top'  || pos === 'bottom' ? vh - dockGap : vh,
+                  }
+                : {
+                    top:    (vh - normalH) / 2,
+                    left:   (vw - normalW) / 2,
+                    width:  normalW,
+                    height: normalH,
+                  }
+              return (
           <motion.div
             key="store-panel-box"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate={{ opacity: 1, scale: 1, y: 0, ...panelLayout }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+            transition={{
+              opacity: { duration: 0.2 },
+              scale:  { type: 'spring', stiffness: 380, damping: 32 },
+              y:      { type: 'spring', stiffness: 380, damping: 32 },
+              top:    { type: 'spring', stiffness: 260, damping: 28 },
+              left:   { type: 'spring', stiffness: 260, damping: 28 },
+              width:  { type: 'spring', stiffness: 260, damping: 28 },
+              height: { type: 'spring', stiffness: 260, damping: 28 },
+            }}
             onClick={e => e.stopPropagation()}
             style={{
-              width: 'min(940px, calc(100vw - 64px))',
-              height: 'min(620px, calc(100vh - 100px))',
+              position: 'absolute',
+              borderRadius: 20,
               background: 'linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.09) 100%)',
               backdropFilter: 'blur(32px) saturate(180%)',
               WebkitBackdropFilter: 'blur(32px) saturate(180%)',
-              borderRadius: 20,
               border: '0.5px solid rgba(255,255,255,0.25)',
               boxShadow: '0 28px 72px rgba(0,0,0,0.5)',
               display: 'flex', flexDirection: 'column',
@@ -327,8 +376,8 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
               borderBottom: '0.5px solid rgba(255,255,255,0.1)',
               flexShrink: 0, position: 'relative',
             }}>
-              {/* 左：红灯关闭 */}
-              <TrafficLight onClose={onClose} />
+              {/* 左：交通灯 */}
+              <TrafficLights onClose={onClose} onZoom={() => setZoomed(v => !v)} zoomed={zoomed} />
 
               {/* 中：图标 + 标题（绝对居中） */}
               <div style={{
@@ -433,6 +482,8 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
               )}
             </div>
           </motion.div>
+              )
+            })()}
         </motion.div>
       )}
     </AnimatePresence>

@@ -945,7 +945,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
 
   return (
     <>
-      <div style={getDockWrapperStyle(position)} onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}>
+      <div style={{ ...getDockWrapperStyle(position), ...(storeOpen || toolboxOpen ? { zIndex: 210 } : {}) }} onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}>
         <motion.div
           ref={dockInnerRef}
           onMouseMove={(contextMenu || pointerDrag) ? undefined : (e) => mouseVal.set(isVertical ? e.clientY : e.clientX)}
