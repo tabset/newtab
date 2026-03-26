@@ -161,6 +161,7 @@ interface Props {
   initialTab?: string
   sessionKey?: number
   onBookmarkTabSelect?: () => void
+  zIndex?: number
 }
 
 // Tab 图标
@@ -2069,8 +2070,8 @@ function AboutTab() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 32 }}>
       {/* 图标 + 名称 */}
-      <img src="/icons/icon128.png" alt="ATab" style={{ width: 72, height: 72, borderRadius: 18, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', marginBottom: 12 }} />
-      <div style={{ fontSize: 18, fontWeight: 700, color: 'rgba(0,0,0,0.82)', marginBottom: 4 }}>ATab</div>
+      <img src="/icons/icon128.png" alt="New Tab" style={{ width: 72, height: 72, borderRadius: 18, boxShadow: '0 4px 20px rgba(0,0,0,0.12)', marginBottom: 12 }} />
+      <div style={{ fontSize: 18, fontWeight: 700, color: 'rgba(0,0,0,0.82)', marginBottom: 4 }}>New Tab</div>
       <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.4)', marginBottom: 24, textAlign: 'center', maxWidth: 260, lineHeight: 1.6 }}>
         {t('about_description')}
       </div>
@@ -2592,7 +2593,7 @@ function CategoryManager({ layout, setLayout, t, labelStyle }: {
 
 type RightPanelId = 'gradient-editor' | 'new-solid-preset' | 'all-solid-presets' | 'all-grad-presets' | 'image-preview' | 'image-library' | 'delete-confirm' | null
 
-export default function SettingsModal({ active, open, onClose, initialTab, sessionKey, onBookmarkTabSelect }: Props) {
+export default function SettingsModal({ active, open, onClose, initialTab, sessionKey, onBookmarkTabSelect, zIndex = 300 }: Props) {
   const { config, setConfig } = useDockConfig()
   const dragControls = useDragControls()
   const t = useT()
@@ -2849,7 +2850,7 @@ export default function SettingsModal({ active, open, onClose, initialTab, sessi
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
-              zIndex: 201,
+              zIndex,
             }}
           >
 

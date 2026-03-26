@@ -1,71 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
   <defs>
-    <clipPath id="bg-clip">
-      <rect width="128" height="128" rx="28" ry="28"/>
-    </clipPath>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f0f2f7"/>
-      <stop offset="100%" stop-color="#e2e6ef"/>
-    </linearGradient>
-    <linearGradient id="box-body" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4a90d9"/>
-      <stop offset="100%" stop-color="#2c6fbd"/>
-    </linearGradient>
-    <linearGradient id="box-lid" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#62a8f0"/>
-      <stop offset="100%" stop-color="#3a80cc"/>
-    </linearGradient>
-    <linearGradient id="handle-grad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f0b030"/>
-      <stop offset="100%" stop-color="#c88010"/>
-    </linearGradient>
-    <linearGradient id="tool-grad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#eef0f5"/>
-      <stop offset="100%" stop-color="#b8bcc8"/>
-    </linearGradient>
-    <linearGradient id="screw-handle" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ff5040"/>
-      <stop offset="100%" stop-color="#cc2010"/>
-    </linearGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
+    <clipPath id="c"><rect width="128" height="128" rx="28" ry="28"/></clipPath>
   </defs>
-
-  <g clip-path="url(#bg-clip)">
-    <rect width="128" height="128" fill="url(#bg)"/>
-
-    <!-- 提手 -->
-    <path d="M 47 48 Q 47 31 64 31 Q 81 31 81 48"
-          fill="none" stroke="url(#handle-grad)" stroke-width="7" stroke-linecap="round"/>
-
-    <!-- 箱盖 y=45, h=18 -->
-    <rect x="11" y="45" width="106" height="18" rx="6" fill="url(#box-lid)"/>
-    <rect x="11" y="45" width="106" height="9"  rx="6" fill="url(#shine)"/>
-
-    <!-- 箱盖底部暗线 -->
-    <rect x="11" y="61" width="106" height="2" fill="#1a50a0" opacity="0.35"/>
-
-    <!-- 箱体 y=63, h=51 -->
-    <rect x="11" y="63" width="106" height="54" rx="6" fill="url(#box-body)"/>
-    <rect x="11" y="63" width="106" height="23" rx="6" fill="url(#shine)"/>
-
-    <!-- 锁扣 -->
-    <rect x="53" y="59" width="22" height="9" rx="3" fill="url(#handle-grad)"/>
-    <ellipse cx="64" cy="64" rx="3.5" ry="2.5" fill="#8a5808"/>
-
-    <!-- 扳手 -->
-    <rect x="32" y="74" width="8" height="34" rx="4" fill="url(#tool-grad)" transform="rotate(-15 36 91)"/>
-    <path d="M 28 76 Q 23 70 26 63 Q 31 56 39 60 L 36 65 Q 31 63 30 67 Q 29 71 33 74 Z"
-          fill="url(#tool-grad)"/>
-    <path d="M 35 80 Q 29 84 28 90 Q 27 97 33 99 L 34 94 Q 30 93 31 89 Q 32 85 37 83 Z"
-          fill="url(#tool-grad)"/>
-
-    <!-- 螺丝刀 -->
-    <rect x="76" y="70" width="11" height="21" rx="5" fill="url(#screw-handle)" transform="rotate(20 81 80)"/>
-    <rect x="76" y="70" width="11" height="10" rx="5" fill="url(#shine)"        transform="rotate(20 81 80)"/>
-    <rect x="79" y="88" width="4"  height="25" rx="2" fill="url(#tool-grad)"    transform="rotate(20 81 100)"/>
-    <rect x="78" y="110" width="5" height="3"  rx="1" fill="#8c94aa"            transform="rotate(20 80 111)"/>
+  <g clip-path="url(#c)">
+    <rect width="128" height="128" fill="#fff8f0"/>
+    <!-- 锤子把柄：橙色 -->
+    <polygon points="45.6,59.7 51.2,54.1 95.1,97.9 89.4,103.6" fill="#fb923c"/>
+    <!-- 锤头：深橙红 -->
+    <polygon points="15.9,55.5 47.0,24.4 65.4,42.8 34.3,73.9" fill="#ea580c"/>
+    <polygon points="15.9,55.5 47.0,24.4 56.2,33.6 25.1,64.7" fill="white" opacity="0.22"/>
+    <!-- 扳手：暖黄 -->
+    <polygon points="83.8,52.7 89.4,58.3 47.0,100.8 41.3,95.1" fill="#f59e0b"/>
+    <polygon points="78.1,38.5 103.6,64.0 96.5,71.1 71.0,45.6" fill="#f59e0b"/>
+    <polygon points="86.6,30.0 95.1,38.5 82.4,51.3 73.9,42.8" fill="#f59e0b"/>
+    <polygon points="103.6,47.0 112.1,55.5 99.3,68.2 90.8,59.7" fill="#f59e0b"/>
   </g>
 </svg>

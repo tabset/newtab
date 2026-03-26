@@ -37,6 +37,7 @@
     "tabs",
     "storage",
     "activeTab",
+    "scripting",
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess"
   ],

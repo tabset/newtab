@@ -101,6 +101,7 @@ const ko = {
   source_default_name: '소스 {n}',
   bookmark_search_placeholder: '북마크 검색...',
   bookmark_cat_all: '전체',
+  bookmark_cat_other: '기타',
   bookmark_empty: '북마크를 찾을 수 없습니다',
   home_tooltip: '북마크 관리',
   overflow_tooltip: '더 보기',
@@ -324,7 +325,22 @@ const ko = {
   open_mode_newtab_desc: '새 탭에서 북마크 열기',
   open_mode_current_desc: '현재 탭에서 북마크 열기',
   bm_add_to_dock: '독에 추가',
+  bm_edit: '편집',
+  bm_delete: '삭제',
+  bm_batch_delete: '일괄 삭제',
+  bm_exit: '종료',
+  bm_confirm: '확인',
+  bm_confirm_delete_bookmark: '북마크 "{name}"을(를) 삭제하시겠습니까?',
+  bm_confirm_delete_selected: '선택한 {count}개의 북마크를 삭제하시겠습니까?',
+  bm_add_bookmark: '북마크 추가',
+  bm_batch_manage: '일괄 관리',
+  bm_batch_manage_status: '일괄 관리 · {count}개 선택됨',
+  bm_move_to: '이동',
+  debug_exit: '개발자 모드 종료',
   dock_remove_label: '독에서 제거',
+  dock_menu_open: '열기',
+  dock_menu_exit: '종료',
+  dock_menu_keep_in_dock: 'Dock에 유지',
 
   shortcuts_section_global: '전역',
   shortcuts_add_bookmark_page: '현재 페이지를 북마크에 추가',
@@ -350,6 +366,19 @@ const ko = {
   about_star_btn: '⭐ 스타 남기기',
   about_license: '라이선스',
   about_license_value: 'MIT License',
+
+  // Dock built-in items
+  bookmark_store_tooltip: '온라인 북마크',
+  toolbox_tooltip: '툴박스',
+
+  // Store Panel
+  store_loading: '로딩 중...',
+  store_error: '로드 실패, 나중에 다시 시도해 주세요',
+  store_add: '+ 저장',
+  store_added: '✓ 저장됨',
+  store_open: '열기',
+  store_empty: '콘텐츠가 없습니다',
+  store_search: '검색...',
 
   // Backup & Restore
   tab_backup: '백업 및 복원',

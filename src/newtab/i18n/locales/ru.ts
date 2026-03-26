@@ -102,6 +102,7 @@ const ru = {
   bookmark_search_placeholder: 'Поиск закладок...',
   bookmark_empty: 'Закладки не найдены',
   bookmark_cat_all: 'Все',
+  bookmark_cat_other: 'Другое',
   home_tooltip: 'Закладки',
   overflow_tooltip: 'Ещё',
   settings_tooltip: 'Настройки',
@@ -301,7 +302,22 @@ const ru = {
   open_mode_newtab_desc: 'Открывать закладки в новой вкладке',
   open_mode_current_desc: 'Открывать закладки в текущей вкладке',
   bm_add_to_dock: 'Добавить в Dock',
+  bm_edit: 'Редактировать',
+  bm_delete: 'Удалить',
+  bm_batch_delete: 'Массовое удаление',
+  bm_exit: 'Выход',
+  bm_confirm: 'Подтвердить',
+  bm_confirm_delete_bookmark: 'Удалить закладку "{name}"?',
+  bm_confirm_delete_selected: 'Удалить {count} выбранных закладок?',
+  bm_add_bookmark: 'Добавить закладку',
+  bm_batch_manage: 'Пакетное управление',
+  bm_batch_manage_status: 'Пакетное управление · выбрано {count}',
+  bm_move_to: 'Переместить в',
+  debug_exit: 'Выйти из режима разработчика',
   dock_remove_label: 'Убрать из Dock',
+  dock_menu_open: 'Открыть',
+  dock_menu_exit: 'Выход',
+  dock_menu_keep_in_dock: 'Сохранить в Dock',
 
   shortcuts_section_global: 'Глобальные',
   shortcuts_add_bookmark_page: 'Добавить текущую страницу в закладки',
@@ -327,6 +343,19 @@ const ru = {
   about_star_btn: '⭐ Поставить звезду',
   about_license: 'Лицензия',
   about_license_value: 'MIT License',
+
+  // Dock built-in items
+  bookmark_store_tooltip: 'Онлайн закладки',
+  toolbox_tooltip: 'Панель инструментов',
+
+  // Store Panel
+  store_loading: 'Загрузка...',
+  store_error: 'Ошибка загрузки, попробуйте позже',
+  store_add: '+ Сохранить',
+  store_added: '✓ Сохранено',
+  store_open: 'Открыть',
+  store_empty: 'Нет содержимого',
+  store_search: 'Поиск...',
 
   // Backup & Restore
   tab_backup: 'Резервная копия',

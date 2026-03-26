@@ -122,28 +122,28 @@ export interface DockConfig {
 
 const STORAGE_KEY = 'newtab_dock_config'
 
-const DEFAULT_CONFIG: DockConfig = {
+export const DEFAULT_CONFIG: DockConfig = {
   baseSize: 56,
   magnification: true,
   maxSize: 96,
   effectRadius: 160,
   position: 'bottom',
   background: {
-    type: 'gradient',
-    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    type: 'image',
+    imageUrl: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&q=80',
     blur: 0,
     opacity: 100,
   },
-  language: 'zh-CN',
+  language: 'en',
 }
 
-interface DockConfigCtx {
+export interface DockConfigCtx {
   config: DockConfig
   setConfig: (patch: Partial<DockConfig>) => void
   chromeReady: boolean
 }
 
-const DockConfigContext = createContext<DockConfigCtx>({
+export const DockConfigContext = createContext<DockConfigCtx>({
   config: DEFAULT_CONFIG,
   setConfig: () => {},
   chromeReady: false,

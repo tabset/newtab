@@ -117,16 +117,19 @@ interface Props {
   onClose: () => void
   onOpenBookmark?: (bookmark: BookmarkItem) => void
   initialCategoryId?: string
+  zIndex?: number
 }
 
-export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initialCategoryId }: Props) {
+export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initialCategoryId, zIndex = 99 }: Props) {
   const t = useT()
   const { config, setConfig } = useDockConfig()
   const layout = config.bookmarkLayout ?? DEFAULT_BOOKMARK_LAYOUT
   const rawBookmarks = config.bookmarks ?? []
 
-  // 动态构建分类列表：全部（可选）+ 按分类定义过滤
+  // 动态构建分类列表：全部（可选）+ 按分类定义过滤 + 其他（无分类）
   const showCatAll = layout.showCatAll !== false
+  
+  // 用户定义的分类
   const subCategories: Category[] = (layout.categories ?? [])
     .filter(cat => rawBookmarks.some(b => b.categoryId === cat.id))
     .map(cat => ({
@@ -134,9 +137,19 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
       label: cat.name,
       bookmarks: rawBookmarks.filter(b => b.categoryId === cat.id),
     }))
+  
+  // 没有分类的书签（归到"其他"）
+  const uncategorizedBookmarks = rawBookmarks.filter(b => !b.categoryId || !layout.categories?.some(cat => cat.id === b.categoryId))
+  const otherCategory: Category = {
+    id: 'other',
+    label: t('bookmark_cat_other'),
+    bookmarks: uncategorizedBookmarks,
+  }
+  
   const CATEGORIES: Category[] = [
     ...(showCatAll ? [{ id: 'all', label: t('bookmark_cat_all'), bookmarks: rawBookmarks }] : []),
     ...subCategories,
+    ...(uncategorizedBookmarks.length > 0 ? [otherCategory] : []),
   ]
 
   const [query, setQuery] = useState('')
@@ -150,6 +163,7 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
   const inputRef = useRef<HTMLInputElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const engineRef = useRef<HTMLDivElement>(null)
+  const categoryBarRef = useRef<HTMLDivElement>(null)
   const catSwitchCooldownRef = useRef(false)
   const prevSearchingRef = useRef(false)
   const addBookmarkToDock = (bookmark: BookmarkItem) => {
@@ -221,18 +235,12 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  // Cmd+O (Mac) / Ctrl+O (Windows) 快捷键打开新增书签弹窗
+  // 监听设置中搜索引擎配置的变化，实时更新到搜索框
   useEffect(() => {
-    if (!open) return
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'o') {
-        e.preventDefault()
-        setAddModalOpen(true)
-      }
+    if (open && layout.defaultSearchEngineId) {
+      setSelectedEngineId(layout.defaultSearchEngineId)
     }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [open])
+  }, [open, layout.defaultSearchEngineId])
 
   useEffect(() => {
     if (open) {
@@ -332,6 +340,27 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
     setQuery('')
     contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
     setTimeout(() => inputRef.current?.focus(), 0)
+    
+    // 滚动分类栏使选中的分类居中
+    setTimeout(() => {
+      if (!categoryBarRef.current) return
+      const categoryBar = categoryBarRef.current
+      const activeButton = categoryBar.querySelector(`[data-category-id="${id}"]`) as HTMLElement
+      if (!activeButton) return
+      
+      const barRect = categoryBar.getBoundingClientRect()
+      const buttonRect = activeButton.getBoundingClientRect()
+      
+      // 计算按钮相对于分类栏的位置
+      const buttonCenter = buttonRect.left + buttonRect.width / 2 - barRect.left + categoryBar.scrollLeft
+      const barCenter = categoryBar.offsetWidth / 2
+      
+      // 滚动使按钮居中
+      categoryBar.scrollTo({
+        left: buttonCenter - barCenter,
+        behavior: 'smooth'
+      })
+    }, 50)
   }
 
   // 横向滑动切换分类（触控板水平滚动）
@@ -350,7 +379,16 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
     setSelectedIds(prev => { const s = new Set(prev); if (s.has(id)) s.delete(id); else s.add(id); return s })
 
   const deleteBookmark = (bm: BookmarkItem) => {
+    // 从书签列表中删除
     setConfig({ bookmarks: rawBookmarks.filter(b => b.id !== bm.id) })
+    
+    // 同时从程序坞中删除相同URL的应用
+    const dockApps = config.dockApps ?? []
+    const updatedDockApps = dockApps.filter(app => app.url !== bm.url)
+    if (updatedDockApps.length !== dockApps.length) {
+      setConfig({ dockApps: updatedDockApps })
+    }
+    
     setBmContextMenu(null)
   }
 
@@ -367,7 +405,20 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
   }
 
   const execBatchDelete = () => {
+    // 获取要删除的书签
+    const bookmarksToDelete = rawBookmarks.filter(b => selectedIds.has(b.id))
+    
+    // 从书签列表中删除
     setConfig({ bookmarks: rawBookmarks.filter(b => !selectedIds.has(b.id)) })
+    
+    // 同时从程序坞中删除相同URL的应用
+    const dockApps = config.dockApps ?? []
+    const deletedUrls = new Set(bookmarksToDelete.map(b => b.url))
+    const updatedDockApps = dockApps.filter(app => !deletedUrls.has(app.url || ''))
+    if (updatedDockApps.length !== dockApps.length) {
+      setConfig({ dockApps: updatedDockApps })
+    }
+    
     setSelectedIds(new Set()); setBatchMode(false); setConfirmState(null)
   }
 
@@ -421,13 +472,15 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
     <AnimatePresence>
       {open && (
         <motion.div
+          key="main-content"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22 }}
+          onClick={batchMode ? undefined : onClose}
           onContextMenu={e => { e.preventDefault(); e.stopPropagation() }}
           style={{
-            position: 'fixed', inset: 0, zIndex: 99,
+            position: 'fixed', inset: 0, zIndex,
             backdropFilter: 'blur(48px) saturate(180%) brightness(0.55)',
             WebkitBackdropFilter: 'blur(48px) saturate(180%) brightness(0.55)',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -486,14 +539,14 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                   whileHover={hasSelected ? { scale: 1.04 } : {}} whileTap={hasSelected ? { scale: 0.96 } : {}}
                   onClick={() => {
                     if (!hasSelected) return
-                    setConfirmState({ message: `确定删除选中的 ${selectedIds.size} 个书签？`, onConfirm: execBatchDelete })
+                    setConfirmState({ message: t('bm_confirm_delete_selected', { count: selectedIds.size }), onConfirm: execBatchDelete })
                   }}
                   style={{ ...btnBase, cursor: hasSelected ? 'pointer' : 'not-allowed',
                     background: hasSelected ? 'rgba(255,80,80,0.22)' : 'rgba(255,255,255,0.07)',
                     border: `0.5px solid ${hasSelected ? 'rgba(255,100,100,0.45)' : 'rgba(255,255,255,0.12)'}`,
                     color: hasSelected ? '#ff7070' : 'rgba(255,255,255,0.28)',
                   }}
-                >批量删除</motion.div>
+                >{t('bm_batch_delete')}</motion.div>
                 <motion.div
                   whileHover={canMove ? { scale: 1.04 } : {}} whileTap={canMove ? { scale: 0.96 } : {}}
                   onClick={(e) => {
@@ -508,7 +561,7 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                     border: `0.5px solid ${canMove ? 'rgba(255,255,255,0.28)' : 'rgba(255,255,255,0.12)'}`,
                     color: canMove ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.28)',
                   }}
-                >移动至</motion.div>
+                >{t('bm_move_to')}</motion.div>
               </div>
             )
           })() : (() => {
@@ -543,9 +596,9 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                     boxShadow: '0 8px 32px rgba(0,0,0,0.32)', padding: 4, minWidth: 140, zIndex: 20,
                   }}>
                     <div style={ctxItemSt} onMouseEnter={onHover} onMouseLeave={onLeave}
-                      onClick={() => { setMoreMenuOpen(false); setAddModalOpen(true) }}>新增书签</div>
+                      onClick={() => { setMoreMenuOpen(false); setAddModalOpen(true) }}>{t('bm_add_bookmark')}</div>
                     <div style={{ ...ctxItemSt, ...(rawBookmarks.length === 0 ? { opacity: 0.35, cursor: 'not-allowed', pointerEvents: 'none' } : {}) }} onMouseEnter={rawBookmarks.length > 0 ? onHover : undefined} onMouseLeave={rawBookmarks.length > 0 ? onLeave : undefined}
-                      onClick={() => { if (rawBookmarks.length === 0) return; setMoreMenuOpen(false); setBatchMode(true); setSelectedIds(new Set()) }}>批量管理</div>
+                      onClick={() => { if (rawBookmarks.length === 0) return; setMoreMenuOpen(false); setBatchMode(true); setSelectedIds(new Set()) }}>{t('bm_batch_manage')}</div>
                   </div>
                 )}
               </div>
@@ -683,7 +736,7 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
               }}
             >
               <span style={{ color: 'rgba(255,255,255,0.88)', fontSize: 13 }}>
-                批量管理 · 已选 {selectedIds.size} 项
+                {t('bm_batch_manage_status', { count: selectedIds.size })}
               </span>
               <div
                 onClick={() => { setBatchMode(false); setSelectedIds(new Set()) }}
@@ -692,7 +745,7 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                   color: 'rgba(255,255,255,0.8)', fontSize: 12, padding: '3px 10px',
                   borderRadius: 6, cursor: 'pointer', userSelect: 'none',
                 }}
-              >退出</div>
+              >{t('bm_exit')}</div>
             </motion.div>
           )}
 
@@ -888,6 +941,7 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
           {/* ── 分类栏 ── */}
           {layout.categoryMode === 'show' ? (
             <motion.div
+              ref={categoryBarRef}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: 0.08 }}
@@ -895,13 +949,18 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
               style={{
                 flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10,
                 padding: '14px 28px', marginBottom: 28, overflowX: 'auto', maxWidth: '100%',
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch',
               }}
+              className="hide-scrollbar"
             >
               {CATEGORIES.map(cat => {
                 const isActive = cat.id === activeCategoryId
                 return (
                   <motion.button
                     key={cat.id}
+                    data-category-id={cat.id}
                     onClick={() => handleCategoryChange(cat.id)}
                     whileHover={{ scale: 1.06 }}
                     whileTap={{ scale: 0.94 }}
@@ -1011,7 +1070,7 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                   }}
                 >
                   <div style={st} onMouseEnter={hov} onMouseLeave={lev}
-                    onClick={() => { setEditTarget(bmContextMenu.bookmark); setBmContextMenu(null) }}>编辑</div>
+                    onClick={() => { setEditTarget(bmContextMenu.bookmark); setBmContextMenu(null) }}>{t('bm_edit')}</div>
                   {!(config.dockApps ?? []).some(a => a.url === bmContextMenu.bookmark.url) && (
                     <div style={st} onMouseEnter={hov} onMouseLeave={lev}
                       onClick={() => { addBookmarkToDock(bmContextMenu.bookmark); setBmContextMenu(null) }}>
@@ -1021,8 +1080,8 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                   <div style={st} onMouseEnter={hov} onMouseLeave={lev}
                     onClick={() => {
                       const bm = bmContextMenu.bookmark; setBmContextMenu(null)
-                      setConfirmState({ message: `确定删除书签「${bm.name}」？`, onConfirm: () => deleteBookmark(bm) })
-                    }}>删除</div>
+                      setConfirmState({ message: t('bm_confirm_delete_bookmark', { name: bm.name }), onConfirm: () => deleteBookmark(bm) })
+                    }}>{t('bm_delete')}</div>
                 </motion.div>
               )
             })()}
@@ -1123,14 +1182,14 @@ export default function BookmarkLaunchpad({ open, onClose, onOpenBookmark, initi
                   padding: '7px 18px', borderRadius: 8, border: '0.5px solid rgba(255,255,255,0.2)',
                   background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.8)',
                   fontSize: 13, cursor: 'pointer',
-                }}>取消</motion.button>
+                }}>{t('btn_cancel')}</motion.button>
               <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
                 onClick={() => { confirmState.onConfirm(); setConfirmState(null) }}
                 style={{
                   padding: '7px 18px', borderRadius: 8, border: 'none',
                   background: '#007AFF', color: '#fff',
                   fontSize: 13, fontWeight: 600, cursor: 'pointer',
-                }}>确认</motion.button>
+                }}>{t('bm_confirm')}</motion.button>
             </div>
           </motion.div>
         </motion.div>

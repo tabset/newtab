@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --config vite.config.overlay.ts",
+    "package": "npm run build && node -e \"const {execSync}=require('child_process'),{version}=require('./package.json');execSync('mkdir -p releases && cd dist && zip -r ../releases/newtab-'+version+'.zip .')\"",
     "preview": "vite preview",
     "type-check": "tsc --noEmit"
   },
