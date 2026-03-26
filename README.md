@@ -4,7 +4,7 @@
 
 **A Chrome extension that makes every new tab feel brand new**
 
-简体中文 · [繁體中文](./README.zh-TW.md) · English · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Русский](./README.ru.md)
+English · [简体中文](./README.zh-CN.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Русский](./README.ru.md)
 
 <img src="public/screenshot/home.jpg" alt="Home" />
 
