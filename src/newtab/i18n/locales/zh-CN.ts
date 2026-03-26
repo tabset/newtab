@@ -127,6 +127,7 @@ const zhCN = {
   bookmark_search_placeholder: '搜索书签...',
   bookmark_empty: '没有找到匹配的书签',
   bookmark_cat_all: '全部',
+  bookmark_cat_other: '其他',
 
   // Dock tooltips
   home_tooltip: '书签管理',
@@ -361,7 +362,22 @@ const zhCN = {
 
   // Bookmark → dock
   bm_add_to_dock: '添加到书签栏',
+  bm_edit: '编辑',
+  bm_delete: '删除',
+  bm_batch_delete: '批量删除',
+  bm_exit: '退出',
+  bm_confirm: '确认',
+  bm_confirm_delete_bookmark: '确定删除书签「{name}」？',
+  bm_confirm_delete_selected: '确定删除选中的 {count} 个书签？',
+  bm_add_bookmark: '新增书签',
+  bm_batch_manage: '批量管理',
+  bm_batch_manage_status: '批量管理 · 已选 {count} 项',
+  bm_move_to: '移动至',
+  debug_exit: '退出开发者模式',
   dock_remove_label: '移除书签栏',
+  dock_menu_open: '打开',
+  dock_menu_exit: '退出',
+  dock_menu_keep_in_dock: '保留到标签栏',
 
   // Shortcuts tab
   shortcuts_section_global: '全局',

@@ -161,6 +161,7 @@ interface Props {
   initialTab?: string
   sessionKey?: number
   onBookmarkTabSelect?: () => void
+  zIndex?: number
 }
 
 // Tab 图标
@@ -2592,7 +2593,7 @@ function CategoryManager({ layout, setLayout, t, labelStyle }: {
 
 type RightPanelId = 'gradient-editor' | 'new-solid-preset' | 'all-solid-presets' | 'all-grad-presets' | 'image-preview' | 'image-library' | 'delete-confirm' | null
 
-export default function SettingsModal({ active, open, onClose, initialTab, sessionKey, onBookmarkTabSelect }: Props) {
+export default function SettingsModal({ active, open, onClose, initialTab, sessionKey, onBookmarkTabSelect, zIndex = 300 }: Props) {
   const { config, setConfig } = useDockConfig()
   const dragControls = useDragControls()
   const t = useT()
@@ -2849,7 +2850,7 @@ export default function SettingsModal({ active, open, onClose, initialTab, sessi
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
-              zIndex: 201,
+              zIndex,
             }}
           >
 

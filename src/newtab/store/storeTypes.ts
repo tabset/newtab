@@ -5,6 +5,7 @@ export interface StoreIcon {
   value: string
   bgColor: string
   svgColor?: string
+  svgScale?: number
   fit?: 'contain' | 'cover' | 'fill'
 }
 

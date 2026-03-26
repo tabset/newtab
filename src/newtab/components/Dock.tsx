@@ -347,12 +347,13 @@ interface DockProps {
   onSettingsReopen: () => void
   onSettingsClose: () => void
   onSettingsExit: () => void
+  onSettingsZIndexChange: (zIndex: number) => void
   launchpadOpen: boolean
   onLaunchpadChange: (open: boolean) => void
   launchpadInitialCategoryId?: string
 }
 
-export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onSettingsReopen, onSettingsClose, onSettingsExit, launchpadOpen, onLaunchpadChange, launchpadInitialCategoryId }: DockProps) {
+export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onSettingsReopen, onSettingsClose, onSettingsExit, onSettingsZIndexChange, launchpadOpen, onLaunchpadChange, launchpadInitialCategoryId }: DockProps) {
   const mouseVal = useMotionValue(Infinity)
   const { config, setConfig } = useDockConfig()
   const t = useT()
@@ -626,10 +627,14 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
     e.stopPropagation()
     const menuW = 160
     // 精确计算菜单高度：每项约 26px，分隔线 9px，容器内边距 8px
-    // 临时运行图标：2项（保留到标签栏 + 退出），无分隔线
+    // 临时运行图标：
+    //   - 标签页打开时：2项（保留到标签栏 + 退出），无分隔线
+    //   - 标签页关闭后：2项（保留到标签栏 + 移除书签栏），有分隔线
+    const isTabOpen = openedApps.has(app.id)
     const numItems = isSettings ? 1 : isRunning ? 2 : (1 + (!isSystem ? 1 : 0))
-    const menuH = numItems * 26 + (!isSystem && !isRunning ? 9 : 0) + 8
-    const arrow = 4   // popup 面板与程序坞边缘的间距
+    const menuH = numItems * 26 + ((!isSystem && !isRunning) || (isRunning && !isTabOpen) ? 9 : 0) + 8
+    const arrowSize = 9  // 箭头的高度/宽度
+    const gap = 4        // popup 箭头尖端与程序坞边缘的间距
     const pad = 8
     const mx = e.clientX
     const my = e.clientY
@@ -653,7 +658,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
       case 'bottom': {
         const clampedX = Math.max(pad, Math.min(mx - menuW / 2, ww - menuW - pad))
         x = clampedX
-        y = dockEdge.bottom - menuH - arrow
+        y = dockEdge.bottom - menuH - gap - arrowSize
         arrowSide = 'bottom'
         arrowOffset = mx - (clampedX + menuW / 2)
         break
@@ -661,14 +666,14 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
       case 'top': {
         const clampedX = Math.max(pad, Math.min(mx - menuW / 2, ww - menuW - pad))
         x = clampedX
-        y = dockEdge.top + arrow
+        y = dockEdge.top + gap + arrowSize
         arrowSide = 'top'
         arrowOffset = mx - (clampedX + menuW / 2)
         break
       }
       case 'left': {
         const clampedY = Math.max(pad, Math.min(my - menuH / 2, wh - menuH - pad))
-        x = dockEdge.left + arrow
+        x = dockEdge.left + gap + arrowSize
         y = clampedY
         arrowSide = 'left'
         arrowOffset = my - (clampedY + menuH / 2)
@@ -676,7 +681,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
       }
       case 'right': {
         const clampedY = Math.max(pad, Math.min(my - menuH / 2, wh - menuH - pad))
-        x = dockEdge.right - menuW - arrow
+        x = dockEdge.right - menuW - gap - arrowSize
         y = clampedY
         arrowSide = 'right'
         arrowOffset = my - (clampedY + menuH / 2)
@@ -711,7 +716,12 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
   const settingsApp: AppItem = { id: 'settings', name: t('settings_tooltip'), emoji: '', color: '#636366' }
 
   const [storeOpen, setStoreOpen] = useState(false)
+  const [storeActive, setStoreActive] = useState(false)
   const [toolboxOpen, setToolboxOpen] = useState(false)
+  const [topZIndex, setTopZIndex] = useState(201) // 基础 z-index
+  const [launchpadZIndex, setLaunchpadZIndex] = useState(201)
+  const [storeZIndex, setStoreZIndex] = useState(202)
+  const [settingsZIndex, setSettingsZIndex] = useState(300)
   const itemProps = { motionVal: mouseVal, baseSize, maxSize, effectRadius, magnification, position }
 
   const alignItems =
@@ -945,7 +955,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
 
   return (
     <>
-      <div style={{ ...getDockWrapperStyle(position), ...(storeOpen || toolboxOpen ? { zIndex: 210 } : {}) }} onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}>
+      <div style={{ ...getDockWrapperStyle(position), zIndex: Math.max(210, topZIndex + 10) }} onContextMenu={(e) => { e.preventDefault(); e.stopPropagation() }}>
         <motion.div
           ref={dockInnerRef}
           onMouseMove={(contextMenu || pointerDrag) ? undefined : (e) => mouseVal.set(isVertical ? e.clientY : e.clientX)}
@@ -959,7 +969,16 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
             onClick={() => {
               onSettingsClose()
               setOverflowOpen(false)
-              setLaunchpadOpen(!launchpadOpen)
+              if (launchpadOpen) {
+                // 已打开，关闭
+                setLaunchpadOpen(false)
+              } else {
+                // 未打开，打开并置顶
+                setLaunchpadOpen(true)
+                const newZ = topZIndex + 1
+                setLaunchpadZIndex(newZ)
+                setTopZIndex(newZ)
+              }
             }}
           >
             <LaunchpadIcon size={baseSize} />
@@ -969,7 +988,32 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
           <DockItem
             app={storeApp}
             {...itemProps}
-            onClick={() => { onSettingsClose(); setOverflowOpen(false); setStoreOpen(v => !v) }}
+            isOpen={storeActive}
+            onClick={() => {
+              onSettingsClose()
+              setOverflowOpen(false)
+              if (launchpadOpen) setLaunchpadOpen(false)
+              if (!storeActive) {
+                // 首次打开
+                setStoreActive(true)
+                setStoreOpen(true)
+                const newZ = topZIndex + 1
+                setStoreZIndex(newZ)
+                setTopZIndex(newZ)
+              } else if (storeOpen) {
+                // 已打开且窗口可见，置顶
+                const newZ = topZIndex + 1
+                setStoreZIndex(newZ)
+                setTopZIndex(newZ)
+              } else {
+                // 已激活但窗口隐藏，重新显示并置顶
+                setStoreOpen(true)
+                const newZ = topZIndex + 1
+                setStoreZIndex(newZ)
+                setTopZIndex(newZ)
+              }
+            }}
+            onContextMenu={(e) => handleContextMenu(e, storeApp, true, false)}
           >
             <img src="/icons/bookmark_store.svg" alt="" style={{ width: baseSize, height: baseSize }} />
           </DockItem>
@@ -989,12 +1033,30 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
             {...itemProps}
             isOpen={settingsActive}
             onClick={() => {
+              if (launchpadOpen) setLaunchpadOpen(false)
               if (!settingsActive) {
                 onSettingsOpen()
+                const newZ = topZIndex + 1
+                setTopZIndex(newZ)
+                setSettingsZIndex(newZ)
+                onSettingsZIndexChange(newZ)
               } else if (settingsOpen) {
-                onSettingsClose()
+                // 如果已经打开，检查是否已经在顶部
+                if (settingsZIndex >= storeZIndex && settingsZIndex >= launchpadZIndex) {
+                  // 已经在顶部，不做任何操作
+                  return
+                }
+                // 不在顶部，置顶
+                const newZ = topZIndex + 1
+                setTopZIndex(newZ)
+                setSettingsZIndex(newZ)
+                onSettingsZIndexChange(newZ)
               } else {
                 onSettingsReopen()
+                const newZ = topZIndex + 1
+                setTopZIndex(newZ)
+                setSettingsZIndex(newZ)
+                onSettingsZIndexChange(newZ)
               }
             }}
             onContextMenu={(e) => handleContextMenu(e, settingsApp, true, true)}
@@ -1075,7 +1137,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
 
       {/* 右键菜单遮罩：点击空白处关闭 */}
       {contextMenu && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 199 }} onClick={() => setContextMenu(null)} />
+        <div style={{ position: 'fixed', inset: 0, zIndex: Math.max(799, topZIndex + 100) }} onClick={() => setContextMenu(null)} />
       )}
 
       {/* 右键菜单 */}
@@ -1105,25 +1167,25 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
             const o = `calc(50% + ${clampedOffset}px)`
             switch (arrowSide) {
               case 'bottom': return (
-                <svg style={{ ...base, bottom: -8, left: o, transform: 'translateX(-50%)' }}
+                <svg style={{ ...base, bottom: -9, left: o, transform: 'translateX(-50%)' }}
                   width="16" height="9" viewBox="0 0 16 9" fill="none">
                   <path d="M0 0 L6.5 7.5 Q8 9 9.5 7.5 L16 0 Z" fill={AF}/>
                 </svg>
               )
               case 'top': return (
-                <svg style={{ ...base, top: -8, left: o, transform: 'translateX(-50%)' }}
+                <svg style={{ ...base, top: -9, left: o, transform: 'translateX(-50%)' }}
                   width="16" height="9" viewBox="0 0 16 9" fill="none">
                   <path d="M0 9 L6.5 1.5 Q8 0 9.5 1.5 L16 9 Z" fill={AF}/>
                 </svg>
               )
               case 'left': return (
-                <svg style={{ ...base, left: -8, top: o, transform: 'translateY(-50%)' }}
+                <svg style={{ ...base, left: -9, top: o, transform: 'translateY(-50%)' }}
                   width="9" height="16" viewBox="0 0 9 16" fill="none">
                   <path d="M9 0 L1.5 6.5 Q0 8 1.5 9.5 L9 16 Z" fill={AF}/>
                 </svg>
               )
               case 'right': return (
-                <svg style={{ ...base, right: -8, top: o, transform: 'translateY(-50%)' }}
+                <svg style={{ ...base, right: -9, top: o, transform: 'translateY(-50%)' }}
                   width="9" height="16" viewBox="0 0 9 16" fill="none">
                   <path d="M0 0 L7.5 6.5 Q9 8 7.5 9.5 L0 16 Z" fill={AF}/>
                 </svg>
@@ -1142,12 +1204,11 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                 position: 'fixed',
                 left: contextMenu.x,
                 top: contextMenu.y,
-                zIndex: 200,
+                zIndex: Math.max(800, topZIndex + 101),
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.38) 100%)',
                 backdropFilter: 'blur(32px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(180%)',
                 borderRadius: 10,
-                border: '0.5px solid rgba(255,255,255,0.4)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.5)',
                 padding: 4,
                 minWidth: 160,
@@ -1163,7 +1224,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
                     onClick={() => { onSettingsExit(); setContextMenu(null) }}
                   >
-                    退出
+                    {t('dock_menu_exit')}
                   </div>
                 ) : (
                   <div
@@ -1172,11 +1233,31 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
                     onClick={() => { onSettingsOpen(); setContextMenu(null) }}
                   >
-                    打开
+                    {t('dock_menu_open')}
+                  </div>
+                )
+              ) : contextMenu.app.id === 'bookmark-store' ? (
+                storeActive ? (
+                  <div
+                    style={menuItemStyle()}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#007AFF'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
+                    onClick={() => { setStoreActive(false); setStoreOpen(false); setContextMenu(null) }}
+                  >
+                    {t('dock_menu_exit')}
+                  </div>
+                ) : (
+                  <div
+                    style={menuItemStyle()}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#007AFF'; e.currentTarget.style.color = '#fff' }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
+                    onClick={() => { setStoreActive(true); setStoreOpen(true); setContextMenu(null) }}
+                  >
+                    {t('dock_menu_open')}
                   </div>
                 )
               ) : contextMenu.isRunning ? (
-                // 临时运行图标：保留到标签栏 / 退出
+                // 临时运行图标：根据标签页状态显示不同菜单
                 <>
                   <div
                     style={menuItemStyle()}
@@ -1189,21 +1270,40 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                       setContextMenu(null)
                     }}
                   >
-                    保留到标签栏
+                    {t('dock_menu_keep_in_dock')}
                   </div>
-                  <div
-                    style={menuItemStyle()}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#007AFF'; e.currentTarget.style.color = '#fff' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
-                    onClick={() => {
-                      const tabId = openedApps.get(contextMenu.app.id)
-                      if (tabId !== undefined) chrome.tabs.remove(tabId)
-                      setOpenedApps(prev => { const m = new Map(prev); m.delete(contextMenu.app.id); return m })
-                      setContextMenu(null)
-                    }}
-                  >
-                    退出
-                  </div>
+                  {openedApps.has(contextMenu.app.id) ? (
+                    // 标签页打开中：显示"退出"
+                    <div
+                      style={menuItemStyle()}
+                      onMouseEnter={e => { e.currentTarget.style.background = '#007AFF'; e.currentTarget.style.color = '#fff' }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
+                      onClick={() => {
+                        const tabId = openedApps.get(contextMenu.app.id)
+                        if (tabId !== undefined) chrome.tabs.remove(tabId)
+                        setOpenedApps(prev => { const m = new Map(prev); m.delete(contextMenu.app.id); return m })
+                        setContextMenu(null)
+                      }}
+                    >
+                      {t('dock_menu_exit')}
+                    </div>
+                  ) : (
+                    // 标签页已关闭：显示"移除书签栏"
+                    <>
+                      <div style={{ height: 1, background: 'rgba(255,255,255,0.15)', margin: '4px 0' }} />
+                      <div
+                        style={menuItemStyle(true)}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,107,107,0.25)' }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'transparent' }}
+                        onClick={() => {
+                          setRunningApps(prev => prev.filter(a => a.id !== contextMenu.app.id))
+                          setContextMenu(null)
+                        }}
+                      >
+                        {t('dock_remove_label')}
+                      </div>
+                    </>
+                  )}
                 </>
               ) : openedApps.has(contextMenu.app.id) ? (
                 <div
@@ -1217,7 +1317,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                     setContextMenu(null)
                   }}
                 >
-                  退出
+                  {t('dock_menu_exit')}
                 </div>
               ) : (
                 <div
@@ -1226,7 +1326,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.92)' }}
                   onClick={() => { openApp(contextMenu.app); setContextMenu(null) }}
                 >
-                  打开
+                  {t('dock_menu_open')}
                 </div>
               )}
               {!contextMenu.isSystem && !contextMenu.isRunning && (
@@ -1244,7 +1344,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
                       setContextMenu(null)
                     }}
                   >
-                    移除书签栏
+                    {t('dock_remove_label')}
                   </div>
                 </>
               )}
@@ -1263,7 +1363,13 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
         onClose={() => setOverflowOpen(false)}
       />
 
-      <BookmarkLaunchpad open={launchpadOpen} onClose={() => setLaunchpadOpen(false)} onOpenBookmark={handleOpenFromLaunchpad} initialCategoryId={launchpadInitialCategoryId} />
+      <BookmarkLaunchpad 
+        open={launchpadOpen} 
+        onClose={() => setLaunchpadOpen(false)} 
+        onOpenBookmark={handleOpenFromLaunchpad} 
+        initialCategoryId={launchpadInitialCategoryId}
+        zIndex={launchpadZIndex}
+      />
 
       <StorePanel
         open={storeOpen}
@@ -1272,6 +1378,7 @@ export default function Dock({ settingsActive, settingsOpen, onSettingsOpen, onS
         mode="bookmark"
         title={t('bookmark_store_tooltip')}
         panelIcon="/icons/bookmark_store.svg"
+        zIndex={storeZIndex}
       />
 
       <StorePanel

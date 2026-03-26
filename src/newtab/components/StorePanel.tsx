@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDockConfig } from '../store/dockConfig'
 import { useT } from '../i18n'
-import type { BookmarkItem } from '../store/dockConfig'
+import type { BookmarkItem, BookmarkCategory } from '../store/dockConfig'
+import { DEFAULT_BOOKMARK_LAYOUT } from '../store/dockConfig'
 import type { StoreData, StoreItem, StorePlugin } from '../store/storeTypes'
 
 // ── 交通灯按钮组 ────────────────────────────────────────
@@ -49,14 +50,20 @@ function TrafficLights({ onClose, onZoom, zoomed }: { onClose: () => void; onZoo
 }
 
 // ── 图标渲染 ──────────────────────────────────────────────
-function StoreIconRenderer({ type, value, svgColor, fit, size }: {
-  type: string; value: string; svgColor?: string; fit?: string; size: number
+function StoreIconRenderer({ type, value, svgColor, svgScale, fit, size }: {
+  type: string; value: string; svgColor?: string; svgScale?: number; fit?: string; size: number
 }) {
   if (type === 'url') {
+    const scale = (fit === 'contain' || !fit) ? 0.72 : 1.0
     return (
       <img
         src={value}
-        style={{ width: size * 0.6, height: size * 0.6, objectFit: (fit as any) || 'contain', borderRadius: 4 }}
+        style={{ 
+          width: size * scale, 
+          height: size * scale, 
+          objectFit: (fit as any) || 'contain', 
+          borderRadius: (fit === 'contain' || !fit) ? 4 : 0 
+        }}
         onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
       />
     )
@@ -65,9 +72,10 @@ function StoreIconRenderer({ type, value, svgColor, fit, size }: {
     const html = svgColor
       ? value.replace(/fill="[^"]*"/g, `fill="${svgColor}"`).replace(/stroke="[^"]*"/g, `stroke="${svgColor}"`)
       : value
+    const scale = (svgScale ?? 72) / 100
     return (
       <div
-        style={{ width: size * 0.6, height: size * 0.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ width: size * scale, height: size * scale, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     )
@@ -104,13 +112,14 @@ function StoreCard({ item, name, description, iconSize, mode, isAdded, onAdd, on
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}
       style={{
         background: hovered ? 'rgba(255,255,255,0.13)' : 'rgba(255,255,255,0.07)',
         borderRadius: 14,
         padding: '16px 12px 14px',
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
         border: `0.5px solid ${hovered ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.1)'}`,
-        cursor: 'default',
+        cursor: 'pointer',
         transition: 'background 0.15s, border-color 0.15s',
         minHeight: 168,
         position: 'relative',
@@ -125,11 +134,13 @@ function StoreCard({ item, name, description, iconSize, mode, isAdded, onAdd, on
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexShrink: 0,
         boxShadow: '0 4px 14px rgba(0,0,0,0.3)',
+        overflow: 'hidden',
       }}>
         <StoreIconRenderer
           type={item.icon.type}
           value={item.icon.value}
           svgColor={item.icon.svgColor}
+          svgScale={item.icon.svgScale}
           fit={item.icon.fit}
           size={iconSize}
         />
@@ -204,11 +215,12 @@ export interface StorePanelProps {
   mode: 'bookmark' | 'tool'
   title: string
   panelIcon: string  // img src，放在 public/icons/ 下
+  zIndex?: number
 }
 
 const ICON_SIZE = 64
 
-export default function StorePanel({ open, onClose, plugin, mode, title, panelIcon }: StorePanelProps) {
+export default function StorePanel({ open, onClose, plugin, mode, title, panelIcon, zIndex = 201 }: StorePanelProps) {
   const t = useT()
   const { config, setConfig } = useDockConfig()
   const lang = (config as any).language || 'zh-CN'
@@ -219,13 +231,19 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
   const [activeCat, setActiveCat] = useState('')
   const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
   const [query, setQuery] = useState('')
-  const [zoomed, setZoomed] = useState(false)
+  const [zoomed, setZoomed] = useState(true)
+  const [isFirstOpen, setIsFirstOpen] = useState(true)
   const searchRef = useRef<HTMLInputElement>(null)
   const catBarRef = useRef<HTMLDivElement>(null)
 
   // 打开时拉取数据，关闭时重置放大状态
   useEffect(() => {
-    if (!open) { setZoomed(false); return }
+    if (!open) { 
+      setZoomed(true)
+      setIsFirstOpen(true)
+      return 
+    }
+    setIsFirstOpen(false)
     setQuery('')
     setLoading(true)
     setError(null)
@@ -233,6 +251,17 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
       .then(d => {
         setData(d)
         setActiveCat(d.categories[0]?.id ?? '')
+        // 初始化已收藏列表：检查所有在线书签是否在本地书签中
+        const localBookmarks = config.bookmarks || []
+        const added = new Set<string>()
+        d.categories.forEach(cat => {
+          cat.items.forEach(item => {
+            if (localBookmarks.some(b => b.url === item.url)) {
+              added.add(item.id)
+            }
+          })
+        })
+        setAddedIds(added)
       })
       .catch(() => setError(t('store_error')))
       .finally(() => setLoading(false))
@@ -245,6 +274,21 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [open, onClose])
+
+  // 监听书签变化，实时更新收藏状态
+  useEffect(() => {
+    if (!open || !data) return
+    const localBookmarks = config.bookmarks || []
+    const added = new Set<string>()
+    data.categories.forEach(cat => {
+      cat.items.forEach(item => {
+        if (localBookmarks.some(b => b.url === item.url)) {
+          added.add(item.id)
+        }
+      })
+    })
+    setAddedIds(added)
+  }, [config.bookmarks, open, data])
 
   const getLocalText = (record: Record<string, string>) =>
     record[lang] || record['zh-CN'] || record['en'] || Object.values(record)[0] || ''
@@ -289,6 +333,45 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
   }) ?? []
 
   const addToBookmarks = (item: StoreItem) => {
+    // 找到该书签所属的分类
+    const category = data?.categories.find(cat => 
+      cat.items.some(i => i.id === item.id)
+    )
+    
+    let targetCategoryId: string | undefined
+    
+    if (category) {
+      // 获取分类的本地化名称
+      const categoryName = getLocalText(category.name)
+      
+      // 获取当前的书签布局配置
+      const currentLayout = config.bookmarkLayout || DEFAULT_BOOKMARK_LAYOUT
+      const currentCategories = currentLayout.categories || []
+      
+      // 检查本地是否已有同名分类
+      const existingCategory = currentCategories.find((c: BookmarkCategory) => c.name === categoryName)
+      
+      if (existingCategory) {
+        // 使用已存在的分类
+        targetCategoryId = existingCategory.id
+      } else {
+        // 创建新分类
+        const newCategoryId = `cat_${Date.now()}`
+        const newCategory: BookmarkCategory = {
+          id: newCategoryId,
+          name: categoryName,
+        }
+        setConfig({ 
+          bookmarkLayout: {
+            ...currentLayout,
+            categories: [...currentCategories, newCategory]
+          }
+        })
+        targetCategoryId = newCategoryId
+      }
+    }
+    
+    // 创建书签
     const newBm: BookmarkItem = {
       id: `bm_${Date.now()}`,
       name: getLocalText(item.name),
@@ -298,84 +381,79 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
       bgColor: item.icon.bgColor,
       svgColor: item.icon.svgColor,
       iconFit: item.icon.fit,
+      categoryId: targetCategoryId,
     }
     setConfig({ bookmarks: [...(config.bookmarks ?? []), newBm] })
     setAddedIds(prev => new Set([...prev, item.id]))
   }
 
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+  const dockGap = config.baseSize + 10 * 2 + 8 + 2
+  const pos = config.position ?? 'bottom'
+  const normalW = Math.min(940, vw - 64)
+  const normalH = Math.min(620, vh - 100)
+  const panelLayout = zoomed
+    ? {
+        top:    pos === 'top'    ? dockGap : 0,
+        left:   pos === 'left'   ? dockGap : 0,
+        width:  pos === 'left' || pos === 'right' ? vw - dockGap : vw,
+        height: pos === 'top'  || pos === 'bottom' ? vh - dockGap : vh,
+      }
+    : {
+        top:    (vh - normalH) / 2,
+        left:   (vw - normalW) / 2,
+        width:  normalW,
+        height: normalH,
+      }
+
   return (
     <AnimatePresence>
       {open && (
         <motion.div
-          key="store-panel-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.22 }}
-          onClick={onClose}
-          onContextMenu={e => { e.preventDefault(); e.stopPropagation() }}
+          key="store-panel-box"
+          initial={{ ...panelLayout }}
+          animate={{ ...panelLayout }}
+          exit={{ ...panelLayout }}
+          transition={isFirstOpen ? {
+            duration: 0
+          } : {
+            top:    { type: 'spring', stiffness: 260, damping: 28 },
+            left:   { type: 'spring', stiffness: 260, damping: 28 },
+            width:  { type: 'spring', stiffness: 260, damping: 28 },
+            height: { type: 'spring', stiffness: 260, damping: 28 },
+          }}
           style={{
-            position: 'fixed', inset: 0, zIndex: 200,
-            backdropFilter: 'blur(48px) saturate(180%) brightness(0.52)',
-            WebkitBackdropFilter: 'blur(48px) saturate(180%) brightness(0.52)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            position: 'fixed',
+            borderRadius: 20,
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.09) 100%)',
+            backdropFilter: 'blur(32px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(32px) saturate(180%)',
+            border: '0.5px solid rgba(255,255,255,0.25)',
+            boxShadow: '0 28px 72px rgba(0,0,0,0.5)',
+            display: 'flex', flexDirection: 'column',
+            overflow: 'hidden',
+            zIndex,
+          }}
+          onContextMenu={(e) => { 
+            e.preventDefault(); 
+            e.stopPropagation();
+          }}
+          onContextMenuCapture={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
           }}
         >
-          {(() => {
-              const vw = window.innerWidth
-              const vh = window.innerHeight
-              const dockGap = config.baseSize + 10 * 2 + 8 + 2
-              const pos = config.position ?? 'bottom'
-              const normalW = Math.min(940, vw - 64)
-              const normalH = Math.min(620, vh - 100)
-              const panelLayout = zoomed
-                ? {
-                    top:    pos === 'top'    ? dockGap : 0,
-                    left:   pos === 'left'   ? dockGap : 0,
-                    width:  pos === 'left' || pos === 'right' ? vw - dockGap : vw,
-                    height: pos === 'top'  || pos === 'bottom' ? vh - dockGap : vh,
-                  }
-                : {
-                    top:    (vh - normalH) / 2,
-                    left:   (vw - normalW) / 2,
-                    width:  normalW,
-                    height: normalH,
-                  }
-              return (
-          <motion.div
-            key="store-panel-box"
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0, ...panelLayout }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{
-              opacity: { duration: 0.2 },
-              scale:  { type: 'spring', stiffness: 380, damping: 32 },
-              y:      { type: 'spring', stiffness: 380, damping: 32 },
-              top:    { type: 'spring', stiffness: 260, damping: 28 },
-              left:   { type: 'spring', stiffness: 260, damping: 28 },
-              width:  { type: 'spring', stiffness: 260, damping: 28 },
-              height: { type: 'spring', stiffness: 260, damping: 28 },
-            }}
-            onClick={e => e.stopPropagation()}
-            style={{
-              position: 'absolute',
-              borderRadius: 20,
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.09) 100%)',
-              backdropFilter: 'blur(32px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(32px) saturate(180%)',
-              border: '0.5px solid rgba(255,255,255,0.25)',
-              boxShadow: '0 28px 72px rgba(0,0,0,0.5)',
-              display: 'flex', flexDirection: 'column',
-              overflow: 'hidden',
-            }}
-          >
             {/* ── 顶部栏 ── */}
-            <div style={{
-              display: 'flex', alignItems: 'center',
-              padding: '14px 20px 12px',
-              borderBottom: '0.5px solid rgba(255,255,255,0.1)',
-              flexShrink: 0, position: 'relative',
-            }}>
+            <div 
+              onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}
+              style={{
+                display: 'flex', alignItems: 'center',
+                padding: '14px 20px 12px',
+                borderBottom: '0.5px solid rgba(255,255,255,0.1)',
+                flexShrink: 0, position: 'relative',
+              }}
+            >
               {/* 左：交通灯 */}
               <TrafficLights onClose={onClose} onZoom={() => setZoomed(v => !v)} zoomed={zoomed} />
 
@@ -408,6 +486,7 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
             {data && data.categories.length > 0 && (
               <div
                 ref={catBarRef}
+                onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}
                 style={{
                   display: 'flex', gap: 4, padding: '10px 20px 0',
                   overflowX: 'auto', flexShrink: 0,
@@ -438,10 +517,13 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
             )}
 
             {/* ── 内容区 ── */}
-            <div style={{
-              flex: 1, overflowY: 'auto', padding: '14px 20px 20px',
-              scrollbarWidth: 'thin',
-            }}>
+            <div 
+              onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}
+              style={{
+                flex: 1, overflowY: 'auto', padding: '14px 20px 20px',
+                scrollbarWidth: 'thin',
+              }}
+            >
               {loading && (
                 <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: 14, textAlign: 'center', paddingTop: 80 }}>
                   {t('store_loading')}
@@ -482,9 +564,6 @@ export default function StorePanel({ open, onClose, plugin, mode, title, panelIc
               )}
             </div>
           </motion.div>
-              )
-            })()}
-        </motion.div>
       )}
     </AnimatePresence>
   )

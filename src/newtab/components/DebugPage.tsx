@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useT } from '../i18n'
 
 interface DebugPageProps {
   onExit: () => void
@@ -7,6 +8,7 @@ interface DebugPageProps {
 
 export default function DebugPage({ onExit }: DebugPageProps) {
   const [showDebugInfo, setShowDebugInfo] = useState(true)
+  const t = useT()
 
   return (
     <div style={{
@@ -71,7 +73,7 @@ export default function DebugPage({ onExit }: DebugPageProps) {
             outline: 'none',
           }}
         >
-          退出开发者模式
+          {t('debug_exit')}
         </motion.button>
       </div>
 

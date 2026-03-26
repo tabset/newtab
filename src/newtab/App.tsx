@@ -222,6 +222,7 @@ function AppContent() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [settingsTab, setSettingsTab] = useState('dock')
   const [settingsSessionKey, setSettingsSessionKey] = useState(0)
+  const [settingsZIndex, setSettingsZIndex] = useState(300)
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null)
   const [bookmarkEditOpen, setBookmarkEditOpen] = useState(false)
   const [pendingBookmarkData, setPendingBookmarkData] = useState<{ url: string; name: string } | null>(null)
@@ -255,6 +256,18 @@ function AppContent() {
       setPendingBookmarkData({ url: pb.url, name: pb.title })
       setBookmarkEditOpen(true)
     })
+  }, [])
+
+  // Cmd+O / Ctrl+O 全局快捷键打开新增书签弹窗
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'o') {
+        e.preventDefault()
+        setBookmarkEditOpen(true)
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
   }, [])
 
   // 随机背景触发
@@ -348,6 +361,7 @@ function AppContent() {
             onSettingsReopen={reopenSettings}
             onSettingsClose={() => setSettingsOpen(false)}
             onSettingsExit={exitSettings}
+            onSettingsZIndexChange={setSettingsZIndex}
             launchpadOpen={launchpadOpen}
             onLaunchpadChange={setLaunchpadOpen}
             launchpadInitialCategoryId={launchpadInitialCategoryId}
@@ -372,6 +386,7 @@ function AppContent() {
             initialTab={settingsTab}
             sessionKey={settingsSessionKey}
             onBookmarkTabSelect={() => setLaunchpadOpen(true)}
+            zIndex={settingsZIndex}
           />
           <BookmarkEditModal
             open={bookmarkEditOpen}

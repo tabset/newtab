@@ -15,7 +15,12 @@
         {
           "id": "chatgpt",
           "name": {
-            "zh-CN": "ChatGPT"
+            "zh-CN": "ChatGPT",
+            "zh-TW": "ChatGPT",
+            "en": "ChatGPT",
+            "ja": "チャットGPT",
+            "ko": "챗GPT",
+            "ru": "ChatGPT"
           },
           "description": {
             "zh-CN": "OpenAI 的 AI 对话助手",
@@ -37,7 +42,12 @@
         {
           "id": "claude",
           "name": {
-            "zh-CN": "Claude"
+            "zh-CN": "Claude",
+            "zh-TW": "Claude",
+            "en": "Claude",
+            "ja": "クロード",
+            "ko": "클로드",
+            "ru": "Claude"
           },
           "description": {
             "zh-CN": "Anthropic 的 AI 助手",
@@ -60,7 +70,12 @@
         {
           "id": "gemini",
           "name": {
-            "zh-CN": "Gemini"
+            "zh-CN": "Gemini",
+            "zh-TW": "Gemini",
+            "en": "Gemini",
+            "ja": "ジェミニ",
+            "ko": "제미나이",
+            "ru": "Gemini"
           },
           "description": {
             "zh-CN": "Google 的多模态 AI 助手",
@@ -83,7 +98,12 @@
         {
           "id": "midjourney",
           "name": {
-            "zh-CN": "Midjourney"
+            "zh-CN": "Midjourney",
+            "zh-TW": "Midjourney",
+            "en": "Midjourney",
+            "ja": "ミッドジャーニー",
+            "ko": "미드저니",
+            "ru": "Midjourney"
           },
           "description": {
             "zh-CN": "AI 图像生成工具",
@@ -106,7 +126,12 @@
         {
           "id": "stable-diffusion",
           "name": {
-            "zh-CN": "Stable Diffusion"
+            "zh-CN": "Stable Diffusion",
+            "zh-TW": "Stable Diffusion",
+            "en": "Stable Diffusion",
+            "ja": "ステーブル・ディフュージョン",
+            "ko": "스테이블 디퓨전",
+            "ru": "Stable Diffusion"
           },
           "description": {
             "zh-CN": "开源的 AI 图像生成模型",
@@ -129,7 +154,12 @@
         {
           "id": "perplexity",
           "name": {
-            "zh-CN": "Perplexity"
+            "zh-CN": "Perplexity",
+            "zh-TW": "Perplexity",
+            "en": "Perplexity",
+            "ja": "パープレキシティ",
+            "ko": "퍼플렉시티",
+            "ru": "Perplexity"
           },
           "description": {
             "zh-CN": "AI 驱动的搜索引擎",
@@ -152,7 +182,12 @@
         {
           "id": "deepseek",
           "name": {
-            "zh-CN": "DeepSeek"
+            "zh-CN": "DeepSeek",
+            "zh-TW": "DeepSeek",
+            "en": "DeepSeek",
+            "ja": "ディープシーク",
+            "ko": "딥시크",
+            "ru": "DeepSeek"
           },
           "description": {
             "zh-CN": "深度求索的 AI 助手",
@@ -175,7 +210,12 @@
         {
           "id": "kimi",
           "name": {
-            "zh-CN": "Kimi"
+            "zh-CN": "Kimi",
+            "zh-TW": "Kimi",
+            "en": "Kimi",
+            "ja": "キミ",
+            "ko": "키미",
+            "ru": "Kimi"
           },
           "description": {
             "zh-CN": "月之暗面的 AI 助手",
@@ -197,7 +237,12 @@
         {
           "id": "tongyi",
           "name": {
-            "zh-CN": "通义千问"
+            "zh-CN": "通义千问",
+            "zh-TW": "通義千問",
+            "en": "Tongyi Qianwen",
+            "ja": "通義千問",
+            "ko": "통이치엔원",
+            "ru": "Тунъи Цяньвэнь"
           },
           "description": {
             "zh-CN": "阿里巴巴的 AI 助手",
@@ -219,7 +264,12 @@
         {
           "id": "wenxin",
           "name": {
-            "zh-CN": "文心一言"
+            "zh-CN": "文心一言",
+            "zh-TW": "文心一言",
+            "en": "ERNIE Bot",
+            "ja": "文心一言",
+            "ko": "원신이옌",
+            "ru": "ERNIE Bot"
           },
           "description": {
             "zh-CN": "百度的 AI 助手",
@@ -241,7 +291,12 @@
         {
           "id": "copilot",
           "name": {
-            "zh-CN": "Microsoft Copilot"
+            "zh-CN": "Microsoft Copilot",
+            "zh-TW": "Microsoft Copilot",
+            "en": "Microsoft Copilot",
+            "ja": "Microsoft Copilot",
+            "ko": "Microsoft Copilot",
+            "ru": "Microsoft Copilot"
           },
           "description": {
             "zh-CN": "微软的 AI 助手",
@@ -263,7 +318,12 @@
         {
           "id": "huggingface",
           "name": {
-            "zh-CN": "Hugging Face"
+            "zh-CN": "Hugging Face",
+            "zh-TW": "Hugging Face",
+            "en": "Hugging Face",
+            "ja": "ハギングフェイス",
+            "ko": "허깅 페이스",
+            "ru": "Hugging Face"
           },
           "description": {
             "zh-CN": "AI 模型和数据集平台",
@@ -285,7 +345,12 @@
         {
           "id": "leonardo",
           "name": {
-            "zh-CN": "Leonardo.ai"
+            "zh-CN": "Leonardo.ai",
+            "zh-TW": "Leonardo.ai",
+            "en": "Leonardo.ai",
+            "ja": "Leonardo.ai",
+            "ko": "Leonardo.ai",
+            "ru": "Leonardo.ai"
           },
           "description": {
             "zh-CN": "AI 图像和视频生成平台",
@@ -307,7 +372,12 @@
         {
           "id": "runway",
           "name": {
-            "zh-CN": "Runway"
+            "zh-CN": "Runway",
+            "zh-TW": "Runway",
+            "en": "Runway",
+            "ja": "ランウェイ",
+            "ko": "런웨이",
+            "ru": "Runway"
           },
           "description": {
             "zh-CN": "AI 视频编辑和生成工具",
@@ -329,7 +399,12 @@
         {
           "id": "notion-ai",
           "name": {
-            "zh-CN": "Notion AI"
+            "zh-CN": "Notion AI",
+            "zh-TW": "Notion AI",
+            "en": "Notion AI",
+            "ja": "Notion AI",
+            "ko": "Notion AI",
+            "ru": "Notion AI"
           },
           "description": {
             "zh-CN": "Notion 内置的 AI 写作助手",
@@ -351,7 +426,12 @@
         {
           "id": "replicate",
           "name": {
-            "zh-CN": "Replicate"
+            "zh-CN": "Replicate",
+            "zh-TW": "Replicate",
+            "en": "Replicate",
+            "ja": "レプリケート",
+            "ko": "리플리케이트",
+            "ru": "Replicate"
           },
           "description": {
             "zh-CN": "AI 模型运行平台",
@@ -373,7 +453,12 @@
         {
           "id": "civitai",
           "name": {
-            "zh-CN": "Civitai"
+            "zh-CN": "Civitai",
+            "zh-TW": "Civitai",
+            "en": "Civitai",
+            "ja": "シビタイ",
+            "ko": "시비타이",
+            "ru": "Civitai"
           },
           "description": {
             "zh-CN": "Stable Diffusion 模型分享社区",
@@ -395,7 +480,12 @@
         {
           "id": "elevenlabs",
           "name": {
-            "zh-CN": "ElevenLabs"
+            "zh-CN": "ElevenLabs",
+            "zh-TW": "ElevenLabs",
+            "en": "ElevenLabs",
+            "ja": "イレブンラボ",
+            "ko": "일레븐랩스",
+            "ru": "ElevenLabs"
           },
           "description": {
             "zh-CN": "AI 语音合成平台",
@@ -417,7 +507,12 @@
         {
           "id": "krea-1774400911093-0-24",
           "name": {
-            "zh-CN": "Krea AI"
+            "zh-CN": "Krea AI",
+            "zh-TW": "Krea AI",
+            "en": "Krea AI",
+            "ja": "Krea AI",
+            "ko": "Krea AI",
+            "ru": "Krea AI"
           },
           "description": {
             "zh-CN": "AI 图像增强和生成",
@@ -440,7 +535,12 @@
         {
           "id": "gamma-1774400911093-0-25",
           "name": {
-            "zh-CN": "Gamma"
+            "zh-CN": "Gamma",
+            "zh-TW": "Gamma",
+            "en": "Gamma",
+            "ja": "Gamma",
+            "ko": "Gamma",
+            "ru": "Gamma"
           },
           "description": {
             "zh-CN": "AI 演示文稿生成工具",
@@ -463,7 +563,12 @@
         {
           "id": "poe-1774402675364-0-15",
           "name": {
-            "zh-CN": "Poe"
+            "zh-CN": "Poe",
+            "zh-TW": "Poe",
+            "en": "Poe",
+            "ja": "ポー",
+            "ko": "포",
+            "ru": "Poe"
           },
           "description": {
             "zh-CN": "聚合多个 AI 模型的平台",
@@ -486,7 +591,12 @@
         {
           "id": "luma-1774402675364-0-21",
           "name": {
-            "zh-CN": "Luma AI"
+            "zh-CN": "Luma AI",
+            "zh-TW": "Luma AI",
+            "en": "Luma AI",
+            "ja": "Luma AI",
+            "ko": "Luma AI",
+            "ru": "Luma AI"
           },
           "description": {
             "zh-CN": "3D 内容生成平台",
@@ -509,7 +619,12 @@
         {
           "id": "recraft-1774402675364-0-29",
           "name": {
-            "zh-CN": "Recraft"
+            "zh-CN": "Recraft",
+            "zh-TW": "Recraft",
+            "en": "Recraft",
+            "ja": "Recraft",
+            "ko": "Recraft",
+            "ru": "Recraft"
           },
           "description": {
             "zh-CN": "AI 矢量图形设计工具",
@@ -545,7 +660,12 @@
         {
           "id": "google",
           "name": {
-            "zh-CN": "Google"
+            "zh-CN": "Google",
+            "zh-TW": "Google",
+            "en": "Google",
+            "ja": "グーグル",
+            "ko": "구글",
+            "ru": "Google"
           },
           "description": {
             "zh-CN": "全球最大的搜索引擎",
@@ -566,7 +686,12 @@
         {
           "id": "baidu",
           "name": {
-            "zh-CN": "百度"
+            "zh-CN": "百度",
+            "zh-TW": "百度",
+            "en": "Baidu",
+            "ja": "バイドゥ",
+            "ko": "바이두",
+            "ru": "Baidu"
           },
           "description": {
             "zh-CN": "中国最大的搜索引擎",
@@ -589,7 +714,12 @@
         {
           "id": "bing",
           "name": {
-            "zh-CN": "Bing"
+            "zh-CN": "Bing",
+            "zh-TW": "Bing",
+            "en": "Bing",
+            "ja": "ビング",
+            "ko": "빙",
+            "ru": "Bing"
           },
           "description": {
             "zh-CN": "微软的搜索引擎",
@@ -612,7 +742,12 @@
         {
           "id": "yandex",
           "name": {
-            "zh-CN": "Yandex"
+            "zh-CN": "Yandex",
+            "zh-TW": "Yandex",
+            "en": "Yandex",
+            "ja": "ヤンデックス",
+            "ko": "얀덱스",
+            "ru": "Яндекс"
           },
           "description": {
             "zh-CN": "俄罗斯最大的搜索引擎",
@@ -635,7 +770,12 @@
         {
           "id": "duckduckgo",
           "name": {
-            "zh-CN": "DuckDuckGo"
+            "zh-CN": "DuckDuckGo",
+            "zh-TW": "DuckDuckGo",
+            "en": "DuckDuckGo",
+            "ja": "ダックダックゴー",
+            "ko": "덕덕고",
+            "ru": "DuckDuckGo"
           },
           "description": {
             "zh-CN": "注重隐私的搜索引擎",
@@ -658,7 +798,12 @@
         {
           "id": "naver",
           "name": {
-            "zh-CN": "Naver"
+            "zh-CN": "Naver",
+            "zh-TW": "Naver",
+            "en": "Naver",
+            "ja": "ネイバー",
+            "ko": "네이버",
+            "ru": "Naver"
           },
           "description": {
             "zh-CN": "韩国最大的搜索引擎",
@@ -681,7 +826,12 @@
         {
           "id": "yahoo",
           "name": {
-            "zh-CN": "Yahoo"
+            "zh-CN": "Yahoo",
+            "zh-TW": "Yahoo",
+            "en": "Yahoo",
+            "ja": "ヤフー",
+            "ko": "야후",
+            "ru": "Yahoo"
           },
           "description": {
             "zh-CN": "全球知名的门户和搜索引擎",
@@ -704,7 +854,12 @@
         {
           "id": "sogou",
           "name": {
-            "zh-CN": "搜狗搜索"
+            "zh-CN": "搜狗搜索",
+            "zh-TW": "搜狗搜索",
+            "en": "Sogou Search",
+            "ja": "搜狗検索",
+            "ko": "서우거우 검색",
+            "ru": "Sogou Search"
           },
           "description": {
             "zh-CN": "中国知名的搜索引擎",
@@ -727,7 +882,12 @@
         {
           "id": "brave-search",
           "name": {
-            "zh-CN": "Brave Search"
+            "zh-CN": "Brave Search",
+            "zh-TW": "Brave Search",
+            "en": "Brave Search",
+            "ja": "Brave Search",
+            "ko": "Brave Search",
+            "ru": "Brave Search"
           },
           "description": {
             "zh-CN": "Brave 浏览器的隐私搜索引擎",
@@ -750,7 +910,12 @@
         {
           "id": "ecosia",
           "name": {
-            "zh-CN": "Ecosia"
+            "zh-CN": "Ecosia",
+            "zh-TW": "Ecosia",
+            "en": "Ecosia",
+            "ja": "エコシア",
+            "ko": "에코시아",
+            "ru": "Ecosia"
           },
           "description": {
             "zh-CN": "环保搜索引擎，用广告收入种树",
@@ -773,7 +938,12 @@
         {
           "id": "qwant",
           "name": {
-            "zh-CN": "Qwant"
+            "zh-CN": "Qwant",
+            "zh-TW": "Qwant",
+            "en": "Qwant",
+            "ja": "クワント",
+            "ko": "콴트",
+            "ru": "Qwant"
           },
           "description": {
             "zh-CN": "欧洲的隐私保护搜索引擎",
@@ -796,7 +966,12 @@
         {
           "id": "searx",
           "name": {
-            "zh-CN": "SearXNG"
+            "zh-CN": "SearXNG",
+            "zh-TW": "SearXNG",
+            "en": "SearXNG",
+            "ja": "サーエックスエヌジー",
+            "ko": "서엑스엔지",
+            "ru": "SearXNG"
           },
           "description": {
             "zh-CN": "开源的元搜索引擎",
@@ -819,7 +994,12 @@
         {
           "id": "yandex-images",
           "name": {
-            "zh-CN": "Yandex图片搜索"
+            "zh-CN": "Yandex图片搜索",
+            "zh-TW": "Yandex圖片搜索",
+            "en": "Yandex Images",
+            "ja": "Yandex画像検索",
+            "ko": "Yandex 이미지",
+            "ru": "Яндекс Картинки"
           },
           "description": {
             "zh-CN": "强大的图片搜索引擎",
@@ -842,7 +1022,12 @@
         {
           "id": "360-search",
           "name": {
-            "zh-CN": "360搜索"
+            "zh-CN": "360搜索",
+            "zh-TW": "360搜索",
+            "en": "360 Search",
+            "ja": "360検索",
+            "ko": "360 검색",
+            "ru": "360 Search"
           },
           "description": {
             "zh-CN": "360 公司的搜索引擎",
@@ -865,7 +1050,12 @@
         {
           "id": "yep",
           "name": {
-            "zh-CN": "Yep"
+            "zh-CN": "Yep",
+            "zh-TW": "Yep",
+            "en": "Yep",
+            "ja": "イェップ",
+            "ko": "옙",
+            "ru": "Yep"
           },
           "description": {
             "zh-CN": "Ahrefs 推出的创作者友好搜索引擎",
@@ -888,7 +1078,12 @@
         {
           "id": "mojeek",
           "name": {
-            "zh-CN": "Mojeek"
+            "zh-CN": "Mojeek",
+            "zh-TW": "Mojeek",
+            "en": "Mojeek",
+            "ja": "モジーク",
+            "ko": "모지크",
+            "ru": "Mojeek"
           },
           "description": {
             "zh-CN": "独立的隐私搜索引擎",
@@ -911,7 +1106,12 @@
         {
           "id": "swisscows",
           "name": {
-            "zh-CN": "Swisscows"
+            "zh-CN": "Swisscows",
+            "zh-TW": "Swisscows",
+            "en": "Swisscows",
+            "ja": "スイスカウズ",
+            "ko": "스위스카우스",
+            "ru": "Swisscows"
           },
           "description": {
             "zh-CN": "瑞士的隐私保护搜索引擎",
@@ -934,7 +1134,12 @@
         {
           "id": "yandex-zh",
           "name": {
-            "zh-CN": "Yandex 中文"
+            "zh-CN": "Yandex 中文",
+            "zh-TW": "Yandex 中文",
+            "en": "Yandex Chinese",
+            "ja": "Yandex中国語",
+            "ko": "Yandex 중국어",
+            "ru": "Яндекс Китайский"
           },
           "description": {
             "zh-CN": "Yandex 中文搜索入口",
@@ -970,7 +1175,12 @@
         {
           "id": "youtube",
           "name": {
-            "zh-CN": "YouTube"
+            "zh-CN": "YouTube",
+            "zh-TW": "YouTube",
+            "en": "YouTube",
+            "ja": "ユーチューブ",
+            "ko": "유튜브",
+            "ru": "YouTube"
           },
           "description": {
             "zh-CN": "全球最大的视频分享平台",
@@ -993,7 +1203,12 @@
         {
           "id": "twitter",
           "name": {
-            "zh-CN": "X (Twitter)"
+            "zh-CN": "X (Twitter)",
+            "zh-TW": "X (Twitter)",
+            "en": "X (Twitter)",
+            "ja": "X (Twitter)",
+            "ko": "X (Twitter)",
+            "ru": "X (Twitter)"
           },
           "description": {
             "zh-CN": "全球实时信息平台",
@@ -1016,7 +1231,12 @@
         {
           "id": "instagram",
           "name": {
-            "zh-CN": "Instagram"
+            "zh-CN": "Instagram",
+            "zh-TW": "Instagram",
+            "en": "Instagram",
+            "ja": "インスタグラム",
+            "ko": "인스타그램",
+            "ru": "Instagram"
           },
           "description": {
             "zh-CN": "图片和视频分享社交平台",
@@ -1039,7 +1259,12 @@
         {
           "id": "facebook",
           "name": {
-            "zh-CN": "Facebook"
+            "zh-CN": "Facebook",
+            "zh-TW": "Facebook",
+            "en": "Facebook",
+            "ja": "フェイスブック",
+            "ko": "페이스북",
+            "ru": "Facebook"
           },
           "description": {
             "zh-CN": "全球最大的社交网络平台",
@@ -1062,7 +1287,12 @@
         {
           "id": "tiktok",
           "name": {
-            "zh-CN": "TikTok"
+            "zh-CN": "TikTok",
+            "zh-TW": "TikTok",
+            "en": "TikTok",
+            "ja": "ティックトック",
+            "ko": "틱톡",
+            "ru": "TikTok"
           },
           "description": {
             "zh-CN": "全球流行的短视频平台",
@@ -1085,7 +1315,12 @@
         {
           "id": "douyin",
           "name": {
-            "zh-CN": "抖音"
+            "zh-CN": "抖音",
+            "zh-TW": "抖音",
+            "en": "Douyin",
+            "ja": "ドウイン",
+            "ko": "더우인",
+            "ru": "Douyin"
           },
           "description": {
             "zh-CN": "中国流行的短视频平台",
@@ -1108,7 +1343,12 @@
         {
           "id": "weibo",
           "name": {
-            "zh-CN": "微博"
+            "zh-CN": "微博",
+            "zh-TW": "微博",
+            "en": "Weibo",
+            "ja": "ウェイボー",
+            "ko": "웨이보",
+            "ru": "Weibo"
           },
           "description": {
             "zh-CN": "中国领先的社交媒体平台",
@@ -1131,7 +1371,12 @@
         {
           "id": "xiaohongshu",
           "name": {
-            "zh-CN": "小红书"
+            "zh-CN": "小红书",
+            "zh-TW": "小紅書",
+            "en": "Xiaohongshu",
+            "ja": "小紅書",
+            "ko": "샤오홍슈",
+            "ru": "Xiaohongshu"
           },
           "description": {
             "zh-CN": "生活方式分享社区",
@@ -1154,7 +1399,12 @@
         {
           "id": "linkedin",
           "name": {
-            "zh-CN": "LinkedIn"
+            "zh-CN": "LinkedIn",
+            "zh-TW": "LinkedIn",
+            "en": "LinkedIn",
+            "ja": "リンクトイン",
+            "ko": "링크드인",
+            "ru": "LinkedIn"
           },
           "description": {
             "zh-CN": "全球职业社交平台",
@@ -1177,7 +1427,12 @@
         {
           "id": "reddit",
           "name": {
-            "zh-CN": "Reddit"
+            "zh-CN": "Reddit",
+            "zh-TW": "Reddit",
+            "en": "Reddit",
+            "ja": "レディット",
+            "ko": "레딧",
+            "ru": "Reddit"
           },
           "description": {
             "zh-CN": "全球热门论坛社区",
@@ -1200,7 +1455,12 @@
         {
           "id": "pinterest",
           "name": {
-            "zh-CN": "Pinterest"
+            "zh-CN": "Pinterest",
+            "zh-TW": "Pinterest",
+            "en": "Pinterest",
+            "ja": "ピンタレスト",
+            "ko": "핀터레스트",
+            "ru": "Pinterest"
           },
           "description": {
             "zh-CN": "图片发现和收藏平台",
@@ -1223,7 +1483,12 @@
         {
           "id": "discord",
           "name": {
-            "zh-CN": "Discord"
+            "zh-CN": "Discord",
+            "zh-TW": "Discord",
+            "en": "Discord",
+            "ja": "ディスコード",
+            "ko": "디스코드",
+            "ru": "Discord"
           },
           "description": {
             "zh-CN": "游戏和社区聊天平台",
@@ -1246,7 +1511,12 @@
         {
           "id": "telegram",
           "name": {
-            "zh-CN": "Telegram"
+            "zh-CN": "Telegram",
+            "zh-TW": "Telegram",
+            "en": "Telegram",
+            "ja": "テレグラム",
+            "ko": "텔레그램",
+            "ru": "Telegram"
           },
           "description": {
             "zh-CN": "安全快速的即时通讯软件",
@@ -1269,7 +1539,12 @@
         {
           "id": "snapchat",
           "name": {
-            "zh-CN": "Snapchat"
+            "zh-CN": "Snapchat",
+            "zh-TW": "Snapchat",
+            "en": "Snapchat",
+            "ja": "スナップチャット",
+            "ko": "스냅챗",
+            "ru": "Snapchat"
           },
           "description": {
             "zh-CN": "图片和视频即时分享应用",
@@ -1292,7 +1567,12 @@
         {
           "id": "tumblr",
           "name": {
-            "zh-CN": "Tumblr"
+            "zh-CN": "Tumblr",
+            "zh-TW": "Tumblr",
+            "en": "Tumblr",
+            "ja": "タンブラー",
+            "ko": "텀블러",
+            "ru": "Tumblr"
           },
           "description": {
             "zh-CN": "轻博客社交平台",
@@ -1315,7 +1595,12 @@
         {
           "id": "twitch",
           "name": {
-            "zh-CN": "Twitch"
+            "zh-CN": "Twitch",
+            "zh-TW": "Twitch",
+            "en": "Twitch",
+            "ja": "ツイッチ",
+            "ko": "트위치",
+            "ru": "Twitch"
           },
           "description": {
             "zh-CN": "游戏直播平台",
@@ -1338,7 +1623,12 @@
         {
           "id": "bilibili",
           "name": {
-            "zh-CN": "哔哩哔哩"
+            "zh-CN": "哔哩哔哩",
+            "zh-TW": "嗶哩嗶哩",
+            "en": "Bilibili",
+            "ja": "ビリビリ",
+            "ko": "빌리빌리",
+            "ru": "Bilibili"
           },
           "description": {
             "zh-CN": "中国年轻人文化社区",
@@ -1361,7 +1651,12 @@
         {
           "id": "vkontakte",
           "name": {
-            "zh-CN": "VK"
+            "zh-CN": "VK",
+            "zh-TW": "VK",
+            "en": "VK",
+            "ja": "VK",
+            "ko": "VK",
+            "ru": "ВКонтакте"
           },
           "description": {
             "zh-CN": "俄罗斯最大的社交网络",
@@ -1384,7 +1679,12 @@
         {
           "id": "quora",
           "name": {
-            "zh-CN": "Quora"
+            "zh-CN": "Quora",
+            "zh-TW": "Quora",
+            "en": "Quora",
+            "ja": "クオラ",
+            "ko": "쿼라",
+            "ru": "Quora"
           },
           "description": {
             "zh-CN": "知识问答社区",
@@ -1407,7 +1707,12 @@
         {
           "id": "zhihu",
           "name": {
-            "zh-CN": "知乎"
+            "zh-CN": "知乎",
+            "zh-TW": "知乎",
+            "en": "Zhihu",
+            "ja": "ジーフー",
+            "ko": "즈후",
+            "ru": "Zhihu"
           },
           "description": {
             "zh-CN": "中文知识问答社区",
@@ -1430,7 +1735,12 @@
         {
           "id": "threads-1774404988982-0-0",
           "name": {
-            "zh-CN": "Threads"
+            "zh-CN": "Threads",
+            "zh-TW": "Threads",
+            "en": "Threads",
+            "ja": "スレッズ",
+            "ko": "스레드",
+            "ru": "Threads"
           },
           "description": {
             "zh-CN": "Meta 推出的文字社交平台",
@@ -1453,7 +1763,12 @@
         {
           "id": "mastodon-1774404988982-0-1",
           "name": {
-            "zh-CN": "Mastodon"
+            "zh-CN": "Mastodon",
+            "zh-TW": "Mastodon",
+            "en": "Mastodon",
+            "ja": "マストドン",
+            "ko": "마스토돈",
+            "ru": "Mastodon"
           },
           "description": {
             "zh-CN": "去中心化开源社交网络",
@@ -1476,7 +1791,12 @@
         {
           "id": "bluesky-1774404988982-0-2",
           "name": {
-            "zh-CN": "Bluesky"
+            "zh-CN": "Bluesky",
+            "zh-TW": "Bluesky",
+            "en": "Bluesky",
+            "ja": "ブルースカイ",
+            "ko": "블루스카이",
+            "ru": "Bluesky"
           },
           "description": {
             "zh-CN": "去中心化社交平台",
@@ -1499,7 +1819,12 @@
         {
           "id": "wechat-1774404988982-0-5",
           "name": {
-            "zh-CN": "微信"
+            "zh-CN": "微信",
+            "zh-TW": "微信",
+            "en": "WeChat",
+            "ja": "ウィーチャット",
+            "ko": "위챗",
+            "ru": "WeChat"
           },
           "description": {
             "zh-CN": "中国最大的即时通讯平台",
@@ -1522,7 +1847,12 @@
         {
           "id": "qq-1774404988982-0-6",
           "name": {
-            "zh-CN": "QQ"
+            "zh-CN": "QQ",
+            "zh-TW": "QQ",
+            "en": "QQ",
+            "ja": "キューキュー",
+            "ko": "QQ",
+            "ru": "QQ"
           },
           "description": {
             "zh-CN": "腾讯即时通讯平台",
@@ -1545,7 +1875,12 @@
         {
           "id": "line-1774404988982-0-7",
           "name": {
-            "zh-CN": "LINE"
+            "zh-CN": "LINE",
+            "zh-TW": "LINE",
+            "en": "LINE",
+            "ja": "LINE",
+            "ko": "LINE",
+            "ru": "LINE"
           },
           "description": {
             "zh-CN": "日本流行的即时通讯应用",
@@ -1568,7 +1903,12 @@
         {
           "id": "kakao-1774404988982-0-8",
           "name": {
-            "zh-CN": "KakaoTalk"
+            "zh-CN": "KakaoTalk",
+            "zh-TW": "KakaoTalk",
+            "en": "KakaoTalk",
+            "ja": "KakaoTalk",
+            "ko": "KakaoTalk",
+            "ru": "KakaoTalk"
           },
           "description": {
             "zh-CN": "韩国最大的即时通讯应用",
@@ -1591,7 +1931,12 @@
         {
           "id": "truth-social-1774404988982-0-9",
           "name": {
-            "zh-CN": "Truth Social"
+            "zh-CN": "Truth Social",
+            "zh-TW": "Truth Social",
+            "en": "Truth Social",
+            "ja": "Truth Social",
+            "ko": "Truth Social",
+            "ru": "Truth Social"
           },
           "description": {
             "zh-CN": "特朗普推出的社交媒体平台",
@@ -1627,7 +1972,12 @@
         {
           "id": "baidu-tieba",
           "name": {
-            "zh-CN": "百度贴吧"
+            "zh-CN": "百度贴吧",
+            "zh-TW": "百度貼吧",
+            "en": "Baidu Tieba",
+            "ja": "百度掲示板",
+            "ko": "바이두 티에바",
+            "ru": "Baidu Tieba"
           },
           "description": {
             "zh-CN": "中国最大的中文社区",
@@ -1650,7 +2000,12 @@
         {
           "id": "douban",
           "name": {
-            "zh-CN": "豆瓣"
+            "zh-CN": "豆瓣",
+            "zh-TW": "豆瓣",
+            "en": "Douban",
+            "ja": "ドウバン",
+            "ko": "더우반",
+            "ru": "Доубань"
           },
           "description": {
             "zh-CN": "电影、图书、音乐评论社区",
@@ -1673,7 +2028,12 @@
         {
           "id": "hupu",
           "name": {
-            "zh-CN": "虎扑"
+            "zh-CN": "虎扑",
+            "zh-TW": "虎撲",
+            "en": "Hupu",
+            "ja": "虎撲",
+            "ko": "후푸",
+            "ru": "Hupu"
           },
           "description": {
             "zh-CN": "体育和男性兴趣社区",
@@ -1696,7 +2056,12 @@
         {
           "id": "jianshu",
           "name": {
-            "zh-CN": "简书"
+            "zh-CN": "简书",
+            "zh-TW": "簡書",
+            "en": "Jianshu",
+            "ja": "簡書",
+            "ko": "지엔슈",
+            "ru": "Jianshu"
           },
           "description": {
             "zh-CN": "中文写作创作平台",
@@ -1719,7 +2084,12 @@
         {
           "id": "toutiao",
           "name": {
-            "zh-CN": "今日头条"
+            "zh-CN": "今日头条",
+            "zh-TW": "今日頭條",
+            "en": "Toutiao",
+            "ja": "今日頭条",
+            "ko": "진르터우탸오",
+            "ru": "Toutiao"
           },
           "description": {
             "zh-CN": "个性化信息推荐平台",
@@ -1742,7 +2112,12 @@
         {
           "id": "oschina",
           "name": {
-            "zh-CN": "开源中国"
+            "zh-CN": "开源中国",
+            "zh-TW": "開源中國",
+            "en": "OSChina",
+            "ja": "OSChina",
+            "ko": "OSChina",
+            "ru": "OSChina"
           },
           "description": {
             "zh-CN": "中文开源技术社区",
@@ -1765,7 +2140,12 @@
         {
           "id": "csdn",
           "name": {
-            "zh-CN": "CSDN"
+            "zh-CN": "CSDN",
+            "zh-TW": "CSDN",
+            "en": "CSDN",
+            "ja": "CSDN",
+            "ko": "CSDN",
+            "ru": "CSDN"
           },
           "description": {
             "zh-CN": "中国最大的技术社区",
@@ -1788,7 +2168,12 @@
         {
           "id": "juejin",
           "name": {
-            "zh-CN": "掘金"
+            "zh-CN": "掘金",
+            "zh-TW": "掘金",
+            "en": "Juejin",
+            "ja": "掘金",
+            "ko": "쥐에진",
+            "ru": "Juejin"
           },
           "description": {
             "zh-CN": "开发者技术社区",
@@ -1811,7 +2196,12 @@
         {
           "id": "v2ex",
           "name": {
-            "zh-CN": "V2EX"
+            "zh-CN": "V2EX",
+            "zh-TW": "V2EX",
+            "en": "V2EX",
+            "ja": "ブイツーイーエックス",
+            "ko": "V2EX",
+            "ru": "V2EX"
           },
           "description": {
             "zh-CN": "创意工作者社区",
@@ -1834,7 +2224,12 @@
         {
           "id": "smzdm",
           "name": {
-            "zh-CN": "什么值得买"
+            "zh-CN": "什么值得买",
+            "zh-TW": "什麼值得買",
+            "en": "Smzdm",
+            "ja": "SMZDM",
+            "ko": "스므즈더마이",
+            "ru": "Smzdm"
           },
           "description": {
             "zh-CN": "消费决策导购平台",
@@ -1857,7 +2252,12 @@
         {
           "id": "qidian",
           "name": {
-            "zh-CN": "起点中文网"
+            "zh-CN": "起点中文网",
+            "zh-TW": "起點中文網",
+            "en": "Qidian",
+            "ja": "起点中文網",
+            "ko": "치디엔",
+            "ru": "Qidian"
           },
           "description": {
             "zh-CN": "中国最大的网络文学平台",
@@ -1880,7 +2280,12 @@
         {
           "id": "mafengwo",
           "name": {
-            "zh-CN": "马蜂窝"
+            "zh-CN": "马蜂窝",
+            "zh-TW": "馬蜂窩",
+            "en": "Mafengwo",
+            "ja": "馬蜂窩",
+            "ko": "마펑워",
+            "ru": "Mafengwo"
           },
           "description": {
             "zh-CN": "旅游攻略社区",
@@ -1903,7 +2308,12 @@
         {
           "id": "dianping",
           "name": {
-            "zh-CN": "大众点评"
+            "zh-CN": "大众点评",
+            "zh-TW": "大眾點評",
+            "en": "Dianping",
+            "ja": "大衆点評",
+            "ko": "디엔핑",
+            "ru": "Dianping"
           },
           "description": {
             "zh-CN": "本地生活消费平台",
@@ -1926,7 +2336,12 @@
         {
           "id": "eleme",
           "name": {
-            "zh-CN": "饿了么"
+            "zh-CN": "饿了么",
+            "zh-TW": "餓了麼",
+            "en": "Ele.me",
+            "ja": "餓了麼",
+            "ko": "어러머",
+            "ru": "Ele.me"
           },
           "description": {
             "zh-CN": "本地生活外卖平台",
@@ -1948,7 +2363,12 @@
         {
           "id": "meituan",
           "name": {
-            "zh-CN": "美团"
+            "zh-CN": "美团",
+            "zh-TW": "美團",
+            "en": "Meituan",
+            "ja": "美団",
+            "ko": "메이투안",
+            "ru": "Meituan"
           },
           "description": {
             "zh-CN": "本地生活服务平台",
@@ -1971,7 +2391,12 @@
         {
           "id": "taptap",
           "name": {
-            "zh-CN": "TapTap"
+            "zh-CN": "TapTap",
+            "zh-TW": "TapTap",
+            "en": "TapTap",
+            "ja": "タップタップ",
+            "ko": "탭탭",
+            "ru": "TapTap"
           },
           "description": {
             "zh-CN": "手游社区和平台",
@@ -1994,7 +2419,12 @@
         {
           "id": "lofter",
           "name": {
-            "zh-CN": "Lofter"
+            "zh-CN": "Lofter",
+            "zh-TW": "Lofter",
+            "en": "Lofter",
+            "ja": "ロフター",
+            "ko": "로프터",
+            "ru": "Lofter"
           },
           "description": {
             "zh-CN": "轻博客创作平台",
@@ -2017,7 +2447,12 @@
         {
           "id": "36kr",
           "name": {
-            "zh-CN": "36氪"
+            "zh-CN": "36氪",
+            "zh-TW": "36氪",
+            "en": "36Kr",
+            "ja": "36Kr",
+            "ko": "36Kr",
+            "ru": "36Kr"
           },
           "description": {
             "zh-CN": "科技创投媒体",
@@ -2040,7 +2475,12 @@
         {
           "id": "ithome",
           "name": {
-            "zh-CN": "IT之家"
+            "zh-CN": "IT之家",
+            "zh-TW": "IT之家",
+            "en": "ITHome",
+            "ja": "IT之家",
+            "ko": "IT지쟈",
+            "ru": "ITHome"
           },
           "description": {
             "zh-CN": "科技资讯媒体",
@@ -2076,7 +2516,12 @@
         {
           "id": "bbc",
           "name": {
-            "zh-CN": "BBC News"
+            "zh-CN": "BBC News",
+            "zh-TW": "BBC News",
+            "en": "BBC News",
+            "ja": "BBCニュース",
+            "ko": "BBC 뉴스",
+            "ru": "BBC News"
           },
           "description": {
             "zh-CN": "英国广播公司新闻",
@@ -2099,7 +2544,12 @@
         {
           "id": "cnn",
           "name": {
-            "zh-CN": "CNN"
+            "zh-CN": "CNN",
+            "zh-TW": "CNN",
+            "en": "CNN",
+            "ja": "シーエヌエヌ",
+            "ko": "CNN",
+            "ru": "CNN"
           },
           "description": {
             "zh-CN": "美国有线电视新闻网",
@@ -2122,7 +2572,12 @@
         {
           "id": "nytimes",
           "name": {
-            "zh-CN": "纽约时报"
+            "zh-CN": "纽约时报",
+            "zh-TW": "紐約時報",
+            "en": "The New York Times",
+            "ja": "ニューヨーク・タイムズ",
+            "ko": "뉴욕 타임스",
+            "ru": "Нью-Йорк Таймс"
           },
           "description": {
             "zh-CN": "美国知名报纸",
@@ -2145,7 +2600,12 @@
         {
           "id": "xinhuanet",
           "name": {
-            "zh-CN": "新华网"
+            "zh-CN": "新华网",
+            "zh-TW": "新華網",
+            "en": "Xinhua",
+            "ja": "新華網",
+            "ko": "신화망",
+            "ru": "Синьхуа"
           },
           "description": {
             "zh-CN": "中国官方新闻网站",
@@ -2168,7 +2628,12 @@
         {
           "id": "people",
           "name": {
-            "zh-CN": "人民网"
+            "zh-CN": "人民网",
+            "zh-TW": "人民網",
+            "en": "People's Daily",
+            "ja": "人民網",
+            "ko": "인민망",
+            "ru": "Жэньминь жибао"
           },
           "description": {
             "zh-CN": "中国官方新闻网站",
@@ -2191,7 +2656,12 @@
         {
           "id": "caixin",
           "name": {
-            "zh-CN": "财新网"
+            "zh-CN": "财新网",
+            "zh-TW": "財新網",
+            "en": "Caixin",
+            "ja": "財新網",
+            "ko": "차이신",
+            "ru": "Caixin"
           },
           "description": {
             "zh-CN": "中国财经新闻媒体",
@@ -2214,7 +2684,12 @@
         {
           "id": "nikkei",
           "name": {
-            "zh-CN": "日本经济新闻"
+            "zh-CN": "日本经济新闻",
+            "zh-TW": "日本經濟新聞",
+            "en": "Nikkei",
+            "ja": "日本経済新聞",
+            "ko": "니혼게이자이신문",
+            "ru": "Nikkei"
           },
           "description": {
             "zh-CN": "日本知名财经报纸",
@@ -2237,7 +2712,12 @@
         {
           "id": "russia-today",
           "name": {
-            "zh-CN": "今日俄罗斯"
+            "zh-CN": "今日俄罗斯",
+            "zh-TW": "今日俄羅斯",
+            "en": "RT",
+            "ja": "ロシア・トゥデイ",
+            "ko": "러시아 투데이",
+            "ru": "RT"
           },
           "description": {
             "zh-CN": "俄罗斯国际新闻频道",
@@ -2260,7 +2740,12 @@
         {
           "id": "wsj",
           "name": {
-            "zh-CN": "华尔街日报"
+            "zh-CN": "华尔街日报",
+            "zh-TW": "華爾街日報",
+            "en": "The Wall Street Journal",
+            "ja": "ウォール・ストリート・ジャーナル",
+            "ko": "월스트리트 저널",
+            "ru": "Уолл-стрит джорнал"
           },
           "description": {
             "zh-CN": "美国财经报纸",
@@ -2283,7 +2768,12 @@
         {
           "id": "ft",
           "name": {
-            "zh-CN": "金融时报"
+            "zh-CN": "金融时报",
+            "zh-TW": "金融時報",
+            "en": "Financial Times",
+            "ja": "フィナンシャル・タイムズ",
+            "ko": "파이낸셜 타임스",
+            "ru": "Файнэншл таймс"
           },
           "description": {
             "zh-CN": "英国国际性财经报纸",
@@ -2306,7 +2796,12 @@
         {
           "id": "apnews",
           "name": {
-            "zh-CN": "美联社"
+            "zh-CN": "美联社",
+            "zh-TW": "美聯社",
+            "en": "AP News",
+            "ja": "AP通信",
+            "ko": "AP 통신",
+            "ru": "Ассошиэйтед пресс"
           },
           "description": {
             "zh-CN": "美国联合通讯社",
@@ -2329,7 +2824,12 @@
         {
           "id": "aljazeera",
           "name": {
-            "zh-CN": "半岛电视台"
+            "zh-CN": "半岛电视台",
+            "zh-TW": "半島電視台",
+            "en": "Al Jazeera",
+            "ja": "アルジャジーラ",
+            "ko": "알자지라",
+            "ru": "Аль-Джазира"
           },
           "description": {
             "zh-CN": "卡塔尔国际新闻媒体",
@@ -2352,7 +2852,12 @@
         {
           "id": "yicai",
           "name": {
-            "zh-CN": "第一财经"
+            "zh-CN": "第一财经",
+            "zh-TW": "第一財經",
+            "en": "Yicai",
+            "ja": "第一財経",
+            "ko": "이차이",
+            "ru": "Yicai"
           },
           "description": {
             "zh-CN": "中国财经媒体",
@@ -2375,7 +2880,12 @@
         {
           "id": "bbc-chinese",
           "name": {
-            "zh-CN": "BBC中文"
+            "zh-CN": "BBC中文",
+            "zh-TW": "BBC中文",
+            "en": "BBC Chinese",
+            "ja": "BBC中国語",
+            "ko": "BBC 중국어",
+            "ru": "BBC Chinese"
           },
           "description": {
             "zh-CN": "BBC 中文新闻",
@@ -2398,7 +2908,12 @@
         {
           "id": "dw",
           "name": {
-            "zh-CN": "德国之声"
+            "zh-CN": "德国之声",
+            "zh-TW": "德國之聲",
+            "en": "DW",
+            "ja": "ドイチェ・ヴェレ",
+            "ko": "도이체 벨레",
+            "ru": "Deutsche Welle"
           },
           "description": {
             "zh-CN": "德国国际广播电台",
@@ -2421,7 +2936,12 @@
         {
           "id": "thepaper",
           "name": {
-            "zh-CN": "澎湃新闻"
+            "zh-CN": "澎湃新闻",
+            "zh-TW": "澎湃新聞",
+            "en": "The Paper",
+            "ja": "澎湃新聞",
+            "ko": "펑파이",
+            "ru": "The Paper"
           },
           "description": {
             "zh-CN": "中国新媒体",
@@ -2444,7 +2964,12 @@
         {
           "id": "guancha-1774409245431-0-0",
           "name": {
-            "zh-CN": "观察者网"
+            "zh-CN": "观察者网",
+            "zh-TW": "觀察者網",
+            "en": "Guancha",
+            "ja": "観察者網",
+            "ko": "관차",
+            "ru": "Guancha"
           },
           "description": {
             "zh-CN": "中国新闻时评网站",
@@ -2467,7 +2992,12 @@
         {
           "id": "huanqiu-1774409245431-0-1",
           "name": {
-            "zh-CN": "环球网"
+            "zh-CN": "环球网",
+            "zh-TW": "環球網",
+            "en": "Huanqiu",
+            "ja": "環球網",
+            "ko": "환치우",
+            "ru": "Huanqiu"
           },
           "description": {
             "zh-CN": "国际新闻综合网站",
@@ -2490,7 +3020,12 @@
         {
           "id": "china-news-1774409245431-0-2",
           "name": {
-            "zh-CN": "中国新闻网"
+            "zh-CN": "中国新闻网",
+            "zh-TW": "中國新聞網",
+            "en": "China News",
+            "ja": "中国新聞網",
+            "ko": "중국 뉴스",
+            "ru": "China News"
           },
           "description": {
             "zh-CN": "中新社官方新闻网站",
@@ -2513,7 +3048,12 @@
         {
           "id": "cctv-1774409245431-0-3",
           "name": {
-            "zh-CN": "央视网"
+            "zh-CN": "央视网",
+            "zh-TW": "央視網",
+            "en": "CCTV",
+            "ja": "CCTV",
+            "ko": "CCTV",
+            "ru": "CCTV"
           },
           "description": {
             "zh-CN": "中央电视台官方网络平台",
@@ -2536,7 +3076,12 @@
         {
           "id": "ce-1774409245431-0-4",
           "name": {
-            "zh-CN": "中国经济网"
+            "zh-CN": "中国经济网",
+            "zh-TW": "中國經濟網",
+            "en": "CE.cn",
+            "ja": "中国経済網",
+            "ko": "중국 경제망",
+            "ru": "CE.cn"
           },
           "description": {
             "zh-CN": "经济日报主办的财经网站",
@@ -2559,7 +3104,12 @@
         {
           "id": "eastmoney-1774409245431-0-9",
           "name": {
-            "zh-CN": "东方财富网"
+            "zh-CN": "东方财富网",
+            "zh-TW": "東方財富網",
+            "en": "East Money",
+            "ja": "東方財富網",
+            "ko": "둥팡차이푸",
+            "ru": "East Money"
           },
           "description": {
             "zh-CN": "中国领先的财经门户网站",
@@ -2582,7 +3132,12 @@
         {
           "id": "hexun-1774409245431-0-10",
           "name": {
-            "zh-CN": "和讯网"
+            "zh-CN": "和讯网",
+            "zh-TW": "和訊網",
+            "en": "Hexun",
+            "ja": "和訊網",
+            "ko": "허쉰",
+            "ru": "Hexun"
           },
           "description": {
             "zh-CN": "中国财经资讯网站",
@@ -2605,7 +3160,12 @@
         {
           "id": "sina-finance-1774409245431-0-11",
           "name": {
-            "zh-CN": "新浪财经"
+            "zh-CN": "新浪财经",
+            "zh-TW": "新浪財經",
+            "en": "Sina Finance",
+            "ja": "新浪財経",
+            "ko": "신랑 재경",
+            "ru": "Sina Finance"
           },
           "description": {
             "zh-CN": "新浪旗下财经资讯平台",
@@ -2628,7 +3188,12 @@
         {
           "id": "qq-finance-1774409245431-0-12",
           "name": {
-            "zh-CN": "腾讯财经"
+            "zh-CN": "腾讯财经",
+            "zh-TW": "騰訊財經",
+            "en": "QQ Finance",
+            "ja": "テンセント財経",
+            "ko": "텅쉰 재경",
+            "ru": "QQ Finance"
           },
           "description": {
             "zh-CN": "腾讯旗下财经资讯平台",
@@ -2651,7 +3216,12 @@
         {
           "id": "ifeng-1774409245431-0-13",
           "name": {
-            "zh-CN": "凤凰网"
+            "zh-CN": "凤凰网",
+            "zh-TW": "鳳凰網",
+            "en": "Ifeng",
+            "ja": "鳳凰網",
+            "ko": "펑황",
+            "ru": "Ifeng"
           },
           "description": {
             "zh-CN": "中国综合门户网站",
@@ -2674,7 +3244,12 @@
         {
           "id": "huanqiu-sports-1774409245431-0-14",
           "name": {
-            "zh-CN": "虎扑体育"
+            "zh-CN": "虎扑体育",
+            "zh-TW": "虎撲體育",
+            "en": "Hupu Sports",
+            "ja": "虎撲スポーツ",
+            "ko": "후푸 스포츠",
+            "ru": "Hupu Sports"
           },
           "description": {
             "zh-CN": "中国体育资讯社区",
@@ -2697,7 +3272,12 @@
         {
           "id": "dongqiudi-1774409245431-0-15",
           "name": {
-            "zh-CN": "懂球帝"
+            "zh-CN": "懂球帝",
+            "zh-TW": "懂球帝",
+            "en": "Dongqiudi",
+            "ja": "懂球帝",
+            "ko": "동치우디",
+            "ru": "Dongqiudi"
           },
           "description": {
             "zh-CN": "中国足球资讯平台",
@@ -2720,7 +3300,12 @@
         {
           "id": "wallstreetcn-1774409245431-0-16",
           "name": {
-            "zh-CN": "华尔街见闻"
+            "zh-CN": "华尔街见闻",
+            "zh-TW": "華爾街見聞",
+            "en": "Wallstreetcn",
+            "ja": "華爾街見聞",
+            "ko": "화얼제 지엔원",
+            "ru": "Wallstreetcn"
           },
           "description": {
             "zh-CN": "中国财经资讯网站",
@@ -2743,7 +3328,12 @@
         {
           "id": "cls-1774409245431-0-17",
           "name": {
-            "zh-CN": "财联社"
+            "zh-CN": "财联社",
+            "zh-TW": "財聯社",
+            "en": "Yicai Global",
+            "ja": "財聯社",
+            "ko": "차이롄서",
+            "ru": "Yicai Global"
           },
           "description": {
             "zh-CN": "中国财经通讯社",
@@ -2766,7 +3356,12 @@
         {
           "id": "nbd-com-cn-1774410049270-0-0",
           "name": {
-            "zh-CN": "每经网"
+            "zh-CN": "每经网",
+            "zh-TW": "每經網",
+            "en": "NBD",
+            "ja": "毎経網",
+            "ko": "메이징왕",
+            "ru": "NBD"
           },
           "description": {
             "zh-CN": "每日经济新闻官方网站",
@@ -2789,7 +3384,12 @@
         {
           "id": "k618-1774410049270-0-2",
           "name": {
-            "zh-CN": "未来网"
+            "zh-CN": "未来网",
+            "zh-TW": "未來網",
+            "en": "K618",
+            "ja": "未来網",
+            "ko": "웨이라이왕",
+            "ru": "K618"
           },
           "description": {
             "zh-CN": "中国青少年成长服务平台",
@@ -2812,7 +3412,12 @@
         {
           "id": "chineseradio-1774410049270-0-3",
           "name": {
-            "zh-CN": "央广网"
+            "zh-CN": "央广网",
+            "zh-TW": "央廣網",
+            "en": "CNR",
+            "ja": "央広網",
+            "ko": "양광왕",
+            "ru": "CNR"
           },
           "description": {
             "zh-CN": "中央人民广播电台官方网站",
@@ -2835,7 +3440,12 @@
         {
           "id": "gmw-1774410049270-0-4",
           "name": {
-            "zh-CN": "光明网"
+            "zh-CN": "光明网",
+            "zh-TW": "光明網",
+            "en": "GMW",
+            "ja": "光明網",
+            "ko": "광밍왕",
+            "ru": "GMW"
           },
           "description": {
             "zh-CN": "光明日报官方网站",
@@ -2858,7 +3468,12 @@
         {
           "id": "stdaily-1774410049270-0-5",
           "name": {
-            "zh-CN": "中国科技网"
+            "zh-CN": "中国科技网",
+            "zh-TW": "中國科技網",
+            "en": "China Science Daily",
+            "ja": "中国科技網",
+            "ko": "중국 과기망",
+            "ru": "China Science Daily"
           },
           "description": {
             "zh-CN": "科技日报官方网站",
@@ -2881,7 +3496,12 @@
         {
           "id": "zgw-1774410049270-0-7",
           "name": {
-            "zh-CN": "中国网"
+            "zh-CN": "中国网",
+            "zh-TW": "中國網",
+            "en": "China.cn",
+            "ja": "中国網",
+            "ko": "중국망",
+            "ru": "China.cn"
           },
           "description": {
             "zh-CN": "国务院新闻办领导的国家重点新闻网站",
@@ -2904,7 +3524,12 @@
         {
           "id": "taihainet-1774410049270-0-9",
           "name": {
-            "zh-CN": "台海网"
+            "zh-CN": "台海网",
+            "zh-TW": "台海網",
+            "en": "Taihainet",
+            "ja": "台海網",
+            "ko": "타이하이왕",
+            "ru": "Taihainet"
           },
           "description": {
             "zh-CN": "海峡两岸新闻资讯平台",
@@ -2940,7 +3565,12 @@
         {
           "id": "github",
           "name": {
-            "zh-CN": "GitHub"
+            "zh-CN": "GitHub",
+            "zh-TW": "GitHub",
+            "en": "GitHub",
+            "ja": "ギットハブ",
+            "ko": "깃허브",
+            "ru": "GitHub"
           },
           "description": {
             "zh-CN": "全球最大代码托管平台",
@@ -2963,7 +3593,12 @@
         {
           "id": "gitlab",
           "name": {
-            "zh-CN": "GitLab"
+            "zh-CN": "GitLab",
+            "zh-TW": "GitLab",
+            "en": "GitLab",
+            "ja": "ギットラボ",
+            "ko": "깃랩",
+            "ru": "GitLab"
           },
           "description": {
             "zh-CN": "DevOps 平台",
@@ -2986,7 +3621,12 @@
         {
           "id": "stackoverflow",
           "name": {
-            "zh-CN": "Stack Overflow"
+            "zh-CN": "Stack Overflow",
+            "zh-TW": "Stack Overflow",
+            "en": "Stack Overflow",
+            "ja": "スタックオーバーフロー",
+            "ko": "스택 오버플로",
+            "ru": "Stack Overflow"
           },
           "description": {
             "zh-CN": "程序员问答社区",
@@ -3009,7 +3649,12 @@
         {
           "id": "codepen",
           "name": {
-            "zh-CN": "CodePen"
+            "zh-CN": "CodePen",
+            "zh-TW": "CodePen",
+            "en": "CodePen",
+            "ja": "CodePen",
+            "ko": "CodePen",
+            "ru": "CodePen"
           },
           "description": {
             "zh-CN": "前端代码演示平台",
@@ -3032,7 +3677,12 @@
         {
           "id": "devto",
           "name": {
-            "zh-CN": "DEV Community"
+            "zh-CN": "DEV Community",
+            "zh-TW": "DEV Community",
+            "en": "DEV Community",
+            "ja": "DEV Community",
+            "ko": "DEV Community",
+            "ru": "DEV Community"
           },
           "description": {
             "zh-CN": "开发者社区",
@@ -3055,7 +3705,12 @@
         {
           "id": "docker",
           "name": {
-            "zh-CN": "Docker Hub"
+            "zh-CN": "Docker Hub",
+            "zh-TW": "Docker Hub",
+            "en": "Docker Hub",
+            "ja": "ドッカーハブ",
+            "ko": "도커 허브",
+            "ru": "Docker Hub"
           },
           "description": {
             "zh-CN": "容器镜像仓库",
@@ -3078,7 +3733,12 @@
         {
           "id": "npm",
           "name": {
-            "zh-CN": "npm"
+            "zh-CN": "npm",
+            "zh-TW": "npm",
+            "en": "npm",
+            "ja": "npm",
+            "ko": "npm",
+            "ru": "npm"
           },
           "description": {
             "zh-CN": "Node.js 包管理器",
@@ -3101,7 +3761,12 @@
         {
           "id": "vercel",
           "name": {
-            "zh-CN": "Vercel"
+            "zh-CN": "Vercel",
+            "zh-TW": "Vercel",
+            "en": "Vercel",
+            "ja": "ヴァーセル",
+            "ko": "버셀",
+            "ru": "Vercel"
           },
           "description": {
             "zh-CN": "前端托管平台",
@@ -3124,7 +3789,12 @@
         {
           "id": "netlify",
           "name": {
-            "zh-CN": "Netlify"
+            "zh-CN": "Netlify",
+            "zh-TW": "Netlify",
+            "en": "Netlify",
+            "ja": "ネットリファイ",
+            "ko": "넷리파이",
+            "ru": "Netlify"
           },
           "description": {
             "zh-CN": "现代化网站托管平台",
@@ -3147,7 +3817,12 @@
         {
           "id": "codesandbox",
           "name": {
-            "zh-CN": "CodeSandbox"
+            "zh-CN": "CodeSandbox",
+            "zh-TW": "CodeSandbox",
+            "en": "CodeSandbox",
+            "ja": "CodeSandbox",
+            "ko": "CodeSandbox",
+            "ru": "CodeSandbox"
           },
           "description": {
             "zh-CN": "在线代码编辑器",
@@ -3170,7 +3845,12 @@
         {
           "id": "postman",
           "name": {
-            "zh-CN": "Postman"
+            "zh-CN": "Postman",
+            "zh-TW": "Postman",
+            "en": "Postman",
+            "ja": "ポストマン",
+            "ko": "포스트맨",
+            "ru": "Postman"
           },
           "description": {
             "zh-CN": "API 开发和测试工具",
@@ -3192,7 +3872,12 @@
         {
           "id": "figma",
           "name": {
-            "zh-CN": "Figma"
+            "zh-CN": "Figma",
+            "zh-TW": "Figma",
+            "en": "Figma",
+            "ja": "フィグマ",
+            "ko": "피그마",
+            "ru": "Figma"
           },
           "description": {
             "zh-CN": "UI 设计工具",
@@ -3214,7 +3899,12 @@
         {
           "id": "gitee",
           "name": {
-            "zh-CN": "Gitee"
+            "zh-CN": "Gitee",
+            "zh-TW": "Gitee",
+            "en": "Gitee",
+            "ja": "ギッティー",
+            "ko": "기티",
+            "ru": "Gitee"
           },
           "description": {
             "zh-CN": "国内代码托管平台",
@@ -3236,7 +3926,12 @@
         {
           "id": "leetcode",
           "name": {
-            "zh-CN": "LeetCode"
+            "zh-CN": "LeetCode",
+            "zh-TW": "LeetCode",
+            "en": "LeetCode",
+            "ja": "LeetCode",
+            "ko": "LeetCode",
+            "ru": "LeetCode"
           },
           "description": {
             "zh-CN": "算法刷题平台",
@@ -3258,7 +3953,12 @@
         {
           "id": "mdn",
           "name": {
-            "zh-CN": "MDN Web Docs"
+            "zh-CN": "MDN Web Docs",
+            "zh-TW": "MDN Web Docs",
+            "en": "MDN Web Docs",
+            "ja": "MDN Web Docs",
+            "ko": "MDN Web Docs",
+            "ru": "MDN Web Docs"
           },
           "description": {
             "zh-CN": "Web 开发文档",
@@ -3281,7 +3981,12 @@
         {
           "id": "w3schools",
           "name": {
-            "zh-CN": "W3Schools"
+            "zh-CN": "W3Schools",
+            "zh-TW": "W3Schools",
+            "en": "W3Schools",
+            "ja": "W3Schools",
+            "ko": "W3Schools",
+            "ru": "W3Schools"
           },
           "description": {
             "zh-CN": "Web 技术教程",
@@ -3303,7 +4008,12 @@
         {
           "id": "json",
           "name": {
-            "zh-CN": "JSON Formatter"
+            "zh-CN": "JSON Formatter",
+            "zh-TW": "JSON Formatter",
+            "en": "JSON Formatter",
+            "ja": "JSON Formatter",
+            "ko": "JSON Formatter",
+            "ru": "JSON Formatter"
           },
           "description": {
             "zh-CN": "JSON 格式化工具",
@@ -3326,7 +4036,12 @@
         {
           "id": "regex101",
           "name": {
-            "zh-CN": "regex101"
+            "zh-CN": "regex101",
+            "zh-TW": "regex101",
+            "en": "regex101",
+            "ja": "regex101",
+            "ko": "regex101",
+            "ru": "regex101"
           },
           "description": {
             "zh-CN": "正则表达式测试工具",
@@ -3349,7 +4064,12 @@
         {
           "id": "canius",
           "name": {
-            "zh-CN": "Can I Use"
+            "zh-CN": "Can I Use",
+            "zh-TW": "Can I Use",
+            "en": "Can I Use",
+            "ja": "Can I Use",
+            "ko": "Can I Use",
+            "ru": "Can I Use"
           },
           "description": {
             "zh-CN": "浏览器兼容性查询工具",
@@ -3372,7 +4092,12 @@
         {
           "id": "github-copilot",
           "name": {
-            "zh-CN": "GitHub Copilot"
+            "zh-CN": "GitHub Copilot",
+            "zh-TW": "GitHub Copilot",
+            "en": "GitHub Copilot",
+            "ja": "GitHub Copilot",
+            "ko": "GitHub Copilot",
+            "ru": "GitHub Copilot"
           },
           "description": {
             "zh-CN": "AI 编程助手",
@@ -3394,7 +4119,12 @@
         {
           "id": "raycast",
           "name": {
-            "zh-CN": "Raycast"
+            "zh-CN": "Raycast",
+            "zh-TW": "Raycast",
+            "en": "Raycast",
+            "ja": "Raycast",
+            "ko": "Raycast",
+            "ru": "Raycast"
           },
           "description": {
             "zh-CN": "Mac 生产力工具",
@@ -3417,7 +4147,12 @@
         {
           "id": "jsfiddle-1774413606481-0-0",
           "name": {
-            "zh-CN": "JSFiddle"
+            "zh-CN": "JSFiddle",
+            "zh-TW": "JSFiddle",
+            "en": "JSFiddle",
+            "ja": "JSFiddle",
+            "ko": "JSFiddle",
+            "ru": "JSFiddle"
           },
           "description": {
             "zh-CN": "在线代码测试环境",
@@ -3439,7 +4174,12 @@
         {
           "id": "stackblitz-1774413606481-0-2",
           "name": {
-            "zh-CN": "StackBlitz"
+            "zh-CN": "StackBlitz",
+            "zh-TW": "StackBlitz",
+            "en": "StackBlitz",
+            "ja": "StackBlitz",
+            "ko": "StackBlitz",
+            "ru": "StackBlitz"
           },
           "description": {
             "zh-CN": "在线IDE，支持Angular/React/Vue",
@@ -3461,7 +4201,12 @@
         {
           "id": "glitch-1774413606481-0-3",
           "name": {
-            "zh-CN": "Glitch"
+            "zh-CN": "Glitch",
+            "zh-TW": "Glitch",
+            "en": "Glitch",
+            "ja": "Glitch",
+            "ko": "Glitch",
+            "ru": "Glitch"
           },
           "description": {
             "zh-CN": "全栈应用在线编辑器",
@@ -3483,7 +4228,12 @@
         {
           "id": "replit-1774413606481-0-4",
           "name": {
-            "zh-CN": "Replit"
+            "zh-CN": "Replit",
+            "zh-TW": "Replit",
+            "en": "Replit",
+            "ja": "Replit",
+            "ko": "Replit",
+            "ru": "Replit"
           },
           "description": {
             "zh-CN": "多语言在线IDE",
@@ -3505,7 +4255,12 @@
         {
           "id": "cloudflare-pages-1774413606481-0-5",
           "name": {
-            "zh-CN": "Cloudflare Pages"
+            "zh-CN": "Cloudflare Pages",
+            "zh-TW": "Cloudflare Pages",
+            "en": "Cloudflare Pages",
+            "ja": "Cloudflare Pages",
+            "ko": "Cloudflare Pages",
+            "ru": "Cloudflare Pages"
           },
           "description": {
             "zh-CN": "前端托管和部署平台",
@@ -3527,7 +4282,12 @@
         {
           "id": "supabase-1774413606481-0-6",
           "name": {
-            "zh-CN": "Supabase"
+            "zh-CN": "Supabase",
+            "zh-TW": "Supabase",
+            "en": "Supabase",
+            "ja": "Supabase",
+            "ko": "Supabase",
+            "ru": "Supabase"
           },
           "description": {
             "zh-CN": "开源后端即服务平台",
@@ -3549,7 +4309,12 @@
         {
           "id": "firebase-1774413606481-0-7",
           "name": {
-            "zh-CN": "Firebase"
+            "zh-CN": "Firebase",
+            "zh-TW": "Firebase",
+            "en": "Firebase",
+            "ja": "Firebase",
+            "ko": "Firebase",
+            "ru": "Firebase"
           },
           "description": {
             "zh-CN": "Google移动和Web应用开发平台",
@@ -3571,7 +4336,12 @@
         {
           "id": "mongodb-atlas-1774413606481-0-8",
           "name": {
-            "zh-CN": "MongoDB Atlas"
+            "zh-CN": "MongoDB Atlas",
+            "zh-TW": "MongoDB Atlas",
+            "en": "MongoDB Atlas",
+            "ja": "MongoDB Atlas",
+            "ko": "MongoDB Atlas",
+            "ru": "MongoDB Atlas"
           },
           "description": {
             "zh-CN": "云数据库服务",
@@ -3593,7 +4363,12 @@
         {
           "id": "neo4j-1774413606481-0-10",
           "name": {
-            "zh-CN": "Neo4j"
+            "zh-CN": "Neo4j",
+            "zh-TW": "Neo4j",
+            "en": "Neo4j",
+            "ja": "Neo4j",
+            "ko": "Neo4j",
+            "ru": "Neo4j"
           },
           "description": {
             "zh-CN": "图数据库平台",
@@ -3615,7 +4390,12 @@
         {
           "id": "hasura-1774413606481-0-11",
           "name": {
-            "zh-CN": "Hasura"
+            "zh-CN": "Hasura",
+            "zh-TW": "Hasura",
+            "en": "Hasura",
+            "ja": "Hasura",
+            "ko": "Hasura",
+            "ru": "Hasura"
           },
           "description": {
             "zh-CN": "GraphQL引擎",
@@ -3637,7 +4417,12 @@
         {
           "id": "apollographql-1774413606481-0-12",
           "name": {
-            "zh-CN": "Apollo GraphQL"
+            "zh-CN": "Apollo GraphQL",
+            "zh-TW": "Apollo GraphQL",
+            "en": "Apollo GraphQL",
+            "ja": "Apollo GraphQL",
+            "ko": "Apollo GraphQL",
+            "ru": "Apollo GraphQL"
           },
           "description": {
             "zh-CN": "GraphQL开发平台",
@@ -3659,7 +4444,12 @@
         {
           "id": "prisma-1774413606481-0-13",
           "name": {
-            "zh-CN": "Prisma"
+            "zh-CN": "Prisma",
+            "zh-TW": "Prisma",
+            "en": "Prisma",
+            "ja": "Prisma",
+            "ko": "Prisma",
+            "ru": "Prisma"
           },
           "description": {
             "zh-CN": "Node.js和TypeScript ORM",
@@ -3681,7 +4471,12 @@
         {
           "id": "tailwindcss-1774413606481-0-14",
           "name": {
-            "zh-CN": "Tailwind CSS"
+            "zh-CN": "Tailwind CSS",
+            "zh-TW": "Tailwind CSS",
+            "en": "Tailwind CSS",
+            "ja": "Tailwind CSS",
+            "ko": "Tailwind CSS",
+            "ru": "Tailwind CSS"
           },
           "description": {
             "zh-CN": "实用优先的CSS框架",
@@ -3703,7 +4498,12 @@
         {
           "id": "vite-1774413606481-0-15",
           "name": {
-            "zh-CN": "Vite"
+            "zh-CN": "Vite",
+            "zh-TW": "Vite",
+            "en": "Vite",
+            "ja": "Vite",
+            "ko": "Vite",
+            "ru": "Vite"
           },
           "description": {
             "zh-CN": "下一代前端构建工具",
@@ -3725,7 +4525,12 @@
         {
           "id": "webpack-1774413606481-0-16",
           "name": {
-            "zh-CN": "Webpack"
+            "zh-CN": "Webpack",
+            "zh-TW": "Webpack",
+            "en": "Webpack",
+            "ja": "Webpack",
+            "ko": "Webpack",
+            "ru": "Webpack"
           },
           "description": {
             "zh-CN": "模块打包工具",
@@ -3747,7 +4552,12 @@
         {
           "id": "babel-1774413606481-0-17",
           "name": {
-            "zh-CN": "Babel"
+            "zh-CN": "Babel",
+            "zh-TW": "Babel",
+            "en": "Babel",
+            "ja": "Babel",
+            "ko": "Babel",
+            "ru": "Babel"
           },
           "description": {
             "zh-CN": "JavaScript编译器",
@@ -3769,7 +4579,12 @@
         {
           "id": "eslint-1774413606481-0-18",
           "name": {
-            "zh-CN": "ESLint"
+            "zh-CN": "ESLint",
+            "zh-TW": "ESLint",
+            "en": "ESLint",
+            "ja": "ESLint",
+            "ko": "ESLint",
+            "ru": "ESLint"
           },
           "description": {
             "zh-CN": "JavaScript代码检查工具",
@@ -3791,7 +4606,12 @@
         {
           "id": "prettier-1774413606481-0-19",
           "name": {
-            "zh-CN": "Prettier"
+            "zh-CN": "Prettier",
+            "zh-TW": "Prettier",
+            "en": "Prettier",
+            "ja": "Prettier",
+            "ko": "Prettier",
+            "ru": "Prettier"
           },
           "description": {
             "zh-CN": "代码格式化工具",
@@ -3813,7 +4633,12 @@
         {
           "id": "docker-1774414202683-0-0",
           "name": {
-            "zh-CN": "Docker"
+            "zh-CN": "Docker",
+            "zh-TW": "Docker",
+            "en": "Docker",
+            "ja": "Docker",
+            "ko": "Docker",
+            "ru": "Docker"
           },
           "description": {
             "zh-CN": "容器化平台",
@@ -3835,7 +4660,12 @@
         {
           "id": "kubernetes-1774414202683-0-1",
           "name": {
-            "zh-CN": "Kubernetes"
+            "zh-CN": "Kubernetes",
+            "zh-TW": "Kubernetes",
+            "en": "Kubernetes",
+            "ja": "Kubernetes",
+            "ko": "Kubernetes",
+            "ru": "Kubernetes"
           },
           "description": {
             "zh-CN": "容器编排平台",
@@ -3857,7 +4687,12 @@
         {
           "id": "terraform-1774414202683-0-2",
           "name": {
-            "zh-CN": "Terraform"
+            "zh-CN": "Terraform",
+            "zh-TW": "Terraform",
+            "en": "Terraform",
+            "ja": "Terraform",
+            "ko": "Terraform",
+            "ru": "Terraform"
           },
           "description": {
             "zh-CN": "基础设施即代码工具",
@@ -3879,7 +4714,12 @@
         {
           "id": "ansible-1774414202683-0-3",
           "name": {
-            "zh-CN": "Ansible"
+            "zh-CN": "Ansible",
+            "zh-TW": "Ansible",
+            "en": "Ansible",
+            "ja": "Ansible",
+            "ko": "Ansible",
+            "ru": "Ansible"
           },
           "description": {
             "zh-CN": "自动化运维工具",
@@ -3901,7 +4741,12 @@
         {
           "id": "prometheus-1774414202683-0-4",
           "name": {
-            "zh-CN": "Prometheus"
+            "zh-CN": "Prometheus",
+            "zh-TW": "Prometheus",
+            "en": "Prometheus",
+            "ja": "Prometheus",
+            "ko": "Prometheus",
+            "ru": "Prometheus"
           },
           "description": {
             "zh-CN": "监控告警系统",
@@ -3923,7 +4768,12 @@
         {
           "id": "grafana-1774414202683-0-5",
           "name": {
-            "zh-CN": "Grafana"
+            "zh-CN": "Grafana",
+            "zh-TW": "Grafana",
+            "en": "Grafana",
+            "ja": "Grafana",
+            "ko": "Grafana",
+            "ru": "Grafana"
           },
           "description": {
             "zh-CN": "数据可视化平台",
@@ -3945,7 +4795,12 @@
         {
           "id": "elastic-1774414202683-0-6",
           "name": {
-            "zh-CN": "Elastic Stack"
+            "zh-CN": "Elastic Stack",
+            "zh-TW": "Elastic Stack",
+            "en": "Elastic Stack",
+            "ja": "Elastic Stack",
+            "ko": "Elastic Stack",
+            "ru": "Elastic Stack"
           },
           "description": {
             "zh-CN": "日志分析和搜索平台",
@@ -3967,7 +4822,12 @@
         {
           "id": "nginx-1774414202683-0-7",
           "name": {
-            "zh-CN": "Nginx"
+            "zh-CN": "Nginx",
+            "zh-TW": "Nginx",
+            "en": "Nginx",
+            "ja": "Nginx",
+            "ko": "Nginx",
+            "ru": "Nginx"
           },
           "description": {
             "zh-CN": "高性能Web服务器",
@@ -3989,7 +4849,12 @@
         {
           "id": "redis-1774414202683-0-8",
           "name": {
-            "zh-CN": "Redis"
+            "zh-CN": "Redis",
+            "zh-TW": "Redis",
+            "en": "Redis",
+            "ja": "Redis",
+            "ko": "Redis",
+            "ru": "Redis"
           },
           "description": {
             "zh-CN": "内存数据库和缓存系统",
@@ -4011,7 +4876,12 @@
         {
           "id": "postgresql-1774414202683-0-9",
           "name": {
-            "zh-CN": "PostgreSQL"
+            "zh-CN": "PostgreSQL",
+            "zh-TW": "PostgreSQL",
+            "en": "PostgreSQL",
+            "ja": "PostgreSQL",
+            "ko": "PostgreSQL",
+            "ru": "PostgreSQL"
           },
           "description": {
             "zh-CN": "开源关系型数据库",
@@ -4033,7 +4903,12 @@
         {
           "id": "mysql-1774414202683-0-10",
           "name": {
-            "zh-CN": "MySQL"
+            "zh-CN": "MySQL",
+            "zh-TW": "MySQL",
+            "en": "MySQL",
+            "ja": "MySQL",
+            "ko": "MySQL",
+            "ru": "MySQL"
           },
           "description": {
             "zh-CN": "开源关系型数据库",
@@ -4055,7 +4930,12 @@
         {
           "id": "kafka-1774414202683-0-11",
           "name": {
-            "zh-CN": "Apache Kafka"
+            "zh-CN": "Apache Kafka",
+            "zh-TW": "Apache Kafka",
+            "en": "Apache Kafka",
+            "ja": "Apache Kafka",
+            "ko": "Apache Kafka",
+            "ru": "Apache Kafka"
           },
           "description": {
             "zh-CN": "分布式消息流平台",
@@ -4077,7 +4957,12 @@
         {
           "id": "rabbitmq-1774414202683-0-12",
           "name": {
-            "zh-CN": "RabbitMQ"
+            "zh-CN": "RabbitMQ",
+            "zh-TW": "RabbitMQ",
+            "en": "RabbitMQ",
+            "ja": "RabbitMQ",
+            "ko": "RabbitMQ",
+            "ru": "RabbitMQ"
           },
           "description": {
             "zh-CN": "消息队列中间件",
@@ -4099,7 +4984,12 @@
         {
           "id": "grpc-1774414202683-0-13",
           "name": {
-            "zh-CN": "gRPC"
+            "zh-CN": "gRPC",
+            "zh-TW": "gRPC",
+            "en": "gRPC",
+            "ja": "gRPC",
+            "ko": "gRPC",
+            "ru": "gRPC"
           },
           "description": {
             "zh-CN": "高性能RPC框架",
@@ -4121,7 +5011,12 @@
         {
           "id": "istio-1774414202683-0-14",
           "name": {
-            "zh-CN": "Istio"
+            "zh-CN": "Istio",
+            "zh-TW": "Istio",
+            "en": "Istio",
+            "ja": "Istio",
+            "ko": "Istio",
+            "ru": "Istio"
           },
           "description": {
             "zh-CN": "服务网格平台",
@@ -4143,7 +5038,12 @@
         {
           "id": "jenkins-1774414202683-0-15",
           "name": {
-            "zh-CN": "Jenkins"
+            "zh-CN": "Jenkins",
+            "zh-TW": "Jenkins",
+            "en": "Jenkins",
+            "ja": "Jenkins",
+            "ko": "Jenkins",
+            "ru": "Jenkins"
           },
           "description": {
             "zh-CN": "开源CI/CD工具",
@@ -4165,7 +5065,12 @@
         {
           "id": "helm-1774414202683-0-19",
           "name": {
-            "zh-CN": "Helm"
+            "zh-CN": "Helm",
+            "zh-TW": "Helm",
+            "en": "Helm",
+            "ja": "Helm",
+            "ko": "Helm",
+            "ru": "Helm"
           },
           "description": {
             "zh-CN": "Kubernetes包管理器",
@@ -4187,7 +5092,12 @@
         {
           "id": "python-1774414977570-0-0",
           "name": {
-            "zh-CN": "Python"
+            "zh-CN": "Python",
+            "zh-TW": "Python",
+            "en": "Python",
+            "ja": "Python",
+            "ko": "Python",
+            "ru": "Python"
           },
           "description": {
             "zh-CN": "Python编程语言官方网站",
@@ -4209,7 +5119,12 @@
         {
           "id": "typescript-1774414977570-0-2",
           "name": {
-            "zh-CN": "TypeScript"
+            "zh-CN": "TypeScript",
+            "zh-TW": "TypeScript",
+            "en": "TypeScript",
+            "ja": "TypeScript",
+            "ko": "TypeScript",
+            "ru": "TypeScript"
           },
           "description": {
             "zh-CN": "TypeScript编程语言官方网站",
@@ -4231,7 +5146,12 @@
         {
           "id": "java-1774414977570-0-3",
           "name": {
-            "zh-CN": "Java"
+            "zh-CN": "Java",
+            "zh-TW": "Java",
+            "en": "Java",
+            "ja": "Java",
+            "ko": "Java",
+            "ru": "Java"
           },
           "description": {
             "zh-CN": "Java编程语言官方网站",
@@ -4253,7 +5173,12 @@
         {
           "id": "golang-1774414977570-0-4",
           "name": {
-            "zh-CN": "Go"
+            "zh-CN": "Go",
+            "zh-TW": "Go",
+            "en": "Go",
+            "ja": "Go",
+            "ko": "Go",
+            "ru": "Go"
           },
           "description": {
             "zh-CN": "Go编程语言官方网站",
@@ -4275,7 +5200,12 @@
         {
           "id": "rust-1774414977570-0-5",
           "name": {
-            "zh-CN": "Rust"
+            "zh-CN": "Rust",
+            "zh-TW": "Rust",
+            "en": "Rust",
+            "ja": "Rust",
+            "ko": "Rust",
+            "ru": "Rust"
           },
           "description": {
             "zh-CN": "Rust编程语言官方网站",
@@ -4297,7 +5227,12 @@
         {
           "id": "kotlin-1774414977570-0-6",
           "name": {
-            "zh-CN": "Kotlin"
+            "zh-CN": "Kotlin",
+            "zh-TW": "Kotlin",
+            "en": "Kotlin",
+            "ja": "Kotlin",
+            "ko": "Kotlin",
+            "ru": "Kotlin"
           },
           "description": {
             "zh-CN": "Kotlin编程语言官方网站",
@@ -4319,7 +5254,12 @@
         {
           "id": "swift-1774414977570-0-7",
           "name": {
-            "zh-CN": "Swift"
+            "zh-CN": "Swift",
+            "zh-TW": "Swift",
+            "en": "Swift",
+            "ja": "Swift",
+            "ko": "Swift",
+            "ru": "Swift"
           },
           "description": {
             "zh-CN": "Swift编程语言官方网站",
@@ -4341,7 +5281,12 @@
         {
           "id": "php-1774414977570-0-8",
           "name": {
-            "zh-CN": "PHP"
+            "zh-CN": "PHP",
+            "zh-TW": "PHP",
+            "en": "PHP",
+            "ja": "PHP",
+            "ko": "PHP",
+            "ru": "PHP"
           },
           "description": {
             "zh-CN": "PHP编程语言官方网站",
@@ -4363,7 +5308,12 @@
         {
           "id": "ruby-1774414977570-0-9",
           "name": {
-            "zh-CN": "Ruby"
+            "zh-CN": "Ruby",
+            "zh-TW": "Ruby",
+            "en": "Ruby",
+            "ja": "Ruby",
+            "ko": "Ruby",
+            "ru": "Ruby"
           },
           "description": {
             "zh-CN": "Ruby编程语言官方网站",
@@ -4385,7 +5335,12 @@
         {
           "id": "csharp-1774414977570-0-10",
           "name": {
-            "zh-CN": "C#"
+            "zh-CN": "C#",
+            "zh-TW": "C#",
+            "en": "C#",
+            "ja": "C#",
+            "ko": "C#",
+            "ru": "C#"
           },
           "description": {
             "zh-CN": "C#编程语言官方网站",
@@ -4407,7 +5362,12 @@
         {
           "id": "cpp-1774414977570-0-11",
           "name": {
-            "zh-CN": "C++"
+            "zh-CN": "C++",
+            "zh-TW": "C++",
+            "en": "C++",
+            "ja": "C++",
+            "ko": "C++",
+            "ru": "C++"
           },
           "description": {
             "zh-CN": "C++编程语言官方网站",
@@ -4429,7 +5389,12 @@
         {
           "id": "scala-1774414977570-0-12",
           "name": {
-            "zh-CN": "Scala"
+            "zh-CN": "Scala",
+            "zh-TW": "Scala",
+            "en": "Scala",
+            "ja": "Scala",
+            "ko": "Scala",
+            "ru": "Scala"
           },
           "description": {
             "zh-CN": "Scala编程语言官方网站",
@@ -4451,7 +5416,12 @@
         {
           "id": "elixir-1774414977570-0-13",
           "name": {
-            "zh-CN": "Elixir"
+            "zh-CN": "Elixir",
+            "zh-TW": "Elixir",
+            "en": "Elixir",
+            "ja": "Elixir",
+            "ko": "Elixir",
+            "ru": "Elixir"
           },
           "description": {
             "zh-CN": "Elixir编程语言官方网站",
@@ -4473,7 +5443,12 @@
         {
           "id": "clojure-1774414977570-0-14",
           "name": {
-            "zh-CN": "Clojure"
+            "zh-CN": "Clojure",
+            "zh-TW": "Clojure",
+            "en": "Clojure",
+            "ja": "Clojure",
+            "ko": "Clojure",
+            "ru": "Clojure"
           },
           "description": {
             "zh-CN": "Clojure编程语言官方网站",
@@ -4495,7 +5470,12 @@
         {
           "id": "haskell-1774414977570-0-15",
           "name": {
-            "zh-CN": "Haskell"
+            "zh-CN": "Haskell",
+            "zh-TW": "Haskell",
+            "en": "Haskell",
+            "ja": "Haskell",
+            "ko": "Haskell",
+            "ru": "Haskell"
           },
           "description": {
             "zh-CN": "Haskell编程语言官方网站",
@@ -4517,7 +5497,12 @@
         {
           "id": "dart-1774414977570-0-16",
           "name": {
-            "zh-CN": "Dart"
+            "zh-CN": "Dart",
+            "zh-TW": "Dart",
+            "en": "Dart",
+            "ja": "Dart",
+            "ko": "Dart",
+            "ru": "Dart"
           },
           "description": {
             "zh-CN": "Dart编程语言官方网站",
@@ -4539,7 +5524,12 @@
         {
           "id": "r-language-1774414977570-0-17",
           "name": {
-            "zh-CN": "R语言"
+            "zh-CN": "R语言",
+            "zh-TW": "R語言",
+            "en": "R Language",
+            "ja": "R言語",
+            "ko": "R 언어",
+            "ru": "Язык R"
           },
           "description": {
             "zh-CN": "R编程语言官方网站",
@@ -4561,7 +5551,12 @@
         {
           "id": "lua-1774414977570-0-18",
           "name": {
-            "zh-CN": "Lua"
+            "zh-CN": "Lua",
+            "zh-TW": "Lua",
+            "en": "Lua",
+            "ja": "Lua",
+            "ko": "Lua",
+            "ru": "Lua"
           },
           "description": {
             "zh-CN": "Lua编程语言官方网站",
@@ -4583,7 +5578,12 @@
         {
           "id": "julia-1774414977570-0-19",
           "name": {
-            "zh-CN": "Julia"
+            "zh-CN": "Julia",
+            "zh-TW": "Julia",
+            "en": "Julia",
+            "ja": "Julia",
+            "ko": "Julia",
+            "ru": "Julia"
           },
           "description": {
             "zh-CN": "Julia编程语言官方网站",
@@ -4618,7 +5618,12 @@
         {
           "id": "behance",
           "name": {
-            "zh-CN": "Behance"
+            "zh-CN": "Behance",
+            "zh-TW": "Behance",
+            "en": "Behance",
+            "ja": "Behance",
+            "ko": "Behance",
+            "ru": "Behance"
           },
           "description": {
             "zh-CN": "全球创意作品集平台",
@@ -4640,7 +5645,12 @@
         {
           "id": "dribbble",
           "name": {
-            "zh-CN": "Dribbble"
+            "zh-CN": "Dribbble",
+            "zh-TW": "Dribbble",
+            "en": "Dribbble",
+            "ja": "Dribbble",
+            "ko": "Dribbble",
+            "ru": "Dribbble"
           },
           "description": {
             "zh-CN": "设计师作品分享平台",
@@ -4662,7 +5672,12 @@
         {
           "id": "figma",
           "name": {
-            "zh-CN": "Figma"
+            "zh-CN": "Figma",
+            "zh-TW": "Figma",
+            "en": "Figma",
+            "ja": "フィグマ",
+            "ko": "피그마",
+            "ru": "Figma"
           },
           "description": {
             "zh-CN": "UI/UX 设计工具",
@@ -4684,7 +5699,12 @@
         {
           "id": "adobe",
           "name": {
-            "zh-CN": "Adobe Creative Cloud"
+            "zh-CN": "Adobe Creative Cloud",
+            "zh-TW": "Adobe Creative Cloud",
+            "en": "Adobe Creative Cloud",
+            "ja": "Adobe Creative Cloud",
+            "ko": "Adobe Creative Cloud",
+            "ru": "Adobe Creative Cloud"
           },
           "description": {
             "zh-CN": "创意设计软件套件",
@@ -4706,7 +5726,12 @@
         {
           "id": "canva",
           "name": {
-            "zh-CN": "Canva"
+            "zh-CN": "Canva",
+            "zh-TW": "Canva",
+            "en": "Canva",
+            "ja": "キャンバ",
+            "ko": "캔바",
+            "ru": "Canva"
           },
           "description": {
             "zh-CN": "在线平面设计平台",
@@ -4728,7 +5753,12 @@
         {
           "id": "unsplash",
           "name": {
-            "zh-CN": "Unsplash"
+            "zh-CN": "Unsplash",
+            "zh-TW": "Unsplash",
+            "en": "Unsplash",
+            "ja": "Unsplash",
+            "ko": "Unsplash",
+            "ru": "Unsplash"
           },
           "description": {
             "zh-CN": "免费高质量图片库",
@@ -4750,7 +5780,12 @@
         {
           "id": "pinterest-design",
           "name": {
-            "zh-CN": "Pinterest"
+            "zh-CN": "Pinterest",
+            "zh-TW": "Pinterest",
+            "en": "Pinterest",
+            "ja": "ピンタレスト",
+            "ko": "핀터레스트",
+            "ru": "Pinterest"
           },
           "description": {
             "zh-CN": "创意灵感收集平台",
@@ -4772,7 +5807,12 @@
         {
           "id": "coolors",
           "name": {
-            "zh-CN": "Coolors"
+            "zh-CN": "Coolors",
+            "zh-TW": "Coolors",
+            "en": "Coolors",
+            "ja": "Coolors",
+            "ko": "Coolors",
+            "ru": "Coolors"
           },
           "description": {
             "zh-CN": "配色方案生成器",
@@ -4794,7 +5834,12 @@
         {
           "id": "flaticon",
           "name": {
-            "zh-CN": "Flaticon"
+            "zh-CN": "Flaticon",
+            "zh-TW": "Flaticon",
+            "en": "Flaticon",
+            "ja": "Flaticon",
+            "ko": "Flaticon",
+            "ru": "Flaticon"
           },
           "description": {
             "zh-CN": "免费图标库",
@@ -4816,7 +5861,12 @@
         {
           "id": "freepik",
           "name": {
-            "zh-CN": "Freepik"
+            "zh-CN": "Freepik",
+            "zh-TW": "Freepik",
+            "en": "Freepik",
+            "ja": "Freepik",
+            "ko": "Freepik",
+            "ru": "Freepik"
           },
           "description": {
             "zh-CN": "免费设计资源库",
@@ -4839,7 +5889,12 @@
         {
           "id": "zcool",
           "name": {
-            "zh-CN": "站酷"
+            "zh-CN": "站酷",
+            "zh-TW": "站酷",
+            "en": "ZCOOL",
+            "ja": "ZCOOL",
+            "ko": "ZCOOL",
+            "ru": "ZCOOL"
           },
           "description": {
             "zh-CN": "中国设计师社区",
@@ -4861,7 +5916,12 @@
         {
           "id": "huaban",
           "name": {
-            "zh-CN": "花瓣网"
+            "zh-CN": "花瓣网",
+            "zh-TW": "花瓣網",
+            "en": "Huaban",
+            "ja": "花弁網",
+            "ko": "화반",
+            "ru": "Huaban"
           },
           "description": {
             "zh-CN": "灵感采集平台",
@@ -4909,7 +5969,12 @@
         {
           "id": "lottiefiles",
           "name": {
-            "zh-CN": "LottieFiles"
+            "zh-CN": "LottieFiles",
+            "zh-TW": "LottieFiles",
+            "en": "LottieFiles",
+            "ja": "LottieFiles",
+            "ko": "LottieFiles",
+            "ru": "LottieFiles"
           },
           "description": {
             "zh-CN": "动效资源库",
@@ -4931,7 +5996,12 @@
         {
           "id": "removebg",
           "name": {
-            "zh-CN": "Remove.bg"
+            "zh-CN": "Remove.bg",
+            "zh-TW": "Remove.bg",
+            "en": "Remove.bg",
+            "ja": "Remove.bg",
+            "ko": "Remove.bg",
+            "ru": "Remove.bg"
           },
           "description": {
             "zh-CN": "AI 抠图工具",
@@ -4954,7 +6024,12 @@
         {
           "id": "fontawesome",
           "name": {
-            "zh-CN": "Font Awesome"
+            "zh-CN": "Font Awesome",
+            "zh-TW": "Font Awesome",
+            "en": "Font Awesome",
+            "ja": "Font Awesome",
+            "ko": "Font Awesome",
+            "ru": "Font Awesome"
           },
           "description": {
             "zh-CN": "图标字体库",
@@ -4976,7 +6051,12 @@
         {
           "id": "google-fonts",
           "name": {
-            "zh-CN": "Google Fonts"
+            "zh-CN": "Google Fonts",
+            "zh-TW": "Google Fonts",
+            "en": "Google Fonts",
+            "ja": "Google Fonts",
+            "ko": "Google Fonts",
+            "ru": "Google Fonts"
           },
           "description": {
             "zh-CN": "免费字体库",
@@ -4999,7 +6079,12 @@
         {
           "id": "pixabay",
           "name": {
-            "zh-CN": "Pixabay"
+            "zh-CN": "Pixabay",
+            "zh-TW": "Pixabay",
+            "en": "Pixabay",
+            "ja": "Pixabay",
+            "ko": "Pixabay",
+            "ru": "Pixabay"
           },
           "description": {
             "zh-CN": "免费图库",
@@ -5021,7 +6106,12 @@
         {
           "id": "pexels",
           "name": {
-            "zh-CN": "Pexels"
+            "zh-CN": "Pexels",
+            "zh-TW": "Pexels",
+            "en": "Pexels",
+            "ja": "Pexels",
+            "ko": "Pexels",
+            "ru": "Pexels"
           },
           "description": {
             "zh-CN": "免费视频和图片库",
@@ -5043,7 +6133,12 @@
         {
           "id": "colorhunt",
           "name": {
-            "zh-CN": "Color Hunt"
+            "zh-CN": "Color Hunt",
+            "zh-TW": "Color Hunt",
+            "en": "Color Hunt",
+            "ja": "Color Hunt",
+            "ko": "Color Hunt",
+            "ru": "Color Hunt"
           },
           "description": {
             "zh-CN": "配色方案库",
@@ -5078,7 +6173,12 @@
         {
           "id": "notion",
           "name": {
-            "zh-CN": "Notion"
+            "zh-CN": "Notion",
+            "zh-TW": "Notion",
+            "en": "Notion",
+            "ja": "ノーション",
+            "ko": "노션",
+            "ru": "Notion"
           },
           "description": {
             "zh-CN": "全能笔记和协作工具",
@@ -5100,7 +6200,12 @@
         {
           "id": "trello",
           "name": {
-            "zh-CN": "Trello"
+            "zh-CN": "Trello",
+            "zh-TW": "Trello",
+            "en": "Trello",
+            "ja": "トレロ",
+            "ko": "트렐로",
+            "ru": "Trello"
           },
           "description": {
             "zh-CN": "项目管理看板工具",
@@ -5122,7 +6227,12 @@
         {
           "id": "asana",
           "name": {
-            "zh-CN": "Asana"
+            "zh-CN": "Asana",
+            "zh-TW": "Asana",
+            "en": "Asana",
+            "ja": "アサナ",
+            "ko": "아사나",
+            "ru": "Asana"
           },
           "description": {
             "zh-CN": "团队协作管理工具",
@@ -5144,7 +6254,12 @@
         {
           "id": "monday",
           "name": {
-            "zh-CN": "Monday.com"
+            "zh-CN": "Monday.com",
+            "zh-TW": "Monday.com",
+            "en": "Monday.com",
+            "ja": "Monday.com",
+            "ko": "Monday.com",
+            "ru": "Monday.com"
           },
           "description": {
             "zh-CN": "工作操作系统",
@@ -5166,7 +6281,12 @@
         {
           "id": "slack",
           "name": {
-            "zh-CN": "Slack"
+            "zh-CN": "Slack",
+            "zh-TW": "Slack",
+            "en": "Slack",
+            "ja": "スラック",
+            "ko": "슬랙",
+            "ru": "Slack"
           },
           "description": {
             "zh-CN": "团队沟通协作平台",
@@ -5188,7 +6308,12 @@
         {
           "id": "feishu",
           "name": {
-            "zh-CN": "飞书"
+            "zh-CN": "飞书",
+            "zh-TW": "飛書",
+            "en": "Lark",
+            "ja": "ラーク",
+            "ko": "라크",
+            "ru": "Lark"
           },
           "description": {
             "zh-CN": "企业协作平台",
@@ -5210,7 +6335,12 @@
         {
           "id": "dingtalk",
           "name": {
-            "zh-CN": "钉钉"
+            "zh-CN": "钉钉",
+            "zh-TW": "釘釘",
+            "en": "DingTalk",
+            "ja": "ディントーク",
+            "ko": "딩토크",
+            "ru": "DingTalk"
           },
           "description": {
             "zh-CN": "企业通讯办公平台",
@@ -5232,7 +6362,12 @@
         {
           "id": "zoom",
           "name": {
-            "zh-CN": "Zoom"
+            "zh-CN": "Zoom",
+            "zh-TW": "Zoom",
+            "en": "Zoom",
+            "ja": "Zoom",
+            "ko": "Zoom",
+            "ru": "Zoom"
           },
           "description": {
             "zh-CN": "视频会议平台",
@@ -5254,7 +6389,12 @@
         {
           "id": "evernote",
           "name": {
-            "zh-CN": "Evernote"
+            "zh-CN": "Evernote",
+            "zh-TW": "Evernote",
+            "en": "Evernote",
+            "ja": "エバーノート",
+            "ko": "에버노트",
+            "ru": "Evernote"
           },
           "description": {
             "zh-CN": "笔记管理工具",
@@ -5276,7 +6416,12 @@
         {
           "id": "obsidian",
           "name": {
-            "zh-CN": "Obsidian"
+            "zh-CN": "Obsidian",
+            "zh-TW": "Obsidian",
+            "en": "Obsidian",
+            "ja": "Obsidian",
+            "ko": "Obsidian",
+            "ru": "Obsidian"
           },
           "description": {
             "zh-CN": "知识管理工具",
@@ -5298,7 +6443,12 @@
         {
           "id": "clickup",
           "name": {
-            "zh-CN": "ClickUp"
+            "zh-CN": "ClickUp",
+            "zh-TW": "ClickUp",
+            "en": "ClickUp",
+            "ja": "ClickUp",
+            "ko": "ClickUp",
+            "ru": "ClickUp"
           },
           "description": {
             "zh-CN": "一体化项目管理平台",
@@ -5320,7 +6470,12 @@
         {
           "id": "wps",
           "name": {
-            "zh-CN": "WPS Office"
+            "zh-CN": "WPS Office",
+            "zh-TW": "WPS Office",
+            "en": "WPS Office",
+            "ja": "WPS Office",
+            "ko": "WPS Office",
+            "ru": "WPS Office"
           },
           "description": {
             "zh-CN": "办公软件套件",
@@ -5342,7 +6497,12 @@
         {
           "id": "google-drive",
           "name": {
-            "zh-CN": "Google Drive"
+            "zh-CN": "Google Drive",
+            "zh-TW": "Google Drive",
+            "en": "Google Drive",
+            "ja": "グーグルドライブ",
+            "ko": "구글 드라이브",
+            "ru": "Google Drive"
           },
           "description": {
             "zh-CN": "云存储服务",
@@ -5364,7 +6524,12 @@
         {
           "id": "dropbox",
           "name": {
-            "zh-CN": "Dropbox"
+            "zh-CN": "Dropbox",
+            "zh-TW": "Dropbox",
+            "en": "Dropbox",
+            "ja": "ドロップボックス",
+            "ko": "드롭박스",
+            "ru": "Dropbox"
           },
           "description": {
             "zh-CN": "文件同步和分享服务",
@@ -5386,7 +6551,12 @@
         {
           "id": "mural",
           "name": {
-            "zh-CN": "Mural"
+            "zh-CN": "Mural",
+            "zh-TW": "Mural",
+            "en": "Mural",
+            "ja": "Mural",
+            "ko": "Mural",
+            "ru": "Mural"
           },
           "description": {
             "zh-CN": "在线白板协作工具",
@@ -5409,7 +6579,12 @@
         {
           "id": "miro",
           "name": {
-            "zh-CN": "Miro"
+            "zh-CN": "Miro",
+            "zh-TW": "Miro",
+            "en": "Miro",
+            "ja": "Miro",
+            "ko": "Miro",
+            "ru": "Miro"
           },
           "description": {
             "zh-CN": "在线协作白板",
@@ -5431,7 +6606,12 @@
         {
           "id": "todoist",
           "name": {
-            "zh-CN": "Todoist"
+            "zh-CN": "Todoist",
+            "zh-TW": "Todoist",
+            "en": "Todoist",
+            "ja": "Todoist",
+            "ko": "Todoist",
+            "ru": "Todoist"
           },
           "description": {
             "zh-CN": "任务管理工具",
@@ -5453,7 +6633,12 @@
         {
           "id": "grammarly",
           "name": {
-            "zh-CN": "Grammarly"
+            "zh-CN": "Grammarly",
+            "zh-TW": "Grammarly",
+            "en": "Grammarly",
+            "ja": "Grammarly",
+            "ko": "Grammarly",
+            "ru": "Grammarly"
           },
           "description": {
             "zh-CN": "英语写作助手",
@@ -5475,7 +6660,12 @@
         {
           "id": "calendly",
           "name": {
-            "zh-CN": "Calendly"
+            "zh-CN": "Calendly",
+            "zh-TW": "Calendly",
+            "en": "Calendly",
+            "ja": "Calendly",
+            "ko": "Calendly",
+            "ru": "Calendly"
           },
           "description": {
             "zh-CN": "日程安排工具",
@@ -5497,7 +6687,12 @@
         {
           "id": "office365-1774417579362-0-1",
           "name": {
-            "zh-CN": "Microsoft 365"
+            "zh-CN": "Microsoft 365",
+            "zh-TW": "Microsoft 365",
+            "en": "Microsoft 365",
+            "ja": "Microsoft 365",
+            "ko": "Microsoft 365",
+            "ru": "Microsoft 365"
           },
           "description": {
             "zh-CN": "微软办公和云服务套件",
@@ -5519,7 +6714,12 @@
         {
           "id": "google-workspace-1774417579362-0-2",
           "name": {
-            "zh-CN": "Google Workspace"
+            "zh-CN": "Google Workspace",
+            "zh-TW": "Google Workspace",
+            "en": "Google Workspace",
+            "ja": "Google Workspace",
+            "ko": "Google Workspace",
+            "ru": "Google Workspace"
           },
           "description": {
             "zh-CN": "谷歌云端办公套件",
@@ -5541,7 +6741,12 @@
         {
           "id": "xmind-1774417579362-0-3",
           "name": {
-            "zh-CN": "XMind"
+            "zh-CN": "XMind",
+            "zh-TW": "XMind",
+            "en": "XMind",
+            "ja": "XMind",
+            "ko": "XMind",
+            "ru": "XMind"
           },
           "description": {
             "zh-CN": "思维导图工具",
@@ -5563,7 +6768,12 @@
         {
           "id": "processon-1774417579362-0-4",
           "name": {
-            "zh-CN": "ProcessOn"
+            "zh-CN": "ProcessOn",
+            "zh-TW": "ProcessOn",
+            "en": "ProcessOn",
+            "ja": "プロセスオン",
+            "ko": "프로세스온",
+            "ru": "ProcessOn"
           },
           "description": {
             "zh-CN": "在线流程图和思维导图工具",
@@ -5585,7 +6795,12 @@
         {
           "id": "yuque-1774417579362-0-5",
           "name": {
-            "zh-CN": "语雀"
+            "zh-CN": "语雀",
+            "zh-TW": "語雀",
+            "en": "Yuque",
+            "ja": "語雀",
+            "ko": "위취에",
+            "ru": "Yuque"
           },
           "description": {
             "zh-CN": "阿里巴巴出品的知识库工具",
@@ -5607,7 +6822,12 @@
         {
           "id": "teamviewer-1774417579362-0-8",
           "name": {
-            "zh-CN": "TeamViewer"
+            "zh-CN": "TeamViewer",
+            "zh-TW": "TeamViewer",
+            "en": "TeamViewer",
+            "ja": "TeamViewer",
+            "ko": "TeamViewer",
+            "ru": "TeamViewer"
           },
           "description": {
             "zh-CN": "远程控制软件",
@@ -5629,7 +6849,12 @@
         {
           "id": "anydesk-1774417579362-0-9",
           "name": {
-            "zh-CN": "AnyDesk"
+            "zh-CN": "AnyDesk",
+            "zh-TW": "AnyDesk",
+            "en": "AnyDesk",
+            "ja": "AnyDesk",
+            "ko": "AnyDesk",
+            "ru": "AnyDesk"
           },
           "description": {
             "zh-CN": "远程桌面软件",
@@ -5651,7 +6876,12 @@
         {
           "id": "lastpass-1774417579362-0-11",
           "name": {
-            "zh-CN": "LastPass"
+            "zh-CN": "LastPass",
+            "zh-TW": "LastPass",
+            "en": "LastPass",
+            "ja": "LastPass",
+            "ko": "LastPass",
+            "ru": "LastPass"
           },
           "description": {
             "zh-CN": "密码管理器",
@@ -5673,7 +6903,12 @@
         {
           "id": "1password-1774417579362-0-12",
           "name": {
-            "zh-CN": "1Password"
+            "zh-CN": "1Password",
+            "zh-TW": "1Password",
+            "en": "1Password",
+            "ja": "1Password",
+            "ko": "1Password",
+            "ru": "1Password"
           },
           "description": {
             "zh-CN": "密码管理工具",
@@ -5695,7 +6930,12 @@
         {
           "id": "bitwarden-1774417579362-0-13",
           "name": {
-            "zh-CN": "Bitwarden"
+            "zh-CN": "Bitwarden",
+            "zh-TW": "Bitwarden",
+            "en": "Bitwarden",
+            "ja": "Bitwarden",
+            "ko": "Bitwarden",
+            "ru": "Bitwarden"
           },
           "description": {
             "zh-CN": "开源密码管理器",
@@ -5717,7 +6957,12 @@
         {
           "id": "zapier-1774417579362-0-14",
           "name": {
-            "zh-CN": "Zapier"
+            "zh-CN": "Zapier",
+            "zh-TW": "Zapier",
+            "en": "Zapier",
+            "ja": "Zapier",
+            "ko": "Zapier",
+            "ru": "Zapier"
           },
           "description": {
             "zh-CN": "应用自动化连接工具",
@@ -5739,7 +6984,12 @@
         {
           "id": "ifttt-1774417579362-0-15",
           "name": {
-            "zh-CN": "IFTTT"
+            "zh-CN": "IFTTT",
+            "zh-TW": "IFTTT",
+            "en": "IFTTT",
+            "ja": "IFTTT",
+            "ko": "IFTTT",
+            "ru": "IFTTT"
           },
           "description": {
             "zh-CN": "网络服务自动化平台",
@@ -5761,7 +7011,12 @@
         {
           "id": "n8n-1774417579362-0-16",
           "name": {
-            "zh-CN": "n8n"
+            "zh-CN": "n8n",
+            "zh-TW": "n8n",
+            "en": "n8n",
+            "ja": "n8n",
+            "ko": "n8n",
+            "ru": "n8n"
           },
           "description": {
             "zh-CN": "开源工作流自动化工具",
@@ -5783,7 +7038,12 @@
         {
           "id": "airtable-1774417579362-0-17",
           "name": {
-            "zh-CN": "Airtable"
+            "zh-CN": "Airtable",
+            "zh-TW": "Airtable",
+            "en": "Airtable",
+            "ja": "Airtable",
+            "ko": "Airtable",
+            "ru": "Airtable"
           },
           "description": {
             "zh-CN": "在线表格和数据库混合工具",
@@ -5805,7 +7065,12 @@
         {
           "id": "seatable-1774417579362-0-18",
           "name": {
-            "zh-CN": "SeaTable"
+            "zh-CN": "SeaTable",
+            "zh-TW": "SeaTable",
+            "en": "SeaTable",
+            "ja": "SeaTable",
+            "ko": "SeaTable",
+            "ru": "SeaTable"
           },
           "description": {
             "zh-CN": "在线协同表格和数据管理平台",
@@ -5840,7 +7105,12 @@
         {
           "id": "aws",
           "name": {
-            "zh-CN": "AWS"
+            "zh-CN": "AWS",
+            "zh-TW": "AWS",
+            "en": "AWS",
+            "ja": "エーダブリューエス",
+            "ko": "AWS",
+            "ru": "AWS"
           },
           "description": {
             "zh-CN": "亚马逊云服务",
@@ -5862,7 +7132,12 @@
         {
           "id": "azure",
           "name": {
-            "zh-CN": "Microsoft Azure"
+            "zh-CN": "Microsoft Azure",
+            "zh-TW": "Microsoft Azure",
+            "en": "Microsoft Azure",
+            "ja": "Microsoft Azure",
+            "ko": "Microsoft Azure",
+            "ru": "Microsoft Azure"
           },
           "description": {
             "zh-CN": "微软云服务",
@@ -5884,7 +7159,12 @@
         {
           "id": "google-cloud",
           "name": {
-            "zh-CN": "Google Cloud"
+            "zh-CN": "Google Cloud",
+            "zh-TW": "Google Cloud",
+            "en": "Google Cloud",
+            "ja": "グーグルクラウド",
+            "ko": "구글 클라우드",
+            "ru": "Google Cloud"
           },
           "description": {
             "zh-CN": "谷歌云平台",
@@ -5906,7 +7186,12 @@
         {
           "id": "aliyun",
           "name": {
-            "zh-CN": "阿里云"
+            "zh-CN": "阿里云",
+            "zh-TW": "阿里雲",
+            "en": "Alibaba Cloud",
+            "ja": "アリババクラウド",
+            "ko": "알리바바 클라우드",
+            "ru": "Alibaba Cloud"
           },
           "description": {
             "zh-CN": "阿里巴巴云计算平台",
@@ -5928,7 +7213,12 @@
         {
           "id": "tencent-cloud",
           "name": {
-            "zh-CN": "腾讯云"
+            "zh-CN": "腾讯云",
+            "zh-TW": "騰訊雲",
+            "en": "Tencent Cloud",
+            "ja": "テンセントクラウド",
+            "ko": "텅쉰 클라우드",
+            "ru": "Tencent Cloud"
           },
           "description": {
             "zh-CN": "腾讯云计算平台",
@@ -5950,7 +7240,12 @@
         {
           "id": "huawei-cloud",
           "name": {
-            "zh-CN": "华为云"
+            "zh-CN": "华为云",
+            "zh-TW": "華為雲",
+            "en": "Huawei Cloud",
+            "ja": "ファーウェイクラウド",
+            "ko": "화웨이 클라우드",
+            "ru": "Huawei Cloud"
           },
           "description": {
             "zh-CN": "华为云计算平台",
@@ -5972,7 +7267,12 @@
         {
           "id": "digitalocean",
           "name": {
-            "zh-CN": "DigitalOcean"
+            "zh-CN": "DigitalOcean",
+            "zh-TW": "DigitalOcean",
+            "en": "DigitalOcean",
+            "ja": "デジタルオーシャン",
+            "ko": "디지털오션",
+            "ru": "DigitalOcean"
           },
           "description": {
             "zh-CN": "开发者友好的云平台",
@@ -5994,7 +7294,12 @@
         {
           "id": "cloudflare",
           "name": {
-            "zh-CN": "Cloudflare"
+            "zh-CN": "Cloudflare",
+            "zh-TW": "Cloudflare",
+            "en": "Cloudflare",
+            "ja": "クラウドフレア",
+            "ko": "클라우드플레어",
+            "ru": "Cloudflare"
           },
           "description": {
             "zh-CN": "CDN 和安全服务",
@@ -6016,7 +7321,12 @@
         {
           "id": "vercel",
           "name": {
-            "zh-CN": "Vercel"
+            "zh-CN": "Vercel",
+            "zh-TW": "Vercel",
+            "en": "Vercel",
+            "ja": "ヴァーセル",
+            "ko": "버셀",
+            "ru": "Vercel"
           },
           "description": {
             "zh-CN": "前端应用托管平台",
@@ -6038,7 +7348,12 @@
         {
           "id": "netlify",
           "name": {
-            "zh-CN": "Netlify"
+            "zh-CN": "Netlify",
+            "zh-TW": "Netlify",
+            "en": "Netlify",
+            "ja": "ネットリファイ",
+            "ko": "넷리파이",
+            "ru": "Netlify"
           },
           "description": {
             "zh-CN": "静态网站托管平台",
@@ -6060,7 +7375,12 @@
         {
           "id": "heroku",
           "name": {
-            "zh-CN": "Heroku"
+            "zh-CN": "Heroku",
+            "zh-TW": "Heroku",
+            "en": "Heroku",
+            "ja": "Heroku",
+            "ko": "Heroku",
+            "ru": "Heroku"
           },
           "description": {
             "zh-CN": "应用托管平台",
@@ -6082,7 +7402,12 @@
         {
           "id": "supabase",
           "name": {
-            "zh-CN": "Supabase"
+            "zh-CN": "Supabase",
+            "zh-TW": "Supabase",
+            "en": "Supabase",
+            "ja": "Supabase",
+            "ko": "Supabase",
+            "ru": "Supabase"
           },
           "description": {
             "zh-CN": "开源 Firebase 替代方案",
@@ -6104,7 +7429,12 @@
         {
           "id": "firebase",
           "name": {
-            "zh-CN": "Firebase"
+            "zh-CN": "Firebase",
+            "zh-TW": "Firebase",
+            "en": "Firebase",
+            "ja": "Firebase",
+            "ko": "Firebase",
+            "ru": "Firebase"
           },
           "description": {
             "zh-CN": "应用开发平台",
@@ -6126,7 +7456,12 @@
         {
           "id": "railway",
           "name": {
-            "zh-CN": "Railway"
+            "zh-CN": "Railway",
+            "zh-TW": "Railway",
+            "en": "Railway",
+            "ja": "Railway",
+            "ko": "Railway",
+            "ru": "Railway"
           },
           "description": {
             "zh-CN": "快速部署平台",
@@ -6174,7 +7509,12 @@
         {
           "id": "ovh",
           "name": {
-            "zh-CN": "OVHcloud"
+            "zh-CN": "OVHcloud",
+            "zh-TW": "OVHcloud",
+            "en": "OVHcloud",
+            "ja": "OVHcloud",
+            "ko": "OVHcloud",
+            "ru": "OVHcloud"
           },
           "description": {
             "zh-CN": "欧洲云服务商",
@@ -6197,7 +7537,12 @@
         {
           "id": "upyun",
           "name": {
-            "zh-CN": "又拍云"
+            "zh-CN": "又拍云",
+            "zh-TW": "又拍雲",
+            "en": "Upyun",
+            "ja": "又拍雲",
+            "ko": "유파이",
+            "ru": "Upyun"
           },
           "description": {
             "zh-CN": "国内云存储和CDN服务",
@@ -6219,7 +7564,12 @@
         {
           "id": "qiniu",
           "name": {
-            "zh-CN": "七牛云"
+            "zh-CN": "七牛云",
+            "zh-TW": "七牛雲",
+            "en": "Qiniu",
+            "ja": "七牛雲",
+            "ko": "치니우",
+            "ru": "Qiniu"
           },
           "description": {
             "zh-CN": "国内云存储服务",
@@ -6254,7 +7604,12 @@
         {
           "id": "wikipedia",
           "name": {
-            "zh-CN": "Wikipedia"
+            "zh-CN": "Wikipedia",
+            "zh-TW": "Wikipedia",
+            "en": "Wikipedia",
+            "ja": "ウィキペディア",
+            "ko": "위키백과",
+            "ru": "Википедия"
           },
           "description": {
             "zh-CN": "自由百科全书",
@@ -6276,7 +7631,12 @@
         {
           "id": "coursera",
           "name": {
-            "zh-CN": "Coursera"
+            "zh-CN": "Coursera",
+            "zh-TW": "Coursera",
+            "en": "Coursera",
+            "ja": "コーセラ",
+            "ko": "코세라",
+            "ru": "Coursera"
           },
           "description": {
             "zh-CN": "在线课程平台",
@@ -6298,7 +7658,12 @@
         {
           "id": "edx",
           "name": {
-            "zh-CN": "edX"
+            "zh-CN": "edX",
+            "zh-TW": "edX",
+            "en": "edX",
+            "ja": "edX",
+            "ko": "edX",
+            "ru": "edX"
           },
           "description": {
             "zh-CN": "在线学习平台",
@@ -6321,7 +7686,12 @@
         {
           "id": "udemy",
           "name": {
-            "zh-CN": "Udemy"
+            "zh-CN": "Udemy",
+            "zh-TW": "Udemy",
+            "en": "Udemy",
+            "ja": "ユーデミー",
+            "ko": "유데미",
+            "ru": "Udemy"
           },
           "description": {
             "zh-CN": "在线学习市场",
@@ -6344,7 +7714,12 @@
         {
           "id": "khanacademy",
           "name": {
-            "zh-CN": "可汗学院"
+            "zh-CN": "可汗学院",
+            "zh-TW": "可汗學院",
+            "en": "Khan Academy",
+            "ja": "カーンアカデミー",
+            "ko": "칸 아카데미",
+            "ru": "Khan Academy"
           },
           "description": {
             "zh-CN": "免费在线教育平台",
@@ -6367,7 +7742,12 @@
         {
           "id": "goodreads",
           "name": {
-            "zh-CN": "Goodreads"
+            "zh-CN": "Goodreads",
+            "zh-TW": "Goodreads",
+            "en": "Goodreads",
+            "ja": "Goodreads",
+            "ko": "Goodreads",
+            "ru": "Goodreads"
           },
           "description": {
             "zh-CN": "书籍推荐和评论社区",
@@ -6390,7 +7770,12 @@
         {
           "id": "zhihu",
           "name": {
-            "zh-CN": "知乎"
+            "zh-CN": "知乎",
+            "zh-TW": "知乎",
+            "en": "Zhihu",
+            "ja": "ジーフー",
+            "ko": "즈후",
+            "ru": "Zhihu"
           },
           "description": {
             "zh-CN": "中文知识问答社区",
@@ -6413,7 +7798,12 @@
         {
           "id": "douban-read",
           "name": {
-            "zh-CN": "豆瓣读书"
+            "zh-CN": "豆瓣读书",
+            "zh-TW": "豆瓣讀書",
+            "en": "Douban Books",
+            "ja": "豆瓣読書",
+            "ko": "더우반 독서",
+            "ru": "Douban Books"
           },
           "description": {
             "zh-CN": "中文图书评论社区",
@@ -6461,7 +7851,12 @@
         {
           "id": "substack",
           "name": {
-            "zh-CN": "Substack"
+            "zh-CN": "Substack",
+            "zh-TW": "Substack",
+            "en": "Substack",
+            "ja": "Substack",
+            "ko": "Substack",
+            "ru": "Substack"
           },
           "description": {
             "zh-CN": "新闻通讯平台",
@@ -6483,7 +7878,12 @@
         {
           "id": "arxiv",
           "name": {
-            "zh-CN": "arXiv"
+            "zh-CN": "arXiv",
+            "zh-TW": "arXiv",
+            "en": "arXiv",
+            "ja": "arXiv",
+            "ko": "arXiv",
+            "ru": "arXiv"
           },
           "description": {
             "zh-CN": "学术预印本平台",
@@ -6505,7 +7905,12 @@
         {
           "id": "google-scholar",
           "name": {
-            "zh-CN": "Google Scholar"
+            "zh-CN": "Google Scholar",
+            "zh-TW": "Google Scholar",
+            "en": "Google Scholar",
+            "ja": "Google Scholar",
+            "ko": "Google Scholar",
+            "ru": "Google Scholar"
           },
           "description": {
             "zh-CN": "学术搜索引擎",
@@ -6527,7 +7932,12 @@
         {
           "id": "jstor",
           "name": {
-            "zh-CN": "JSTOR"
+            "zh-CN": "JSTOR",
+            "zh-TW": "JSTOR",
+            "en": "JSTOR",
+            "ja": "JSTOR",
+            "ko": "JSTOR",
+            "ru": "JSTOR"
           },
           "description": {
             "zh-CN": "学术期刊数据库",
@@ -6549,7 +7959,12 @@
         {
           "id": "scribd",
           "name": {
-            "zh-CN": "Scribd"
+            "zh-CN": "Scribd",
+            "zh-TW": "Scribd",
+            "en": "Scribd",
+            "ja": "Scribd",
+            "ko": "Scribd",
+            "ru": "Scribd"
           },
           "description": {
             "zh-CN": "数字图书馆",
@@ -6623,7 +8038,12 @@
         {
           "id": "youtube-learning",
           "name": {
-            "zh-CN": "YouTube 学习"
+            "zh-CN": "YouTube 学习",
+            "zh-TW": "YouTube 學習",
+            "en": "YouTube Learning",
+            "ja": "YouTube学習",
+            "ko": "YouTube 학습",
+            "ru": "YouTube Learning"
           },
           "description": {
             "zh-CN": "免费视频学习资源",
@@ -6645,7 +8065,12 @@
         {
           "id": "icourse163-1774418974084-0-0",
           "name": {
-            "zh-CN": "中国大学MOOC"
+            "zh-CN": "中国大学MOOC",
+            "zh-TW": "中國大學MOOC",
+            "en": "MOOC",
+            "ja": "中国大学MOOC",
+            "ko": "중국대학 MOOC",
+            "ru": "MOOC"
           },
           "description": {
             "zh-CN": "中国大学MOOC平台，提供名校课程",
@@ -6667,7 +8092,12 @@
         {
           "id": "xuetangx-1774418974084-0-1",
           "name": {
-            "zh-CN": "学堂在线"
+            "zh-CN": "学堂在线",
+            "zh-TW": "學堂在線",
+            "en": "xuetangX",
+            "ja": "学堂在線",
+            "ko": "쉬에탕",
+            "ru": "xuetangX"
           },
           "description": {
             "zh-CN": "清华大学发起的在线学习平台",
@@ -6689,7 +8119,12 @@
         {
           "id": "zhihuishu-1774418974084-0-2",
           "name": {
-            "zh-CN": "智慧树"
+            "zh-CN": "智慧树",
+            "zh-TW": "智慧樹",
+            "en": "Zhihuishu",
+            "ja": "知恵樹",
+            "ko": "즈후이수",
+            "ru": "Zhihuishu"
           },
           "description": {
             "zh-CN": "在线教育平台，服务高校学生",
@@ -6711,7 +8146,12 @@
         {
           "id": "imooc-1774418974084-0-3",
           "name": {
-            "zh-CN": "慕课网"
+            "zh-CN": "慕课网",
+            "zh-TW": "慕課網",
+            "en": "imooc",
+            "ja": "慕課網",
+            "ko": "무커",
+            "ru": "imooc"
           },
           "description": {
             "zh-CN": "IT技能在线学习平台",
@@ -6733,7 +8173,12 @@
         {
           "id": "code1234567-1774418974084-0-4",
           "name": {
-            "zh-CN": "菜鸟教程"
+            "zh-CN": "菜鸟教程",
+            "zh-TW": "菜鳥教程",
+            "en": "Runoob",
+            "ja": "ルーノブ",
+            "ko": "루눕",
+            "ru": "Runoob"
           },
           "description": {
             "zh-CN": "编程技术在线教程网站",
@@ -6755,7 +8200,12 @@
         {
           "id": "nowcoder-1774418974084-0-5",
           "name": {
-            "zh-CN": "牛客网"
+            "zh-CN": "牛客网",
+            "zh-TW": "牛客網",
+            "en": "Nowcoder",
+            "ja": "牛客網",
+            "ko": "뉴커더",
+            "ru": "Nowcoder"
           },
           "description": {
             "zh-CN": "IT笔试面试刷题平台",
@@ -6777,7 +8227,12 @@
         {
           "id": "leetcode-cn-1774418974084-0-6",
           "name": {
-            "zh-CN": "力扣"
+            "zh-CN": "力扣",
+            "zh-TW": "力扣",
+            "en": "LeetCode",
+            "ja": "LeetCode",
+            "ko": "LeetCode",
+            "ru": "LeetCode"
           },
           "description": {
             "zh-CN": "算法刷题和面试准备平台",
@@ -6799,7 +8254,12 @@
         {
           "id": "qingting-1774418974084-0-8",
           "name": {
-            "zh-CN": "蜻蜓FM"
+            "zh-CN": "蜻蜓FM",
+            "zh-TW": "蜻蜓FM",
+            "en": "Qingting FM",
+            "ja": "蜻蜓FM",
+            "ko": "칭팅 FM",
+            "ru": "Qingting FM"
           },
           "description": {
             "zh-CN": "有声读物和播客平台",
@@ -6822,7 +8282,12 @@
         {
           "id": "ximalaya-1774418974084-0-9",
           "name": {
-            "zh-CN": "喜马拉雅"
+            "zh-CN": "喜马拉雅",
+            "zh-TW": "喜馬拉雅",
+            "en": "Ximalaya",
+            "ja": "シマラヤ",
+            "ko": "시말라야",
+            "ru": "Ximalaya"
           },
           "description": {
             "zh-CN": "国内最大有声读物平台",
@@ -6844,7 +8309,12 @@
         {
           "id": "lizhi-1774418974084-0-10",
           "name": {
-            "zh-CN": "荔枝FM"
+            "zh-CN": "荔枝FM",
+            "zh-TW": "荔枝FM",
+            "en": "Lizhi FM",
+            "ja": "ライチFM",
+            "ko": "리즈 FM",
+            "ru": "Lizhi FM"
           },
           "description": {
             "zh-CN": "音频分享和播客平台",
@@ -6866,7 +8336,12 @@
         {
           "id": "shimo-1774418974084-0-11",
           "name": {
-            "zh-CN": "石墨文档"
+            "zh-CN": "石墨文档",
+            "zh-TW": "石墨文檔",
+            "en": "Shimo Docs",
+            "ja": "石墨文档",
+            "ko": "스모 독스",
+            "ru": "Shimo Docs"
           },
           "description": {
             "zh-CN": "在线协作文档和知识库",
@@ -6888,7 +8363,12 @@
         {
           "id": "zhihu-daily-1774418974084-0-12",
           "name": {
-            "zh-CN": "知乎日报"
+            "zh-CN": "知乎日报",
+            "zh-TW": "知乎日報",
+            "en": "Zhihu Daily",
+            "ja": "知乎デイリー",
+            "ko": "즈후 데일리",
+            "ru": "Zhihu Daily"
           },
           "description": {
             "zh-CN": "知乎精选内容阅读平台",
@@ -6910,7 +8390,12 @@
         {
           "id": "guokr-1774418974084-0-13",
           "name": {
-            "zh-CN": "果壳网"
+            "zh-CN": "果壳网",
+            "zh-TW": "果殼網",
+            "en": "Guokr",
+            "ja": "果殻網",
+            "ko": "궈커왕",
+            "ru": "Guokr"
           },
           "description": {
             "zh-CN": "科学知识分享社区",
@@ -6932,7 +8417,12 @@
         {
           "id": "jianshu-1774418974084-0-14",
           "name": {
-            "zh-CN": "简书"
+            "zh-CN": "简书",
+            "zh-TW": "簡書",
+            "en": "Jianshu",
+            "ja": "簡書",
+            "ko": "지엔슈",
+            "ru": "Jianshu"
           },
           "description": {
             "zh-CN": "中文写作创作平台",
@@ -6954,7 +8444,12 @@
         {
           "id": "ssyd-1774418974084-0-15",
           "name": {
-            "zh-CN": "书山阅读"
+            "zh-CN": "书山阅读",
+            "zh-TW": "書山閱讀",
+            "en": "Shushan Reading",
+            "ja": "書山読書",
+            "ko": "수산 독서",
+            "ru": "Shushan Reading"
           },
           "description": {
             "zh-CN": "中文电子书阅读网站",
@@ -6976,7 +8471,12 @@
         {
           "id": "bilibili-edu-1774418974084-0-16",
           "name": {
-            "zh-CN": "哔哩哔哩知识区"
+            "zh-CN": "哔哩哔哩知识区",
+            "zh-TW": "嗶哩嗶哩知識區",
+            "en": "Bilibili Knowledge",
+            "ja": "ビリビリ知識エリア",
+            "ko": "빌리빌리 지식",
+            "ru": "Bilibili Knowledge"
           },
           "description": {
             "zh-CN": "B站知识科普和学习视频",
@@ -6998,7 +8498,12 @@
         {
           "id": "youdao-dict-1774418974084-0-17",
           "name": {
-            "zh-CN": "有道词典"
+            "zh-CN": "有道词典",
+            "zh-TW": "有道詞典",
+            "en": "Youdao Dictionary",
+            "ja": "有道辞書",
+            "ko": "유다오 사전",
+            "ru": "Youdao Dictionary"
           },
           "description": {
             "zh-CN": "在线词典和翻译工具",
@@ -7020,7 +8525,12 @@
         {
           "id": "baike-baidu-1774418974084-0-18",
           "name": {
-            "zh-CN": "百度百科"
+            "zh-CN": "百度百科",
+            "zh-TW": "百度百科",
+            "en": "Baidu Baike",
+            "ja": "百度百科",
+            "ko": "바이두 바이커",
+            "ru": "Baidu Baike"
           },
           "description": {
             "zh-CN": "中文百科全书",
@@ -7042,7 +8552,12 @@
         {
           "id": "huxiu-1774418974084-0-19",
           "name": {
-            "zh-CN": "虎嗅"
+            "zh-CN": "虎嗅",
+            "zh-TW": "虎嗅",
+            "en": "Huxiu",
+            "ja": "虎嗅",
+            "ko": "후슈",
+            "ru": "Huxiu"
           },
           "description": {
             "zh-CN": "科技和商业资讯平台",
@@ -7064,7 +8579,12 @@
         {
           "id": "weread-1774419699849-0-0",
           "name": {
-            "zh-CN": "微信读书"
+            "zh-CN": "微信读书",
+            "zh-TW": "微信讀書",
+            "en": "WeRead",
+            "ja": "微信読書",
+            "ko": "위챗 독서",
+            "ru": "WeRead"
           },
           "description": {
             "zh-CN": "腾讯旗下数字阅读平台",
@@ -7086,7 +8606,12 @@
         {
           "id": "cnki-1774419699849-0-1",
           "name": {
-            "zh-CN": "中国知网"
+            "zh-CN": "中国知网",
+            "zh-TW": "中國知網",
+            "en": "CNKI",
+            "ja": "中国知網",
+            "ko": "중국 지식망",
+            "ru": "CNKI"
           },
           "description": {
             "zh-CN": "中国学术文献数据库",
@@ -7108,7 +8633,12 @@
         {
           "id": "wanfang-1774419699849-0-2",
           "name": {
-            "zh-CN": "万方数据"
+            "zh-CN": "万方数据",
+            "zh-TW": "萬方數據",
+            "en": "Wanfang Data",
+            "ja": "万方データ",
+            "ko": "완팡 데이터",
+            "ru": "Wanfang Data"
           },
           "description": {
             "zh-CN": "中国学术数据库平台",
@@ -7130,7 +8660,12 @@
         {
           "id": "vipreading-1774419699849-0-3",
           "name": {
-            "zh-CN": "掌阅"
+            "zh-CN": "掌阅",
+            "zh-TW": "掌閱",
+            "en": "iReader",
+            "ja": "掌閲",
+            "ko": "장웨",
+            "ru": "iReader"
           },
           "description": {
             "zh-CN": "数字阅读平台",
@@ -7152,7 +8687,12 @@
         {
           "id": "qidian-1774419699849-0-4",
           "name": {
-            "zh-CN": "起点中文网"
+            "zh-CN": "起点中文网",
+            "zh-TW": "起點中文網",
+            "en": "Qidian",
+            "ja": "起点中文網",
+            "ko": "치디엔",
+            "ru": "Qidian"
           },
           "description": {
             "zh-CN": "中国最大的网络文学平台",
@@ -7174,7 +8714,12 @@
         {
           "id": "duokan-1774419699849-0-7",
           "name": {
-            "zh-CN": "多看阅读"
+            "zh-CN": "多看阅读",
+            "zh-TW": "多看閱讀",
+            "en": "Duokan",
+            "ja": "多看読書",
+            "ko": "뚜어칸",
+            "ru": "Duokan"
           },
           "description": {
             "zh-CN": "小米旗下数字阅读平台",
@@ -7196,7 +8741,12 @@
         {
           "id": "dangdang-read-1774419699849-0-8",
           "name": {
-            "zh-CN": "当当读书"
+            "zh-CN": "当当读书",
+            "zh-TW": "當當讀書",
+            "en": "Dangdang Read",
+            "ja": "当当読書",
+            "ko": "당당 독서",
+            "ru": "Dangdang Read"
           },
           "description": {
             "zh-CN": "当当网旗下数字阅读平台",
@@ -7218,7 +8768,12 @@
         {
           "id": "cqvip-1774419699849-0-10",
           "name": {
-            "zh-CN": "维普网"
+            "zh-CN": "维普网",
+            "zh-TW": "維普網",
+            "en": "VIP",
+            "ja": "維普網",
+            "ko": "웨이푸왕",
+            "ru": "VIP"
           },
           "description": {
             "zh-CN": "中文科技期刊数据库",
@@ -7240,7 +8795,12 @@
         {
           "id": "duxiu-1774419699849-0-12",
           "name": {
-            "zh-CN": "读秀学术搜索"
+            "zh-CN": "读秀学术搜索",
+            "zh-TW": "讀秀學術搜索",
+            "en": "Duxiu Academic",
+            "ja": "読秀学術検索",
+            "ko": "두슈 학술",
+            "ru": "Duxiu Academic"
           },
           "description": {
             "zh-CN": "中文学术资源搜索引擎",
@@ -7288,7 +8848,12 @@
         {
           "id": "shlibrary-1774419699849-0-15",
           "name": {
-            "zh-CN": "上海图书馆"
+            "zh-CN": "上海图书馆",
+            "zh-TW": "上海圖書館",
+            "en": "Shanghai Library",
+            "ja": "上海図書館",
+            "ko": "상하이 도서관",
+            "ru": "Shanghai Library"
           },
           "description": {
             "zh-CN": "上海数字图书馆平台",
@@ -7311,7 +8876,12 @@
         {
           "id": "pku-library-1774419699849-0-16",
           "name": {
-            "zh-CN": "北京大学图书馆"
+            "zh-CN": "北京大学图书馆",
+            "zh-TW": "北京大學圖書館",
+            "en": "Peking University Library",
+            "ja": "北京大学図書館",
+            "ko": "베이징대 도서관",
+            "ru": "Peking University Library"
           },
           "description": {
             "zh-CN": "北京大学数字图书馆",
@@ -7333,7 +8903,12 @@
         {
           "id": "tsinghua-library-1774419699849-0-17",
           "name": {
-            "zh-CN": "清华大学图书馆"
+            "zh-CN": "清华大学图书馆",
+            "zh-TW": "清華大學圖書館",
+            "en": "Tsinghua University Library",
+            "ja": "清華大学図書館",
+            "ko": "칭화대 도서관",
+            "ru": "Tsinghua University Library"
           },
           "description": {
             "zh-CN": "清华大学数字图书馆",
@@ -7355,7 +8930,12 @@
         {
           "id": "yunqi-1774419699849-0-19",
           "name": {
-            "zh-CN": "云起书院"
+            "zh-CN": "云起书院",
+            "zh-TW": "雲起書院",
+            "en": "Yunqi Academy",
+            "ja": "雲起書院",
+            "ko": "윈치 서원",
+            "ru": "Yunqi Academy"
           },
           "description": {
             "zh-CN": "女性向网络文学平台",
@@ -7390,7 +8970,12 @@
         {
           "id": "youtube",
           "name": {
-            "zh-CN": "YouTube"
+            "zh-CN": "YouTube",
+            "zh-TW": "YouTube",
+            "en": "YouTube",
+            "ja": "ユーチューブ",
+            "ko": "유튜브",
+            "ru": "YouTube"
           },
           "description": {
             "zh-CN": "全球最大视频平台",
@@ -7412,7 +8997,12 @@
         {
           "id": "bilibili",
           "name": {
-            "zh-CN": "哔哩哔哩"
+            "zh-CN": "哔哩哔哩",
+            "zh-TW": "嗶哩嗶哩",
+            "en": "Bilibili",
+            "ja": "ビリビリ",
+            "ko": "빌리빌리",
+            "ru": "Bilibili"
           },
           "description": {
             "zh-CN": "中国年轻文化社区",
@@ -7434,7 +9024,12 @@
         {
           "id": "netflix",
           "name": {
-            "zh-CN": "Netflix"
+            "zh-CN": "Netflix",
+            "zh-TW": "Netflix",
+            "en": "Netflix",
+            "ja": "ネットフリックス",
+            "ko": "넷플릭스",
+            "ru": "Netflix"
           },
           "description": {
             "zh-CN": "流媒体视频平台",
@@ -7456,7 +9051,12 @@
         {
           "id": "twitch",
           "name": {
-            "zh-CN": "Twitch"
+            "zh-CN": "Twitch",
+            "zh-TW": "Twitch",
+            "en": "Twitch",
+            "ja": "ツイッチ",
+            "ko": "트위치",
+            "ru": "Twitch"
           },
           "description": {
             "zh-CN": "游戏直播平台",
@@ -7478,7 +9078,12 @@
         {
           "id": "iqiyi",
           "name": {
-            "zh-CN": "爱奇艺"
+            "zh-CN": "爱奇艺",
+            "zh-TW": "愛奇藝",
+            "en": "iQIYI",
+            "ja": "アイチーイー",
+            "ko": "아이치이",
+            "ru": "iQIYI"
           },
           "description": {
             "zh-CN": "中国视频平台",
@@ -7500,7 +9105,12 @@
         {
           "id": "youku",
           "name": {
-            "zh-CN": "优酷"
+            "zh-CN": "优酷",
+            "zh-TW": "優酷",
+            "en": "Youku",
+            "ja": "ヨウク",
+            "ko": "여우쿠",
+            "ru": "Youku"
           },
           "description": {
             "zh-CN": "中国视频平台",
@@ -7522,7 +9132,12 @@
         {
           "id": "tencent-video",
           "name": {
-            "zh-CN": "腾讯视频"
+            "zh-CN": "腾讯视频",
+            "zh-TW": "騰訊視頻",
+            "en": "Tencent Video",
+            "ja": "テンセントビデオ",
+            "ko": "텅쉰 비디오",
+            "ru": "Tencent Video"
           },
           "description": {
             "zh-CN": "中国视频平台",
@@ -7544,7 +9159,12 @@
         {
           "id": "mango-tv",
           "name": {
-            "zh-CN": "芒果TV"
+            "zh-CN": "芒果TV",
+            "zh-TW": "芒果TV",
+            "en": "Mango TV",
+            "ja": "マンゴーTV",
+            "ko": "망고TV",
+            "ru": "Mango TV"
           },
           "description": {
             "zh-CN": "中国视频平台",
@@ -7566,7 +9186,12 @@
         {
           "id": "hulu",
           "name": {
-            "zh-CN": "Hulu"
+            "zh-CN": "Hulu",
+            "zh-TW": "Hulu",
+            "en": "Hulu",
+            "ja": "フールー",
+            "ko": "훌루",
+            "ru": "Hulu"
           },
           "description": {
             "zh-CN": "美国流媒体平台",
@@ -7588,7 +9213,12 @@
         {
           "id": "disney-plus",
           "name": {
-            "zh-CN": "Disney+"
+            "zh-CN": "Disney+",
+            "zh-TW": "Disney+",
+            "en": "Disney+",
+            "ja": "ディズニープラス",
+            "ko": "디즈니플러스",
+            "ru": "Disney+"
           },
           "description": {
             "zh-CN": "迪士尼流媒体平台",
@@ -7610,7 +9240,12 @@
         {
           "id": "amazon-prime",
           "name": {
-            "zh-CN": "Amazon Prime Video"
+            "zh-CN": "Amazon Prime Video",
+            "zh-TW": "Amazon Prime Video",
+            "en": "Amazon Prime Video",
+            "ja": "Amazon Prime Video",
+            "ko": "Amazon Prime Video",
+            "ru": "Amazon Prime Video"
           },
           "description": {
             "zh-CN": "亚马逊流媒体平台",
@@ -7632,7 +9267,12 @@
         {
           "id": "vimeo",
           "name": {
-            "zh-CN": "Vimeo"
+            "zh-CN": "Vimeo",
+            "zh-TW": "Vimeo",
+            "en": "Vimeo",
+            "ja": "Vimeo",
+            "ko": "Vimeo",
+            "ru": "Vimeo"
           },
           "description": {
             "zh-CN": "高质量视频平台",
@@ -7654,7 +9294,12 @@
         {
           "id": "dailymotion",
           "name": {
-            "zh-CN": "Dailymotion"
+            "zh-CN": "Dailymotion",
+            "zh-TW": "Dailymotion",
+            "en": "Dailymotion",
+            "ja": "Dailymotion",
+            "ko": "Dailymotion",
+            "ru": "Dailymotion"
           },
           "description": {
             "zh-CN": "视频分享平台",
@@ -7676,7 +9321,12 @@
         {
           "id": "niconico",
           "name": {
-            "zh-CN": "niconico"
+            "zh-CN": "niconico",
+            "zh-TW": "niconico",
+            "en": "niconico",
+            "ja": "niconico",
+            "ko": "niconico",
+            "ru": "niconico"
           },
           "description": {
             "zh-CN": "日本视频平台",
@@ -7698,7 +9348,12 @@
         {
           "id": "tiktok",
           "name": {
-            "zh-CN": "TikTok"
+            "zh-CN": "TikTok",
+            "zh-TW": "TikTok",
+            "en": "TikTok",
+            "ja": "ティックトック",
+            "ko": "틱톡",
+            "ru": "TikTok"
           },
           "description": {
             "zh-CN": "短视频平台",
@@ -7720,7 +9375,12 @@
         {
           "id": "douyin",
           "name": {
-            "zh-CN": "抖音"
+            "zh-CN": "抖音",
+            "zh-TW": "抖音",
+            "en": "Douyin",
+            "ja": "ドウイン",
+            "ko": "더우인",
+            "ru": "Douyin"
           },
           "description": {
             "zh-CN": "中国短视频平台",
@@ -7742,7 +9402,12 @@
         {
           "id": "kuaishou",
           "name": {
-            "zh-CN": "快手"
+            "zh-CN": "快手",
+            "zh-TW": "快手",
+            "en": "Kuaishou",
+            "ja": "クアイショウ",
+            "ko": "콰이쇼우",
+            "ru": "Kuaishou"
           },
           "description": {
             "zh-CN": "中国短视频平台",
@@ -7764,7 +9429,12 @@
         {
           "id": "acfun",
           "name": {
-            "zh-CN": "AcFun"
+            "zh-CN": "AcFun",
+            "zh-TW": "AcFun",
+            "en": "AcFun",
+            "ja": "AcFun",
+            "ko": "AcFun",
+            "ru": "AcFun"
           },
           "description": {
             "zh-CN": "中国弹幕视频网站",
@@ -7786,7 +9456,12 @@
         {
           "id": "souhu-video-1774421360572-0-1",
           "name": {
-            "zh-CN": "搜狐视频"
+            "zh-CN": "搜狐视频",
+            "zh-TW": "搜狐視頻",
+            "en": "Sohu Video",
+            "ja": "搜狐ビデオ",
+            "ko": "서우후 비디오",
+            "ru": "Sohu Video"
           },
           "description": {
             "zh-CN": "搜狐旗下视频平台",
@@ -7808,7 +9483,12 @@
         {
           "id": "le-video-1774421360572-0-2",
           "name": {
-            "zh-CN": "乐视视频"
+            "zh-CN": "乐视视频",
+            "zh-TW": "樂視視頻",
+            "en": "Le.com",
+            "ja": "楽視ビデオ",
+            "ko": "러스비",
+            "ru": "Le.com"
           },
           "description": {
             "zh-CN": "乐视网视频平台",
@@ -7830,7 +9510,12 @@
         {
           "id": "pptv-1774421360572-0-3",
           "name": {
-            "zh-CN": "PP视频"
+            "zh-CN": "PP视频",
+            "zh-TW": "PP視頻",
+            "en": "PPTV",
+            "ja": "PPビデオ",
+            "ko": "PP비디오",
+            "ru": "PPTV"
           },
           "description": {
             "zh-CN": "苏宁旗下视频平台",
@@ -7852,7 +9537,12 @@
         {
           "id": "huya-1774421360572-0-5",
           "name": {
-            "zh-CN": "虎牙直播"
+            "zh-CN": "虎牙直播",
+            "zh-TW": "虎牙直播",
+            "en": "Huya Live",
+            "ja": "虎牙ライブ",
+            "ko": "후야 라이브",
+            "ru": "Huya Live"
           },
           "description": {
             "zh-CN": "游戏直播平台",
@@ -7874,7 +9564,12 @@
         {
           "id": "douyu-1774421360572-0-6",
           "name": {
-            "zh-CN": "斗鱼直播"
+            "zh-CN": "斗鱼直播",
+            "zh-TW": "鬥魚直播",
+            "en": "Douyu",
+            "ja": "闘魚ライブ",
+            "ko": "더우위 라이브",
+            "ru": "Douyu"
           },
           "description": {
             "zh-CN": "游戏直播平台",
@@ -7896,7 +9591,12 @@
         {
           "id": "weishi-1774421360572-0-9",
           "name": {
-            "zh-CN": "微视"
+            "zh-CN": "微视",
+            "zh-TW": "微視",
+            "en": "Weishi",
+            "ja": "微視",
+            "ko": "웨이스",
+            "ru": "Weishi"
           },
           "description": {
             "zh-CN": "腾讯旗下短视频平台",
@@ -7918,7 +9618,12 @@
         {
           "id": "haokan-1774421360572-0-10",
           "name": {
-            "zh-CN": "好看视频"
+            "zh-CN": "好看视频",
+            "zh-TW": "好看視頻",
+            "en": "Haokan Video",
+            "ja": "好看ビデオ",
+            "ko": "하오칸 비디오",
+            "ru": "Haokan Video"
           },
           "description": {
             "zh-CN": "百度旗下短视频平台",
@@ -7940,7 +9645,12 @@
         {
           "id": "xigua-1774421360572-0-11",
           "name": {
-            "zh-CN": "西瓜视频"
+            "zh-CN": "西瓜视频",
+            "zh-TW": "西瓜視頻",
+            "en": "Xigua Video",
+            "ja": "西瓜ビデオ",
+            "ko": "시구아 비디오",
+            "ru": "Xigua Video"
           },
           "description": {
             "zh-CN": "字节跳动旗下中视频平台",
@@ -7962,7 +9672,12 @@
         {
           "id": "huoshan-1774421360572-0-12",
           "name": {
-            "zh-CN": "火山小视频"
+            "zh-CN": "火山小视频",
+            "zh-TW": "火山小視頻",
+            "en": "Huoshan",
+            "ja": "火山ショート動画",
+            "ko": "훠산 쇼트",
+            "ru": "Huoshan"
           },
           "description": {
             "zh-CN": "字节跳动旗下短视频平台",
@@ -7984,7 +9699,12 @@
         {
           "id": "dongman-1774421360572-0-14",
           "name": {
-            "zh-CN": "腾讯动漫"
+            "zh-CN": "腾讯动漫",
+            "zh-TW": "騰訊動漫",
+            "en": "Tencent Comics",
+            "ja": "テンセントコミック",
+            "ko": "텐센트 만화",
+            "ru": "Tencent Comics"
           },
           "description": {
             "zh-CN": "腾讯旗下动漫平台",
@@ -8006,7 +9726,12 @@
         {
           "id": "kugou-1774421360572-0-15",
           "name": {
-            "zh-CN": "酷狗音乐"
+            "zh-CN": "酷狗音乐",
+            "zh-TW": "酷狗音樂",
+            "en": "Kugou Music",
+            "ja": "酷狗音楽",
+            "ko": "쿠거우 뮤직",
+            "ru": "Kugou Music"
           },
           "description": {
             "zh-CN": "音乐播放和MV平台",
@@ -8028,7 +9753,12 @@
         {
           "id": "kuwo-1774421360572-0-16",
           "name": {
-            "zh-CN": "酷我音乐"
+            "zh-CN": "酷我音乐",
+            "zh-TW": "酷我音樂",
+            "en": "Kuwo Music",
+            "ja": "酷我音楽",
+            "ko": "쿠워 뮤직",
+            "ru": "Kuwo Music"
           },
           "description": {
             "zh-CN": "音乐播放平台",
@@ -8050,7 +9780,12 @@
         {
           "id": "netease-music-1774421360572-0-17",
           "name": {
-            "zh-CN": "网易云音乐"
+            "zh-CN": "网易云音乐",
+            "zh-TW": "網易雲音樂",
+            "en": "NetEase Music",
+            "ja": "網易雲音楽",
+            "ko": "왕이 클라우드 뮤직",
+            "ru": "NetEase Music"
           },
           "description": {
             "zh-CN": "音乐社区和播放平台",
@@ -8072,7 +9807,12 @@
         {
           "id": "qq-music-1774421360572-0-18",
           "name": {
-            "zh-CN": "QQ音乐"
+            "zh-CN": "QQ音乐",
+            "zh-TW": "QQ音樂",
+            "en": "QQ Music",
+            "ja": "QQ音楽",
+            "ko": "QQ 뮤직",
+            "ru": "QQ Music"
           },
           "description": {
             "zh-CN": "腾讯旗下音乐平台",
@@ -8094,7 +9834,12 @@
         {
           "id": "migu-video-1774421360572-0-19",
           "name": {
-            "zh-CN": "咪咕视频"
+            "zh-CN": "咪咕视频",
+            "zh-TW": "咪咕視頻",
+            "en": "Migu Video",
+            "ja": "咪咕ビデオ",
+            "ko": "미구 비디오",
+            "ru": "Migu Video"
           },
           "description": {
             "zh-CN": "中国移动旗下视频平台",
@@ -8116,7 +9861,12 @@
         {
           "id": "spotify-1774421788192-0-0",
           "name": {
-            "zh-CN": "Spotify"
+            "zh-CN": "Spotify",
+            "zh-TW": "Spotify",
+            "en": "Spotify",
+            "ja": "スポティファイ",
+            "ko": "스포티파이",
+            "ru": "Spotify"
           },
           "description": {
             "zh-CN": "全球最大的音乐流媒体平台",
@@ -8138,7 +9888,12 @@
         {
           "id": "applemusic-1774421788192-0-1",
           "name": {
-            "zh-CN": "Apple Music"
+            "zh-CN": "Apple Music",
+            "zh-TW": "Apple Music",
+            "en": "Apple Music",
+            "ja": "アップルミュージック",
+            "ko": "애플 뮤직",
+            "ru": "Apple Music"
           },
           "description": {
             "zh-CN": "苹果公司的音乐流媒体服务",
@@ -8160,7 +9915,12 @@
         {
           "id": "amazon-music-1774421788192-0-2",
           "name": {
-            "zh-CN": "Amazon Music"
+            "zh-CN": "Amazon Music",
+            "zh-TW": "Amazon Music",
+            "en": "Amazon Music",
+            "ja": "Amazon Music",
+            "ko": "Amazon Music",
+            "ru": "Amazon Music"
           },
           "description": {
             "zh-CN": "亚马逊音乐流媒体服务",
@@ -8182,7 +9942,12 @@
         {
           "id": "tidal-1774421788192-0-3",
           "name": {
-            "zh-CN": "Tidal"
+            "zh-CN": "Tidal",
+            "zh-TW": "Tidal",
+            "en": "Tidal",
+            "ja": "Tidal",
+            "ko": "Tidal",
+            "ru": "Tidal"
           },
           "description": {
             "zh-CN": "高保真音乐流媒体平台",
@@ -8204,7 +9969,12 @@
         {
           "id": "deezer-1774421788192-0-4",
           "name": {
-            "zh-CN": "Deezer"
+            "zh-CN": "Deezer",
+            "zh-TW": "Deezer",
+            "en": "Deezer",
+            "ja": "Deezer",
+            "ko": "Deezer",
+            "ru": "Deezer"
           },
           "description": {
             "zh-CN": "法国音乐流媒体平台",
@@ -8239,7 +10009,12 @@
         {
           "id": "amazon",
           "name": {
-            "zh-CN": "Amazon"
+            "zh-CN": "Amazon",
+            "zh-TW": "Amazon",
+            "en": "Amazon",
+            "ja": "アマゾン",
+            "ko": "아마존",
+            "ru": "Amazon"
           },
           "description": {
             "zh-CN": "全球最大电商平台",
@@ -8261,7 +10036,12 @@
         {
           "id": "taobao",
           "name": {
-            "zh-CN": "淘宝"
+            "zh-CN": "淘宝",
+            "zh-TW": "淘寶",
+            "en": "Taobao",
+            "ja": "タオバオ",
+            "ko": "타오바오",
+            "ru": "Taobao"
           },
           "description": {
             "zh-CN": "中国最大电商平台",
@@ -8283,7 +10063,12 @@
         {
           "id": "jd",
           "name": {
-            "zh-CN": "京东"
+            "zh-CN": "京东",
+            "zh-TW": "京東",
+            "en": "JD.com",
+            "ja": "ジンドン",
+            "ko": "징둥",
+            "ru": "JD.com"
           },
           "description": {
             "zh-CN": "中国电商平台",
@@ -8305,7 +10090,12 @@
         {
           "id": "pinduoduo",
           "name": {
-            "zh-CN": "拼多多"
+            "zh-CN": "拼多多",
+            "zh-TW": "拼多多",
+            "en": "Pinduoduo",
+            "ja": "ピンドゥオドゥオ",
+            "ko": "핀둬둬",
+            "ru": "Pinduoduo"
           },
           "description": {
             "zh-CN": "社交电商平台",
@@ -8327,7 +10117,12 @@
         {
           "id": "alibaba",
           "name": {
-            "zh-CN": "阿里巴巴"
+            "zh-CN": "阿里巴巴",
+            "zh-TW": "阿里巴巴",
+            "en": "Alibaba",
+            "ja": "アリババ",
+            "ko": "알리바바",
+            "ru": "Alibaba"
           },
           "description": {
             "zh-CN": "B2B 电商平台",
@@ -8349,7 +10144,12 @@
         {
           "id": "ebay",
           "name": {
-            "zh-CN": "eBay"
+            "zh-CN": "eBay",
+            "zh-TW": "eBay",
+            "en": "eBay",
+            "ja": "イーベイ",
+            "ko": "이베이",
+            "ru": "eBay"
           },
           "description": {
             "zh-CN": "在线拍卖和购物平台",
@@ -8371,7 +10171,12 @@
         {
           "id": "etsy",
           "name": {
-            "zh-CN": "Etsy"
+            "zh-CN": "Etsy",
+            "zh-TW": "Etsy",
+            "en": "Etsy",
+            "ja": "エッツィー",
+            "ko": "엣시",
+            "ru": "Etsy"
           },
           "description": {
             "zh-CN": "手工艺品电商平台",
@@ -8393,7 +10198,12 @@
         {
           "id": "walmart",
           "name": {
-            "zh-CN": "Walmart"
+            "zh-CN": "Walmart",
+            "zh-TW": "Walmart",
+            "en": "Walmart",
+            "ja": "ウォルマート",
+            "ko": "월마트",
+            "ru": "Walmart"
           },
           "description": {
             "zh-CN": "美国零售电商",
@@ -8415,7 +10225,12 @@
         {
           "id": "target",
           "name": {
-            "zh-CN": "Target"
+            "zh-CN": "Target",
+            "zh-TW": "Target",
+            "en": "Target",
+            "ja": "ターゲット",
+            "ko": "타겟",
+            "ru": "Target"
           },
           "description": {
             "zh-CN": "美国零售电商",
@@ -8437,7 +10252,12 @@
         {
           "id": "rakuten",
           "name": {
-            "zh-CN": "乐天市场"
+            "zh-CN": "乐天市场",
+            "zh-TW": "樂天市場",
+            "en": "Rakuten",
+            "ja": "楽天市場",
+            "ko": "라쿠텐",
+            "ru": "Rakuten"
           },
           "description": {
             "zh-CN": "日本最大电商平台",
@@ -8459,7 +10279,12 @@
         {
           "id": "coupang",
           "name": {
-            "zh-CN": "Coupang"
+            "zh-CN": "Coupang",
+            "zh-TW": "Coupang",
+            "en": "Coupang",
+            "ja": "Coupang",
+            "ko": "쿠팡",
+            "ru": "Coupang"
           },
           "description": {
             "zh-CN": "韩国最大电商平台",
@@ -8481,7 +10306,12 @@
         {
           "id": "aliexpress",
           "name": {
-            "zh-CN": "AliExpress"
+            "zh-CN": "AliExpress",
+            "zh-TW": "AliExpress",
+            "en": "AliExpress",
+            "ja": "AliExpress",
+            "ko": "AliExpress",
+            "ru": "AliExpress"
           },
           "description": {
             "zh-CN": "国际 B2C 电商平台",
@@ -8503,7 +10333,12 @@
         {
           "id": "shopee",
           "name": {
-            "zh-CN": "Shopee"
+            "zh-CN": "Shopee",
+            "zh-TW": "Shopee",
+            "en": "Shopee",
+            "ja": "Shopee",
+            "ko": "Shopee",
+            "ru": "Shopee"
           },
           "description": {
             "zh-CN": "东南亚电商平台",
@@ -8525,7 +10360,12 @@
         {
           "id": "lazada",
           "name": {
-            "zh-CN": "Lazada"
+            "zh-CN": "Lazada",
+            "zh-TW": "Lazada",
+            "en": "Lazada",
+            "ja": "Lazada",
+            "ko": "Lazada",
+            "ru": "Lazada"
           },
           "description": {
             "zh-CN": "东南亚电商平台",
@@ -8547,7 +10387,12 @@
         {
           "id": "flipkart",
           "name": {
-            "zh-CN": "Flipkart"
+            "zh-CN": "Flipkart",
+            "zh-TW": "Flipkart",
+            "en": "Flipkart",
+            "ja": "Flipkart",
+            "ko": "Flipkart",
+            "ru": "Flipkart"
           },
           "description": {
             "zh-CN": "印度最大电商平台",
@@ -8569,7 +10414,12 @@
         {
           "id": "mercadolibre",
           "name": {
-            "zh-CN": "Mercado Libre"
+            "zh-CN": "Mercado Libre",
+            "zh-TW": "Mercado Libre",
+            "en": "Mercado Libre",
+            "ja": "Mercado Libre",
+            "ko": "Mercado Libre",
+            "ru": "Mercado Libre"
           },
           "description": {
             "zh-CN": "拉美最大电商平台",
@@ -8592,7 +10442,12 @@
         {
           "id": "bestbuy",
           "name": {
-            "zh-CN": "Best Buy"
+            "zh-CN": "Best Buy",
+            "zh-TW": "Best Buy",
+            "en": "Best Buy",
+            "ja": "Best Buy",
+            "ko": "Best Buy",
+            "ru": "Best Buy"
           },
           "description": {
             "zh-CN": "电子产品零售商",
@@ -8614,7 +10469,12 @@
         {
           "id": "costco",
           "name": {
-            "zh-CN": "Costco"
+            "zh-CN": "Costco",
+            "zh-TW": "Costco",
+            "en": "Costco",
+            "ja": "Costco",
+            "ko": "Costco",
+            "ru": "Costco"
           },
           "description": {
             "zh-CN": "会员制仓储超市",
@@ -8636,7 +10496,12 @@
         {
           "id": "tmall",
           "name": {
-            "zh-CN": "天猫"
+            "zh-CN": "天猫",
+            "zh-TW": "天貓",
+            "en": "Tmall",
+            "ja": "ティーモール",
+            "ko": "티몰",
+            "ru": "Tmall"
           },
           "description": {
             "zh-CN": "品牌电商平台",
@@ -8658,7 +10523,12 @@
         {
           "id": "vip",
           "name": {
-            "zh-CN": "唯品会"
+            "zh-CN": "唯品会",
+            "zh-TW": "唯品會",
+            "en": "Vipshop",
+            "ja": "唯品会",
+            "ko": "웨이핀후이",
+            "ru": "Vipshop"
           },
           "description": {
             "zh-CN": "品牌特卖平台",
@@ -8680,7 +10550,12 @@
         {
           "id": "suning-1774424534805-0-1",
           "name": {
-            "zh-CN": "苏宁易购"
+            "zh-CN": "苏宁易购",
+            "zh-TW": "蘇寧易購",
+            "en": "Suning",
+            "ja": "蘇寧易購",
+            "ko": "수닝",
+            "ru": "Suning"
           },
           "description": {
             "zh-CN": "家电3C零售电商平台",
@@ -8702,7 +10577,12 @@
         {
           "id": "gome-1774424534805-0-2",
           "name": {
-            "zh-CN": "国美"
+            "zh-CN": "国美",
+            "zh-TW": "國美",
+            "en": "Gome",
+            "ja": "国美",
+            "ko": "궈메이",
+            "ru": "Gome"
           },
           "description": {
             "zh-CN": "家电零售电商平台",
@@ -8724,7 +10604,12 @@
         {
           "id": "dangdang-1774424534805-0-3",
           "name": {
-            "zh-CN": "当当网"
+            "zh-CN": "当当网",
+            "zh-TW": "當當網",
+            "en": "Dangdang",
+            "ja": "当当網",
+            "ko": "당당",
+            "ru": "Dangdang"
           },
           "description": {
             "zh-CN": "图书零售电商平台",
@@ -8746,7 +10631,12 @@
         {
           "id": "yhd-1774424534805-0-4",
           "name": {
-            "zh-CN": "一号店"
+            "zh-CN": "一号店",
+            "zh-TW": "一號店",
+            "en": "Yhd",
+            "ja": "一号店",
+            "ko": "이하오디엔",
+            "ru": "Yhd"
           },
           "description": {
             "zh-CN": "网上超市电商平台",
@@ -8768,7 +10658,12 @@
         {
           "id": "mi-1774424534805-0-5",
           "name": {
-            "zh-CN": "小米商城"
+            "zh-CN": "小米商城",
+            "zh-TW": "小米商城",
+            "en": "Mi Store",
+            "ja": "Miストア",
+            "ko": "샤오미 스토어",
+            "ru": "Mi Store"
           },
           "description": {
             "zh-CN": "小米官方商城",
@@ -8790,7 +10685,12 @@
         {
           "id": "honor-1774424534805-0-6",
           "name": {
-            "zh-CN": "荣耀商城"
+            "zh-CN": "荣耀商城",
+            "zh-TW": "榮耀商城",
+            "en": "Honor Store",
+            "ja": "Honorストア",
+            "ko": "Honor 스토어",
+            "ru": "Honor Store"
           },
           "description": {
             "zh-CN": "荣耀官方商城",
@@ -8812,7 +10712,12 @@
         {
           "id": "oppo-1774424534805-0-7",
           "name": {
-            "zh-CN": "OPPO商城"
+            "zh-CN": "OPPO商城",
+            "zh-TW": "OPPO商城",
+            "en": "OPPO Store",
+            "ja": "OPPOストア",
+            "ko": "OPPO 스토어",
+            "ru": "OPPO Store"
           },
           "description": {
             "zh-CN": "OPPO官方商城",
@@ -8834,7 +10739,12 @@
         {
           "id": "vivo-1774424534805-0-8",
           "name": {
-            "zh-CN": "vivo商城"
+            "zh-CN": "vivo商城",
+            "zh-TW": "vivo商城",
+            "en": "vivo Store",
+            "ja": "vivoストア",
+            "ko": "vivo 스토어",
+            "ru": "vivo Store"
           },
           "description": {
             "zh-CN": "vivo官方商城",
@@ -8856,7 +10766,12 @@
         {
           "id": "yanxuan-1774424534805-0-9",
           "name": {
-            "zh-CN": "网易严选"
+            "zh-CN": "网易严选",
+            "zh-TW": "網易嚴選",
+            "en": "Yanxuan",
+            "ja": "網易厳選",
+            "ko": "왕이 옌쉬엔",
+            "ru": "Yanxuan"
           },
           "description": {
             "zh-CN": "网易旗下品质生活电商平台",
@@ -8891,7 +10806,12 @@
         {
           "id": "google-translate",
           "name": {
-            "zh-CN": "Google 翻译"
+            "zh-CN": "Google 翻译",
+            "zh-TW": "Google 翻譯",
+            "en": "Google Translate",
+            "ja": "Google翻訳",
+            "ko": "Google 번역",
+            "ru": "Google Переводчик"
           },
           "description": {
             "zh-CN": "在线翻译工具",
@@ -8913,7 +10833,12 @@
         {
           "id": "deepl",
           "name": {
-            "zh-CN": "DeepL"
+            "zh-CN": "DeepL",
+            "zh-TW": "DeepL",
+            "en": "DeepL",
+            "ja": "DeepL",
+            "ko": "DeepL",
+            "ru": "DeepL"
           },
           "description": {
             "zh-CN": "AI 翻译工具",
@@ -8935,7 +10860,12 @@
         {
           "id": "wolframalpha",
           "name": {
-            "zh-CN": "WolframAlpha"
+            "zh-CN": "WolframAlpha",
+            "zh-TW": "WolframAlpha",
+            "en": "WolframAlpha",
+            "ja": "WolframAlpha",
+            "ko": "WolframAlpha",
+            "ru": "WolframAlpha"
           },
           "description": {
             "zh-CN": "计算知识引擎",
@@ -8957,7 +10887,12 @@
         {
           "id": "caniuse",
           "name": {
-            "zh-CN": "Can I Use"
+            "zh-CN": "Can I Use",
+            "zh-TW": "Can I Use",
+            "en": "Can I Use",
+            "ja": "Can I Use",
+            "ko": "Can I Use",
+            "ru": "Can I Use"
           },
           "description": {
             "zh-CN": "浏览器兼容性查询",
@@ -8980,7 +10915,12 @@
         {
           "id": "regex101",
           "name": {
-            "zh-CN": "regex101"
+            "zh-CN": "regex101",
+            "zh-TW": "regex101",
+            "en": "regex101",
+            "ja": "regex101",
+            "ko": "regex101",
+            "ru": "regex101"
           },
           "description": {
             "zh-CN": "正则表达式测试",
@@ -9029,7 +10969,12 @@
         {
           "id": "convertio",
           "name": {
-            "zh-CN": "Convertio"
+            "zh-CN": "Convertio",
+            "zh-TW": "Convertio",
+            "en": "Convertio",
+            "ja": "Convertio",
+            "ko": "Convertio",
+            "ru": "Convertio"
           },
           "description": {
             "zh-CN": "在线文件转换",
@@ -9051,7 +10996,12 @@
         {
           "id": "tinyurl",
           "name": {
-            "zh-CN": "TinyURL"
+            "zh-CN": "TinyURL",
+            "zh-TW": "TinyURL",
+            "en": "TinyURL",
+            "ja": "TinyURL",
+            "ko": "TinyURL",
+            "ru": "TinyURL"
           },
           "description": {
             "zh-CN": "短链接生成工具",
@@ -9074,7 +11024,12 @@
         {
           "id": "bitly",
           "name": {
-            "zh-CN": "Bitly"
+            "zh-CN": "Bitly",
+            "zh-TW": "Bitly",
+            "en": "Bitly",
+            "ja": "Bitly",
+            "ko": "Bitly",
+            "ru": "Bitly"
           },
           "description": {
             "zh-CN": "链接管理平台",
@@ -9096,7 +11051,12 @@
         {
           "id": "grammarly",
           "name": {
-            "zh-CN": "Grammarly"
+            "zh-CN": "Grammarly",
+            "zh-TW": "Grammarly",
+            "en": "Grammarly",
+            "ja": "Grammarly",
+            "ko": "Grammarly",
+            "ru": "Grammarly"
           },
           "description": {
             "zh-CN": "英语写作助手",
@@ -9118,7 +11078,12 @@
         {
           "id": "drawio",
           "name": {
-            "zh-CN": "draw.io"
+            "zh-CN": "draw.io",
+            "zh-TW": "draw.io",
+            "en": "draw.io",
+            "ja": "draw.io",
+            "ko": "draw.io",
+            "ru": "draw.io"
           },
           "description": {
             "zh-CN": "在线绘图工具",
@@ -9140,7 +11105,12 @@
         {
           "id": "excalidraw",
           "name": {
-            "zh-CN": "Excalidraw"
+            "zh-CN": "Excalidraw",
+            "zh-TW": "Excalidraw",
+            "en": "Excalidraw",
+            "ja": "Excalidraw",
+            "ko": "Excalidraw",
+            "ru": "Excalidraw"
           },
           "description": {
             "zh-CN": "手绘风格白板",
@@ -9162,7 +11132,12 @@
         {
           "id": "removebg",
           "name": {
-            "zh-CN": "Remove.bg"
+            "zh-CN": "Remove.bg",
+            "zh-TW": "Remove.bg",
+            "en": "Remove.bg",
+            "ja": "Remove.bg",
+            "ko": "Remove.bg",
+            "ru": "Remove.bg"
           },
           "description": {
             "zh-CN": "AI 抠图工具",
@@ -9185,7 +11160,12 @@
         {
           "id": "ilovepdf",
           "name": {
-            "zh-CN": "iLovePDF"
+            "zh-CN": "iLovePDF",
+            "zh-TW": "iLovePDF",
+            "en": "iLovePDF",
+            "ja": "iLovePDF",
+            "ko": "iLovePDF",
+            "ru": "iLovePDF"
           },
           "description": {
             "zh-CN": "PDF 在线工具",
@@ -9207,7 +11187,12 @@
         {
           "id": "smallpdf",
           "name": {
-            "zh-CN": "Smallpdf"
+            "zh-CN": "Smallpdf",
+            "zh-TW": "Smallpdf",
+            "en": "Smallpdf",
+            "ja": "Smallpdf",
+            "ko": "Smallpdf",
+            "ru": "Smallpdf"
           },
           "description": {
             "zh-CN": "PDF 处理工具",
@@ -9229,7 +11214,12 @@
         {
           "id": "speedtest",
           "name": {
-            "zh-CN": "Speedtest"
+            "zh-CN": "Speedtest",
+            "zh-TW": "Speedtest",
+            "en": "Speedtest",
+            "ja": "Speedtest",
+            "ko": "Speedtest",
+            "ru": "Speedtest"
           },
           "description": {
             "zh-CN": "网速测试工具",
@@ -9251,7 +11241,12 @@
         {
           "id": "whatsmyip",
           "name": {
-            "zh-CN": "WhatIsMyIP"
+            "zh-CN": "WhatIsMyIP",
+            "zh-TW": "WhatIsMyIP",
+            "en": "WhatIsMyIP",
+            "ja": "WhatIsMyIP",
+            "ko": "WhatIsMyIP",
+            "ru": "WhatIsMyIP"
           },
           "description": {
             "zh-CN": "IP 地址查询",
@@ -9273,7 +11268,12 @@
         {
           "id": "tinypng",
           "name": {
-            "zh-CN": "TinyPNG"
+            "zh-CN": "TinyPNG",
+            "zh-TW": "TinyPNG",
+            "en": "TinyPNG",
+            "ja": "TinyPNG",
+            "ko": "TinyPNG",
+            "ru": "TinyPNG"
           },
           "description": {
             "zh-CN": "图片压缩工具",
@@ -9295,7 +11295,12 @@
         {
           "id": "carbon",
           "name": {
-            "zh-CN": "Carbon"
+            "zh-CN": "Carbon",
+            "zh-TW": "Carbon",
+            "en": "Carbon",
+            "ja": "Carbon",
+            "ko": "Carbon",
+            "ru": "Carbon"
           },
           "description": {
             "zh-CN": "代码截图工具",
@@ -9317,7 +11322,12 @@
         {
           "id": "squoosh-1774425627072-0-0",
           "name": {
-            "zh-CN": "Squoosh"
+            "zh-CN": "Squoosh",
+            "zh-TW": "Squoosh",
+            "en": "Squoosh",
+            "ja": "Squoosh",
+            "ko": "Squoosh",
+            "ru": "Squoosh"
           },
           "description": {
             "zh-CN": "Google出品的图片压缩工具",
@@ -9339,7 +11349,12 @@
         {
           "id": "iloveimg-1774425627072-0-1",
           "name": {
-            "zh-CN": "iLoveIMG"
+            "zh-CN": "iLoveIMG",
+            "zh-TW": "iLoveIMG",
+            "en": "iLoveIMG",
+            "ja": "iLoveIMG",
+            "ko": "iLoveIMG",
+            "ru": "iLoveIMG"
           },
           "description": {
             "zh-CN": "图片在线处理工具",
@@ -9361,7 +11376,12 @@
         {
           "id": "photopea-1774425627072-0-2",
           "name": {
-            "zh-CN": "Photopea"
+            "zh-CN": "Photopea",
+            "zh-TW": "Photopea",
+            "en": "Photopea",
+            "ja": "Photopea",
+            "ko": "Photopea",
+            "ru": "Photopea"
           },
           "description": {
             "zh-CN": "在线PS替代工具",
@@ -9383,7 +11403,12 @@
         {
           "id": "toolfk-1774425627072-0-5",
           "name": {
-            "zh-CN": "在线工具"
+            "zh-CN": "在线工具",
+            "zh-TW": "線上工具",
+            "en": "Online Tools",
+            "ja": "オンラインツール",
+            "ko": "온라인 도구",
+            "ru": "Онлайн инструменты"
           },
           "description": {
             "zh-CN": "程序员在线工具箱",
@@ -9405,7 +11430,12 @@
         {
           "id": "bejson-1774425627072-0-6",
           "name": {
-            "zh-CN": "在线JSON工具"
+            "zh-CN": "在线JSON工具",
+            "zh-TW": "線上JSON工具",
+            "en": "Online JSON Tool",
+            "ja": "オンラインJSONツール",
+            "ko": "온라인 JSON 도구",
+            "ru": "Онлайн JSON"
           },
           "description": {
             "zh-CN": "JSON格式化、验证、压缩工具",
@@ -9427,7 +11457,12 @@
         {
           "id": "toolos-1774425627072-0-7",
           "name": {
-            "zh-CN": "在线工具大全"
+            "zh-CN": "在线工具大全",
+            "zh-TW": "線上工具大全",
+            "en": "Online Tool Collection",
+            "ja": "オンラインツール集",
+            "ko": "온라인 도구 모음",
+            "ru": "Коллекция онлайн инструментов"
           },
           "description": {
             "zh-CN": "综合在线工具平台",
@@ -9449,7 +11484,12 @@
         {
           "id": "cron-1774425627072-0-8",
           "name": {
-            "zh-CN": "Crontab生成器"
+            "zh-CN": "Crontab生成器",
+            "zh-TW": "Crontab生成器",
+            "en": "Crontab Generator",
+            "ja": "Crontabジェネレーター",
+            "ko": "Crontab 생성기",
+            "ru": "Crontab генератор"
           },
           "description": {
             "zh-CN": "Linux定时任务表达式生成",
@@ -9472,7 +11512,12 @@
         {
           "id": "timestamp-1774425627072-0-9",
           "name": {
-            "zh-CN": "时间戳转换"
+            "zh-CN": "时间戳转换",
+            "zh-TW": "時間戳轉換",
+            "en": "Timestamp Converter",
+            "ja": "タイムスタンプ変換",
+            "ko": "타임스탬프 변환",
+            "ru": "Конвертер timestamp"
           },
           "description": {
             "zh-CN": "Unix时间戳在线转换",
@@ -9494,7 +11539,12 @@
         {
           "id": "weather-1774425627072-0-10",
           "name": {
-            "zh-CN": "天气网"
+            "zh-CN": "天气网",
+            "zh-TW": "天氣網",
+            "en": "Weather CN",
+            "ja": "天気網",
+            "ko": "날씨망",
+            "ru": "Weather CN"
           },
           "description": {
             "zh-CN": "全球天气查询",
@@ -9516,7 +11566,12 @@
         {
           "id": "string-functions-1774425627072-0-12",
           "name": {
-            "zh-CN": "字符串工具"
+            "zh-CN": "字符串工具",
+            "zh-TW": "字符串工具",
+            "en": "String Tools",
+            "ja": "文字列ツール",
+            "ko": "문자열 도구",
+            "ru": "Строковые инструменты"
           },
           "description": {
             "zh-CN": "字符串处理在线工具",
@@ -9538,7 +11593,12 @@
         {
           "id": "md5-1774425627072-0-13",
           "name": {
-            "zh-CN": "MD5在线加密"
+            "zh-CN": "MD5在线加密",
+            "zh-TW": "MD5線上加密",
+            "en": "MD5 Online Encryption",
+            "ja": "MD5オンライン暗号化",
+            "ko": "MD5 온라인 암호화",
+            "ru": "MD5 онлайн шифрование"
           },
           "description": {
             "zh-CN": "MD5/SHA加密工具",
@@ -9560,7 +11620,12 @@
         {
           "id": "base64-1774425627072-0-14",
           "name": {
-            "zh-CN": "Base64编码"
+            "zh-CN": "Base64编码",
+            "zh-TW": "Base64編碼",
+            "en": "Base64 Encoding",
+            "ja": "Base64エンコード",
+            "ko": "Base64 인코딩",
+            "ru": "Base64 кодирование"
           },
           "description": {
             "zh-CN": "Base64编码解码工具",
@@ -9582,7 +11647,12 @@
         {
           "id": "qr-code-1774425627072-0-15",
           "name": {
-            "zh-CN": "二维码生成器"
+            "zh-CN": "二维码生成器",
+            "zh-TW": "二維碼生成器",
+            "en": "QR Code Generator",
+            "ja": "QRコード生成",
+            "ko": "QR코드 생성기",
+            "ru": "QR код генератор"
           },
           "description": {
             "zh-CN": "在线二维码生成工具",
@@ -9604,7 +11674,12 @@
         {
           "id": "unit-converter-1774425627072-0-16",
           "name": {
-            "zh-CN": "单位换算"
+            "zh-CN": "单位换算",
+            "zh-TW": "單位換算",
+            "en": "Unit Converter",
+            "ja": "単位変換",
+            "ko": "단위 변환",
+            "ru": "Конвертер единиц"
           },
           "description": {
             "zh-CN": "万能单位换算工具",
@@ -9626,7 +11701,12 @@
         {
           "id": "color-picker-1774425627072-0-17",
           "name": {
-            "zh-CN": "在线取色器"
+            "zh-CN": "在线取色器",
+            "zh-TW": "線上取色器",
+            "en": "Color Picker",
+            "ja": "カラーピッカー",
+            "ko": "컬러 피커",
+            "ru": "Цветовая палитра"
           },
           "description": {
             "zh-CN": "在线颜色选择工具",
@@ -9649,7 +11729,12 @@
         {
           "id": "font-converter-1774425627072-0-19",
           "name": {
-            "zh-CN": "字体转换器"
+            "zh-CN": "字体转换器",
+            "zh-TW": "字體轉換器",
+            "en": "Font Converter",
+            "ja": "フォントコンバーター",
+            "ko": "글꼴 변환기",
+            "ru": "Конвертер шрифтов"
           },
           "description": {
             "zh-CN": "在线字体格式转换",
