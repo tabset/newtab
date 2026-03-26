@@ -6,7 +6,7 @@
 
 [English](./README.md) · [简体中文](./README.zh-CN.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · Русский
 
-<img src="https://github.com/tabset/newtab/blob/main/public/screenshot/home.png" alt="Главный экран" />
+<img src="public/screenshot/home.png" alt="Главный экран" />
 
 </div>
 
@@ -16,12 +16,12 @@
 
 <table>
   <tr>
-    <td><img src="https://github.com/tabset/newtab/blob/main/public/screenshot/builtin.png" alt="Встроенные вкладки" /></td>
-    <td><img src="https://github.com/tabset/newtab/blob/main/public/screenshot/bookmark.png" alt="Менеджер закладок" /></td>
+    <td><img src="public/screenshot/builtin.png" alt="Встроенные вкладки" /></td>
+    <td><img src="public/screenshot/bookmark.png" alt="Менеджер закладок" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/tabset/newtab/blob/main/public/screenshot/background.png" alt="Настройки фона" /></td>
-    <td><img src="https://github.com/tabset/newtab/blob/main/public/screenshot/bookmark_new.png" alt="Новая закладка" /></td>
+    <td><img src="public/screenshot/background.png" alt="Настройки фона" /></td>
+    <td><img src="public/screenshot/bookmark_new.png" alt="Новая закладка" /></td>
   </tr>
 </table>
 
