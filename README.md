@@ -6,7 +6,7 @@
 
 简体中文 · [繁體中文](./README.zh-TW.md) · English · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Русский](./README.ru.md)
 
-<img src="public/screenshot/home.png" alt="Home" />
+<img src="public/screenshot/home.jpg" alt="Home" />
 
 </div>
 
@@ -16,12 +16,12 @@
 
 <table>
   <tr>
-    <td><img src="public/screenshot/builtin.png" alt="Built-in tabs" /></td>
-    <td><img src="public/screenshot/bookmark.png" alt="Bookmark manager" /></td>
+    <td><img src="public/screenshot/builtin.jpg" alt="Built-in tabs" /></td>
+    <td><img src="public/screenshot/bookmark.jpg" alt="Bookmark manager" /></td>
   </tr>
   <tr>
-    <td><img src="public/screenshot/background.png" alt="Background settings" /></td>
-    <td><img src="public/screenshot/bookmark_new.png" alt="New bookmark" /></td>
+    <td><img src="public/screenshot/background.jpg" alt="Background settings" /></td>
+    <td><img src="public/screenshot/bookmark_new.jpg" alt="New bookmark" /></td>
   </tr>
 </table>
 

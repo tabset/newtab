@@ -6,7 +6,7 @@
 
 [English](./README.md) · 简体中文 · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Русский](./README.ru.md)
 
-<img src="public/screenshot/home.png" alt="主界面" />
+<img src="public/screenshot/home.jpg" alt="主界面" />
 
 </div>
 
@@ -16,12 +16,12 @@
 
 <table>
   <tr>
-    <td><img src="public/screenshot/builtin.png" alt="内置标签" /></td>
-    <td><img src="public/screenshot/bookmark.png" alt="书签管理" /></td>
+    <td><img src="public/screenshot/builtin.jpg" alt="内置标签" /></td>
+    <td><img src="public/screenshot/bookmark.jpg" alt="书签管理" /></td>
   </tr>
   <tr>
-    <td><img src="public/screenshot/background.png" alt="背景设置" /></td>
-    <td><img src="public/screenshot/bookmark_new.png" alt="新建书签" /></td>
+    <td><img src="public/screenshot/background.jpg" alt="背景设置" /></td>
+    <td><img src="public/screenshot/bookmark_new.jpg" alt="新建书签" /></td>
   </tr>
 </table>
 

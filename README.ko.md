@@ -6,7 +6,7 @@
 
 [English](./README.md) · [简体中文](./README.zh-CN.md) · [繁體中文](./README.zh-TW.md) · [日本語](./README.ja.md) · 한국어 · [Русский](./README.ru.md)
 
-<img src="public/screenshot/home.png" alt="홈 화면" />
+<img src="public/screenshot/home.jpg" alt="홈 화면" />
 
 </div>
 
@@ -16,12 +16,12 @@
 
 <table>
   <tr>
-    <td><img src="public/screenshot/builtin.png" alt="기본 탭" /></td>
-    <td><img src="public/screenshot/bookmark.png" alt="북마크 관리" /></td>
+    <td><img src="public/screenshot/builtin.jpg" alt="기본 탭" /></td>
+    <td><img src="public/screenshot/bookmark.jpg" alt="북마크 관리" /></td>
   </tr>
   <tr>
-    <td><img src="public/screenshot/background.png" alt="배경 설정" /></td>
-    <td><img src="public/screenshot/bookmark_new.png" alt="새 북마크" /></td>
+    <td><img src="public/screenshot/background.jpg" alt="배경 설정" /></td>
+    <td><img src="public/screenshot/bookmark_new.jpg" alt="새 북마크" /></td>
   </tr>
 </table>
 

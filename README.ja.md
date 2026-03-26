@@ -6,7 +6,7 @@
 
 [English](./README.md) · [简体中文](./README.zh-CN.md) · [繁體中文](./README.zh-TW.md) · 日本語 · [한국어](./README.ko.md) · [Русский](./README.ru.md)
 
-<img src="public/screenshot/home.png" alt="ホーム画面" />
+<img src="public/screenshot/home.jpg" alt="ホーム画面" />
 
 </div>
 
@@ -16,12 +16,12 @@
 
 <table>
   <tr>
-    <td><img src="public/screenshot/builtin.png" alt="組み込みタブ" /></td>
-    <td><img src="public/screenshot/bookmark.png" alt="ブックマーク管理" /></td>
+    <td><img src="public/screenshot/builtin.jpg" alt="組み込みタブ" /></td>
+    <td><img src="public/screenshot/bookmark.jpg" alt="ブックマーク管理" /></td>
   </tr>
   <tr>
-    <td><img src="public/screenshot/background.png" alt="背景設定" /></td>
-    <td><img src="public/screenshot/bookmark_new.png" alt="新規ブックマーク" /></td>
+    <td><img src="public/screenshot/background.jpg" alt="背景設定" /></td>
+    <td><img src="public/screenshot/bookmark_new.jpg" alt="新規ブックマーク" /></td>
   </tr>
 </table>
 
