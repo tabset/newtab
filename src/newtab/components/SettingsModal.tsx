@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence, useDragControls } from 'framer-motion'
 import { Select } from 'antd'
-import { useDockConfig, DockPosition, BackgroundType, ImageSource, BookmarkLayoutConfig, DEFAULT_BOOKMARK_LAYOUT, BUILTIN_SEARCH_ENGINES, BookmarkDisplayStyle, BookmarkOpenMode } from '../store/dockConfig'
+import { useDockConfig, DockPosition, BackgroundType, ImageSource, BookmarkLayoutConfig, DEFAULT_BOOKMARK_LAYOUT, BUILTIN_SEARCH_ENGINES, BookmarkDisplayStyle, BookmarkOpenMode, DEFAULT_TIME_SLOTS } from '../store/dockConfig'
+import type { TimeSlot, BackgroundConfig } from '../store/dockConfig'
 import { useT, LANGUAGES } from '../i18n'
+import { BUILTIN_SHADERS, type ShaderEffect } from '../utils/builtinShaders'
 
 // ── Select 下拉样式注入 ──────────────────────────────────────
 ;(() => {
@@ -410,6 +412,8 @@ function BackgroundTypePicker({ value, onChange }: { value: BackgroundType; onCh
     { value: 'color', label: t('bg_color') },
     { value: 'gradient', label: t('bg_gradient') },
     { value: 'image', label: t('bg_image') },
+    { value: 'animated', label: t('bg_animated') },
+    { value: 'video', label: t('bg_video') },
   ]
 
   return (
@@ -742,6 +746,231 @@ function RandomDisplayRow({ value, onChange }: { value: RandomType; onChange: (v
         style={{ width: 130 }}
         popupClassName="sm-select-popup"
       />
+    </div>
+  )
+}
+
+const EFFECT_PREVIEW_COLORS: Record<string, string> = {
+  stars:         'radial-gradient(ellipse at center, #0a0a2e 0%, #000010 100%)',
+  particles:     'linear-gradient(135deg, #0d0d1a, #1a1a3a)',
+  aurora:        'linear-gradient(180deg, #0a0a1a 0%, #003322 50%, #001a0a 100%)',
+  waves:         'linear-gradient(180deg, #001a2e 0%, #003366 100%)',
+  rain:          'linear-gradient(180deg, #040608 0%, #0a1020 100%)',
+  snow:          'linear-gradient(180deg, #040610 0%, #0a1028 100%)',
+  matrix:        'linear-gradient(180deg, #000a00 0%, #001a00 100%)',
+  fireworks:     'radial-gradient(ellipse at center, #0a0010 0%, #000008 100%)',
+  nebula:        'linear-gradient(135deg, #0d0020 0%, #1a0030 50%, #000818 100%)',
+  lightning:     'linear-gradient(180deg, #050510 0%, #0a0a20 100%)',
+  dna:           'linear-gradient(180deg, #000d1a 0%, #001a2e 100%)',
+  galaxy:        'radial-gradient(ellipse at center, #08001a 0%, #020008 100%)',
+  lavalamp:      'linear-gradient(180deg, #0a0500 0%, #1a0a00 100%)',
+  geometricflow: 'linear-gradient(135deg, #000a18 0%, #001020 100%)',
+  neon:          'linear-gradient(135deg, #050010 0%, #0a0020 100%)',
+  fire:          'linear-gradient(180deg, #100200 0%, #200800 100%)',
+  ocean:         'linear-gradient(180deg, #001020 0%, #002040 100%)',
+  sakura:        'linear-gradient(180deg, #100008 0%, #1a000f 100%)',
+  bokeh:         'linear-gradient(135deg, #080010 0%, #100020 100%)',
+  constellation: 'radial-gradient(ellipse at center, #040410 0%, #000008 100%)',
+  portal:        'radial-gradient(ellipse at center, #08001a 0%, #000a10 100%)',
+  bubbles:       'linear-gradient(180deg, #000d1a 0%, #001828 100%)',
+  plasma:        'linear-gradient(135deg, #080018 0%, #001008 100%)',
+  grid3d:        'linear-gradient(180deg, #000810 0%, #001020 100%)',
+  aurora2:       'linear-gradient(180deg, #000a08 0%, #001a10 50%, #000a18 100%)',
+  glitch:        'linear-gradient(180deg, #050005 0%, #080008 100%)',
+  moonbagua:     'radial-gradient(ellipse at 60% 35%, #0d0820 0%, #020010 60%, #000008 100%)',
+  compassclock:  'radial-gradient(ellipse at center, #020212 0%, #000008 100%)',
+  binaryclock:   'linear-gradient(180deg, #000508 0%, #001008 100%)',
+  gearclock:     'linear-gradient(135deg, #050305 0%, #0a0508 100%)',
+  radarclock:    'radial-gradient(ellipse at center, #000402 0%, #000200 100%)',
+}
+
+const EFFECT_EMOJI: Record<string, string> = {
+  stars: '✨', particles: '🔵', aurora: '🌌', waves: '🌊', rain: '🌧️', snow: '❄️',
+  matrix: '💻', fireworks: '🎆', nebula: '🌠', lightning: '⚡', dna: '🧬', galaxy: '🌀',
+  lavalamp: '🫧', geometricflow: '🔷', neon: '💡', fire: '🔥', ocean: '🐚', sakura: '🌸',
+  bokeh: '🔆', constellation: '⭐', portal: '🔮', bubbles: '🫗', plasma: '🔬',
+  grid3d: '🔲', aurora2: '🎇', glitch: '📺', moonbagua: '☯',
+  compassclock: '🧭', binaryclock: '💾', gearclock: '⚙️', radarclock: '📡',
+}
+
+function AnimatedEffectPicker({
+  value,
+  onChange,
+  installedEffects,
+  onInstalledChange,
+}: {
+  value: string
+  onChange: (v: string) => void
+  installedEffects: ShaderEffect[]
+  onInstalledChange: (v: ShaderEffect[]) => void
+}) {
+  const t = useT()
+
+  const uninstallEffect = (effectId: string) => {
+    onInstalledChange(installedEffects.filter(e => e.id !== effectId))
+    if (value === effectId) onChange('stars')
+  }
+
+  const effectName = (e: ShaderEffect) =>
+    e.nameKey ? (t(e.nameKey as any) || e.nameKey) : (e.name || e.id)
+
+  return (
+    <div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginBottom: 12 }}>
+        {BUILTIN_SHADERS.map(effect => (
+          <div
+            key={effect.id}
+            onClick={() => onChange(effect.id)}
+            style={{
+              borderRadius: 8, height: 64, cursor: 'pointer',
+              background: EFFECT_PREVIEW_COLORS[effect.id] || '#0a0a1a',
+              border: value === effect.id ? '2px solid #007AFF' : '2px solid transparent',
+              display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+              paddingBottom: 6, fontSize: 11,
+              color: 'rgba(255,255,255,0.9)',
+              textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+              transition: 'border 0.15s',
+            }}
+          >
+            {EFFECT_EMOJI[effect.id] || '🎨'} {effectName(effect)}
+          </div>
+        ))}
+      </div>
+
+      {installedEffects.filter(e => !e.builtin).length > 0 && (
+        <div style={{ marginBottom: 12 }}>
+          <div style={{ fontSize: 11, color: '#86868b', marginBottom: 6 }}>{t('effect_installed')}</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+            {installedEffects.filter(e => !e.builtin).map(effect => (
+              <div key={effect.id} style={{ position: 'relative' }}>
+                <div
+                  onClick={() => onChange(effect.id)}
+                  style={{
+                    borderRadius: 8, height: 64, cursor: 'pointer',
+                    background: effect.preview ? `url(${effect.preview}) center/cover` : 'linear-gradient(135deg, #1a1a2e, #2a2a4e)',
+                    border: value === effect.id ? '2px solid #007AFF' : '2px solid transparent',
+                    display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+                    paddingBottom: 6, fontSize: 11,
+                    color: 'rgba(255,255,255,0.9)',
+                    textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+                    transition: 'border 0.15s',
+                  }}
+                >
+                  {effectName(effect)}
+                </div>
+                <div
+                  onClick={() => uninstallEffect(effect.id)}
+                  style={{
+                    position: 'absolute', top: 4, right: 4,
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: 'rgba(255,59,48,0.85)', cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 10, color: '#fff', fontWeight: 'bold',
+                  }}
+                >✕</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+    </div>
+  )
+}
+
+function VideoPicker({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const t = useT()
+  const [input, setInput] = useState(value)
+
+  return (
+    <div>
+      <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.5)', marginBottom: 6 }}>
+        {t('video_url_hint')}
+      </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <input
+          type="text"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onBlur={() => onChange(input)}
+          placeholder="https://example.com/video.mp4"
+          style={{
+            flex: 1, padding: '6px 10px', borderRadius: 8,
+            border: '1px solid rgba(0,0,0,0.15)', fontSize: 13, outline: 'none',
+          }}
+        />
+        <button
+          onClick={() => onChange(input)}
+          style={{
+            padding: '6px 14px', borderRadius: 8, border: 'none',
+            background: '#007AFF', color: '#fff', fontSize: 13, cursor: 'pointer',
+          }}
+        >
+          {t('btn_apply')}
+        </button>
+      </div>
+      {value && (
+        <div style={{ marginTop: 8, borderRadius: 8, overflow: 'hidden', height: 80 }}>
+          <video
+            src={value} muted autoPlay loop playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      )}
+    </div>
+  )
+}
+
+function TimeSchedulePicker({ value, onChange }: { value: TimeSlot[]; onChange: (v: TimeSlot[]) => void }) {
+  const t = useT()
+  const slotLabels: Record<string, string> = {
+    morning:   '🌅 ' + t('slot_morning')   + ' (6:00)',
+    afternoon: '☀️ ' + t('slot_afternoon') + ' (12:00)',
+    evening:   '🌇 ' + t('slot_evening')   + ' (18:00)',
+    night:     '🌙 ' + t('slot_night')     + ' (22:00)',
+  }
+
+  const updateSlot = (id: string, bg: Partial<BackgroundConfig>) => {
+    onChange(value.map(s => s.id === id ? { ...s, background: bg } : s))
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {value.map(slot => (
+        <div key={slot.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 10px', background: 'rgba(0,0,0,0.04)', borderRadius: 8 }}>
+          <span style={{ fontSize: 12, color: 'rgba(0,0,0,0.7)', flex: 1 }}>{slotLabels[slot.id]}</span>
+          <Select
+            value={slot.background.type || 'gradient'}
+            onChange={(type) => updateSlot(slot.id, { ...slot.background, type: type as BackgroundType })}
+            options={[
+              { value: 'color',    label: t('bg_color') },
+              { value: 'gradient', label: t('bg_gradient') },
+              { value: 'animated', label: t('bg_animated') },
+            ]}
+            size="small"
+            style={{ width: 90 }}
+            popupClassName="sm-select-popup"
+            getPopupContainer={() => document.body}
+          />
+          {slot.background.type === 'color' && (
+            <input
+              type="color"
+              value={slot.background.color || '#667eea'}
+              onChange={(e) => updateSlot(slot.id, { ...slot.background, color: e.target.value })}
+              style={{ marginLeft: 8, width: 32, height: 24, border: 'none', borderRadius: 4, cursor: 'pointer' }}
+            />
+          )}
+          {(slot.background.type === 'gradient' || !slot.background.type) && (
+            <div style={{
+              marginLeft: 8, width: 32, height: 24, borderRadius: 4,
+              background: slot.background.gradient || 'linear-gradient(135deg, #667eea, #764ba2)',
+            }} />
+          )}
+          {slot.background.type === 'animated' && (
+            <span style={{ marginLeft: 8, fontSize: 18 }}>✨</span>
+          )}
+        </div>
+      ))}
     </div>
   )
 }
@@ -3507,6 +3736,49 @@ export default function SettingsModal({ active, open, onClose, initialTab, sessi
                           </SettingsGroup>
                         )}
 
+                        {config.background.type === 'animated' && (
+                          <SettingsGroup label={t('bg_animated')}>
+                            <AnimatedEffectPicker
+                              value={config.background.animatedEffect || 'stars'}
+                              onChange={(v) => setConfig({ background: { ...config.background, animatedEffect: v } })}
+                              installedEffects={config.background.installedEffects || []}
+                              onInstalledChange={(v) => setConfig({ background: { ...config.background, installedEffects: v } })}
+                            />
+                            <div style={{ marginTop: 8 }}>
+                              <Slider
+                                label={t('label_anim_speed')}
+                                value={config.background.animatedSpeed ?? 3}
+                                min={1} max={5}
+                                leftLabel=""
+                                rightLabel=""
+                                unit=""
+                                showTicks
+                                hideValue
+                                valueLabels={[t('speed_1'), t('speed_2'), t('speed_3'), t('speed_4'), t('speed_5')]}
+                                onChange={(v) => setConfig({ background: { ...config.background, animatedSpeed: v } })}
+                              />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+                              <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.75)' }}>{t('label_anim_color')}</span>
+                              <input
+                                type="color"
+                                value={config.background.animatedColor || '#667eea'}
+                                onChange={(e) => setConfig({ background: { ...config.background, animatedColor: e.target.value } })}
+                                style={{ width: 40, height: 28, border: 'none', borderRadius: 6, cursor: 'pointer' }}
+                              />
+                            </div>
+                          </SettingsGroup>
+                        )}
+
+                        {config.background.type === 'video' && (
+                          <SettingsGroup label={t('bg_video')}>
+                            <VideoPicker
+                              value={config.background.videoUrl || ''}
+                              onChange={(v) => setConfig({ background: { ...config.background, videoUrl: v } })}
+                            />
+                          </SettingsGroup>
+                        )}
+
                         <SettingsGroup label={t('group_effects')}>
                           <Slider
                             label={t('label_blur')}
@@ -3535,6 +3807,23 @@ export default function SettingsModal({ active, open, onClose, initialTab, sessi
                             value={(config.background.randomType || 'none') as import('../store/dockConfig').RandomType}
                             onChange={(v) => setConfig({ background: { ...config.background, randomType: v } })}
                           />
+                        </SettingsGroup>
+
+                        <SettingsGroup label={t('group_time_schedule')}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                            <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.75)' }}>{t('label_time_schedule')}</span>
+                            <Toggle
+                              label=""
+                              checked={config.background.timeScheduleEnabled ?? false}
+                              onChange={(v) => setConfig({ background: { ...config.background, timeScheduleEnabled: v } })}
+                            />
+                          </div>
+                          {config.background.timeScheduleEnabled && (
+                            <TimeSchedulePicker
+                              value={config.background.timeSlots || DEFAULT_TIME_SLOTS}
+                              onChange={(v) => setConfig({ background: { ...config.background, timeSlots: v } })}
+                            />
+                          )}
                         </SettingsGroup>
                       </>
                     )}

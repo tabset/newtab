@@ -2,7 +2,8 @@ import { ConfigProvider } from 'antd'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Dock from './components/Dock'
-import { DockConfigProvider, useDockConfig } from './store/dockConfig'
+import { DockConfigProvider, useDockConfig, DEFAULT_TIME_SLOTS } from './store/dockConfig'
+import AnimatedBackground from './components/AnimatedBackground'
 import { loadImageWithCache } from './utils/imageCache'
 import { shouldRandomize, pickRandomBackground } from './utils/randomBackground'
 import SettingsModal from './components/SettingsModal'
@@ -109,6 +110,44 @@ function BackgroundLayer() {
       default:
         return { ...baseStyle, background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)' }
     }
+  }
+
+  // For animated type, render AnimatedBackground component
+  if (background.type === 'animated') {
+    return (
+      <AnimatedBackground
+        effectId={background.animatedEffect || 'stars'}
+        installedEffects={background.installedEffects}
+        color={background.animatedColor || '#667eea'}
+        speed={background.animatedSpeed || 3}
+        opacity={background.opacity}
+        blur={background.blur}
+      />
+    )
+  }
+
+  // For video type
+  if (background.type === 'video') {
+    return (
+      <video
+        key={background.videoUrl}
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          position: 'fixed',
+          top: 0, left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          opacity: background.opacity / 100,
+          filter: background.blur > 0 ? `blur(${background.blur}px)` : undefined,
+        }}
+        src={background.videoUrl}
+      />
+    )
   }
 
   return <div style={getBackgroundStyle()} />
@@ -303,6 +342,31 @@ function AppContent() {
       clearInterval(timer)
     }
   }, [tryRandomize])
+
+  // Time-based schedule
+  useEffect(() => {
+    if (!config.background.timeScheduleEnabled) return
+    const slots = config.background.timeSlots || DEFAULT_TIME_SLOTS
+
+    const applyTimeSlot = () => {
+      const hour = new Date().getHours()
+      const sorted = [...slots].sort((a, b) => a.startHour - b.startHour)
+      let active = sorted[sorted.length - 1]
+      for (const slot of sorted) {
+        if (hour >= slot.startHour) active = slot
+      }
+      if (!active) return
+      const bg = configRef.current.background
+      const merged = { ...bg, ...active.background }
+      if (JSON.stringify(merged) !== JSON.stringify(bg)) {
+        setConfig({ background: merged })
+      }
+    }
+
+    applyTimeSlot()
+    const timer = setInterval(applyTimeSlot, 60_000)
+    return () => clearInterval(timer)
+  }, [config.background.timeScheduleEnabled, config.background.timeSlots, setConfig])
 
   const openSettings = (tab = 'dock') => {
     setSettingsTab(tab)

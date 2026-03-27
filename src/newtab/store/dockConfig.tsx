@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import type { AppItem } from '../types'
 
 export type DockPosition = 'bottom' | 'top' | 'left' | 'right'
-export type BackgroundType = 'color' | 'gradient' | 'image'
+export type BackgroundType = 'color' | 'gradient' | 'image' | 'animated' | 'video'
 export type RandomType = 'none' | 'every5min' | 'every30min' | 'hourly' | 'daily' | 'monthly'
 
 export type BookmarkDisplayType = 'grid' | 'list'
@@ -91,6 +91,19 @@ export interface ImageSource {
   images: string[] // 缓存的图片 URL 列表
 }
 
+export interface TimeSlot {
+  id: 'morning' | 'afternoon' | 'evening' | 'night'
+  startHour: number
+  background: Partial<BackgroundConfig>
+}
+
+export const DEFAULT_TIME_SLOTS: TimeSlot[] = [
+  { id: 'morning',   startHour: 6,  background: { type: 'gradient', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' } },
+  { id: 'afternoon', startHour: 12, background: { type: 'gradient', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' } },
+  { id: 'evening',   startHour: 18, background: { type: 'gradient', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' } },
+  { id: 'night',     startHour: 22, background: { type: 'gradient', gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)' } },
+]
+
 export interface BackgroundConfig {
   type: BackgroundType
   color?: string
@@ -105,6 +118,18 @@ export interface BackgroundConfig {
   opacity: number
   randomType?: RandomType
   lastRandomAt?: number
+  // Animated effect
+  animatedEffect?: string
+  animatedColor?: string
+  animatedSpeed?: number
+  // Video background
+  videoUrl?: string
+  // Time-based schedule
+  timeScheduleEnabled?: boolean
+  timeSlots?: TimeSlot[]
+  // Community shader effects
+  installedEffects?: import('../utils/effectStore').ShaderEffect[]
+  effectStoreUrl?: string
 }
 
 export interface DockConfig {
