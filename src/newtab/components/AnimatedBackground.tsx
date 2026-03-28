@@ -9,20 +9,24 @@ interface Props {
   effectId: string
   installedEffects?: ShaderEffect[]
   color: string
+  bgColor: string
   speed: number
+  lang: string
   opacity: number
   blur: number
 }
 
-export default function AnimatedBackground({ effectId, installedEffects, color, speed, opacity, blur }: Props) {
+export default function AnimatedBackground({ effectId, installedEffects, color, bgColor, speed, lang, opacity, blur }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rendererRef = useRef<WebGLRenderer | null>(null)
   const stopCanvas2dRef = useRef<(() => void) | null>(null)
   // Canvas 2D opts 通过 ref 共享，draw() 每帧读取最新值，无需重建
-  const optsRef = useRef<EffectOptions>({ color, speed })
+  const optsRef = useRef<EffectOptions>({ color, bgColor, speed, lang })
 
   useEffect(() => { optsRef.current.color = color }, [color])
+  useEffect(() => { optsRef.current.bgColor = bgColor }, [bgColor])
   useEffect(() => { optsRef.current.speed = speed }, [speed])
+  useEffect(() => { optsRef.current.lang = lang }, [lang])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -38,7 +42,7 @@ export default function AnimatedBackground({ effectId, installedEffects, color, 
 
     // Canvas 2D 内置效果（或未找到时默认走 canvas2d）
     if (!effect || effect.type === 'canvas2d') {
-      optsRef.current = { color, speed }
+      optsRef.current = { color, bgColor, speed, lang }
       const stop = startEffect(canvas, effectId as EffectName, optsRef.current)
       stopCanvas2dRef.current = stop
       return () => { stop(); stopCanvas2dRef.current = null }
@@ -47,7 +51,7 @@ export default function AnimatedBackground({ effectId, installedEffects, color, 
     // WebGL GLSL 社区效果
     if (effect.type === 'glsl' && effect.shader) {
       try {
-        const renderer = new WebGLRenderer(canvas, effect.shader, { color, speed })
+        const renderer = new WebGLRenderer(canvas, effect.shader, { color, bgColor, speed })
         rendererRef.current = renderer
       } catch (err) {
         console.error('WebGL renderer error:', err)
@@ -58,8 +62,8 @@ export default function AnimatedBackground({ effectId, installedEffects, color, 
 
   // WebGL 动态更新
   useEffect(() => {
-    rendererRef.current?.setOptions({ color, speed })
-  }, [color, speed])
+    rendererRef.current?.setOptions({ color, bgColor, speed })
+  }, [color, bgColor, speed])
 
   return (
     <canvas

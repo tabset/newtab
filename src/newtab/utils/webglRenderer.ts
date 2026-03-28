@@ -1,5 +1,6 @@
 export interface RendererOptions {
   color: string   // hex color e.g. "#667eea"
+  bgColor: string // hex background color e.g. "#000000"
   speed: number   // 1-5
 }
 

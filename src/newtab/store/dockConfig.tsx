@@ -121,6 +121,7 @@ export interface BackgroundConfig {
   // Animated effect
   animatedEffect?: string
   animatedColor?: string
+  animatedBgColor?: string
   animatedSpeed?: number
   // Video background
   videoUrl?: string

@@ -119,7 +119,9 @@ function BackgroundLayer() {
         effectId={background.animatedEffect || 'stars'}
         installedEffects={background.installedEffects}
         color={background.animatedColor || '#667eea'}
+        bgColor={background.animatedBgColor || '#000000'}
         speed={background.animatedSpeed || 3}
+        lang={(config as any).language || 'zh-CN'}
         opacity={background.opacity}
         blur={background.blur}
       />

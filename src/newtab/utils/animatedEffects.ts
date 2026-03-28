@@ -1,14 +1,22 @@
 /** Canvas 2D 动态特效实现，每个效果返回 stop 函数 */
 
 export interface EffectOptions {
-  color: string   // hex e.g. "#667eea"
+  color: string   // hex e.g. "#667eea"  — 特效粒子主色
+  bgColor: string // hex e.g. "#000000"  — 特效背景色
   speed: number   // 1–5
+  lang: string    // app locale e.g. "zh-CN" — for locale-aware effects
 }
 
 function hexToRgb(hex: string): [number, number, number] {
   const c = hex.replace('#', '')
   const n = parseInt(c.length === 3 ? c.split('').map(x => x + x).join('') : c, 16)
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+}
+
+/** 返回背景填充色，alpha 控制拖尾残影深度 */
+function bgRgba(opts: EffectOptions, alpha: number): string {
+  const [r, g, b] = hexToRgb(opts.bgColor)
+  return `rgba(${r},${g},${b},${alpha})`
 }
 
 // ─── Stars ────────────────────────────────────────────────────────────────────
@@ -39,7 +47,7 @@ function runStars(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
     const spd = (opts.speed / 3) * 2.5
     const [r, g, b] = hexToRgb(opts.color)
 
-    ctx.fillStyle = 'rgba(0,0,10,0.25)'
+    ctx.fillStyle = bgRgba(opts, 0.25)
     ctx.fillRect(0, 0, W, H)
 
     const cx = W / 2, cy = H / 2
@@ -114,7 +122,7 @@ function runParticles(canvas: HTMLCanvasElement, opts: EffectOptions): () => voi
     const spd = opts.speed / 3
     const [r, g, b] = hexToRgb(opts.color)
 
-    ctx.fillStyle = 'rgba(5,5,20,0.2)'
+    ctx.fillStyle = bgRgba(opts, 0.2)
     ctx.fillRect(0, 0, W, H)
 
     // Move
@@ -180,7 +188,7 @@ function runAurora(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const draw = () => {
     t += 0.004 * (opts.speed / 3)
 
-    ctx.fillStyle = 'rgba(4,4,20,0.18)'
+    ctx.fillStyle = bgRgba(opts, 0.18)
     ctx.fillRect(0, 0, W, H)
 
     const [ur, ug, ub] = hexToRgb(opts.color)
@@ -246,10 +254,11 @@ function runWaves(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
     t += 0.012 * (opts.speed / 3)
     const [r, g, b] = hexToRgb(opts.color)
 
-    // Background
+    // Background — 基于 bgColor 做深色渐变
+    const [br, bgg, bb] = hexToRgb(opts.bgColor)
     const bgGrad = ctx.createLinearGradient(0, 0, 0, H)
-    bgGrad.addColorStop(0, `rgba(${Math.round(r*0.08)},${Math.round(g*0.08)},${Math.round(b*0.15)},1)`)
-    bgGrad.addColorStop(1, `rgba(${Math.round(r*0.15)},${Math.round(g*0.15)},${Math.round(b*0.25)},1)`)
+    bgGrad.addColorStop(0, `rgba(${Math.round(br*0.6)},${Math.round(bgg*0.6)},${Math.round(bb*0.6)},1)`)
+    bgGrad.addColorStop(1, `rgba(${Math.round(br*0.9)},${Math.round(bgg*0.9)},${Math.round(bb*0.9)},1)`)
     ctx.fillStyle = bgGrad
     ctx.fillRect(0, 0, W, H)
 
@@ -308,7 +317,7 @@ function runRain(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const draw = () => {
     const spd = opts.speed / 3
 
-    ctx.fillStyle = 'rgba(8,12,20,0.3)'
+    ctx.fillStyle = bgRgba(opts, 0.3)
     ctx.fillRect(0, 0, W, H)
 
     ctx.lineWidth = 1
@@ -366,7 +375,7 @@ function runSnow(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
     const spd = opts.speed / 3
     t += 0.016
 
-    ctx.fillStyle = 'rgba(8,10,24,0.25)'
+    ctx.fillStyle = bgRgba(opts, 0.25)
     ctx.fillRect(0, 0, W, H)
 
     for (const f of flakes) {
@@ -399,7 +408,6 @@ function runMatrix(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const cols: number[] = []
   const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEF0123456789@#$%'
   const fontSize = 14
-  const [r, g, b] = hexToRgb(opts.color)
 
   function resize() {
     const dpr = window.devicePixelRatio || 1
@@ -411,10 +419,12 @@ function runMatrix(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const speed = 0.2 + (opts.speed - 1) * 0.45
     const dpr = window.devicePixelRatio || 1
     const fs = fontSize * dpr
-    ctx.fillStyle = 'rgba(0,0,0,0.05)'
+    ctx.fillStyle = bgRgba(opts, 0.05)
     ctx.fillRect(0, 0, w, h)
     ctx.font = `${fs}px monospace`
     for (let i = 0; i < cols.length; i++) {
@@ -444,11 +454,15 @@ function runMatrix(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 function runFireworks(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0
-  interface Particle { x: number; y: number; vx: number; vy: number; alpha: number; color: string; size: number }
+  interface Particle {
+    x: number; y: number; vx: number; vy: number
+    alpha: number; color: string; size: number
+    gravity: number; decay: number; trail: [number, number][]
+  }
+  interface Rocket { x: number; y: number; vy: number; color: string; trail: [number, number][] }
   const particles: Particle[] = []
-  const rockets: { x: number; y: number; vy: number; color: string }[] = []
+  const rockets: Rocket[] = []
   let tick = 0
-  const [r, g, b] = hexToRgb(opts.color)
 
   function resize() {
     const dpr = window.devicePixelRatio || 1
@@ -456,52 +470,84 @@ function runFireworks(canvas: HTMLCanvasElement, opts: EffectOptions): () => voi
     h = canvas.height = canvas.offsetHeight * dpr
   }
 
-  function hsl(h: number) { return `hsl(${h},100%,70%)` }
+  function hsl(hue: number) { return `hsl(${hue},100%,65%)` }
 
   function explode(x: number, y: number, color: string) {
-    const count = 80 + Math.floor(Math.random() * 60)
+    const dpr = window.devicePixelRatio || 1
+    const count = 45 + Math.floor(Math.random() * 25)
     for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 * i) / count
-      const speed = 1.5 + Math.random() * 3
-      particles.push({ x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, alpha: 1, color, size: 2 + Math.random() * 2 })
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.2
+      const speed = (1.2 + Math.random() * 2.5) * dpr
+      particles.push({
+        x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+        alpha: 1, color, size: (1.2 + Math.random() * 1.8),
+        gravity: (0.04 + Math.random() * 0.04) * dpr,
+        decay: 0.012 + Math.random() * 0.010, trail: []
+      })
+    }
+    const sparkCount = 10 + Math.floor(Math.random() * 8)
+    for (let i = 0; i < sparkCount; i++) {
+      const angle = Math.random() * Math.PI * 2
+      const speed = (3 + Math.random() * 3) * dpr
+      particles.push({
+        x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+        alpha: 0.9, color: '#ffffff', size: 0.8 + Math.random() * 0.8,
+        gravity: (0.06 + Math.random() * 0.04) * dpr,
+        decay: 0.030 + Math.random() * 0.020, trail: []
+      })
     }
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
     const spd = 0.5 + (opts.speed - 1) * 0.5
     tick++
     const dpr = window.devicePixelRatio || 1
-    ctx.fillStyle = 'rgba(0,0,0,0.18)'
+    ctx.fillStyle = bgRgba(opts, 0.22)
     ctx.fillRect(0, 0, w, h)
 
-    if (tick % Math.round(60 / spd) === 0) {
+    const interval = Math.round(90 / spd)
+    if (tick % interval === 0 && rockets.length < 4) {
       const color = Math.random() < 0.3 ? `rgb(${r},${g},${b})` : hsl(Math.random() * 360)
-      rockets.push({ x: 0.2 * w + Math.random() * 0.6 * w, y: h, vy: -(8 + Math.random() * 6) * dpr, color })
+      rockets.push({ x: w * (0.15 + Math.random() * 0.7), y: h, vy: -(9 + Math.random() * 5) * dpr, color, trail: [] })
     }
 
     for (let i = rockets.length - 1; i >= 0; i--) {
       const rk = rockets[i]
+      rk.trail.push([rk.x, rk.y])
+      if (rk.trail.length > 12) rk.trail.shift()
       rk.y += rk.vy * spd
-      ctx.beginPath()
-      ctx.arc(rk.x, rk.y, 3 * dpr, 0, Math.PI * 2)
-      ctx.fillStyle = rk.color
-      ctx.fill()
-      if (rk.y < h * (0.15 + Math.random() * 0.35)) {
-        explode(rk.x, rk.y, rk.color)
-        rockets.splice(i, 1)
+      rk.vy += 0.12 * dpr * spd
+      for (let t = 0; t < rk.trail.length; t++) {
+        ctx.globalAlpha = (t / rk.trail.length) * 0.6
+        ctx.beginPath()
+        ctx.arc(rk.trail[t][0], rk.trail[t][1], (2 - t / rk.trail.length) * dpr, 0, Math.PI * 2)
+        ctx.fillStyle = rk.color; ctx.fill()
+      }
+      ctx.globalAlpha = 1
+      ctx.beginPath(); ctx.arc(rk.x, rk.y, 2.5 * dpr, 0, Math.PI * 2)
+      ctx.fillStyle = '#ffffff'; ctx.fill()
+      if (rk.y < h * (0.12 + Math.random() * 0.38) || rk.vy >= 0) {
+        explode(rk.x, rk.y, rk.color); rockets.splice(i, 1)
       }
     }
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i]
+      p.trail.push([p.x, p.y])
+      if (p.trail.length > 4) p.trail.shift()
       p.x += p.vx * spd; p.y += p.vy * spd
-      p.vy += 0.06 * dpr; p.alpha -= 0.015 * spd
+      p.vy += p.gravity * spd; p.vx *= 0.98
+      p.alpha -= p.decay * spd
       if (p.alpha <= 0) { particles.splice(i, 1); continue }
+      for (let t = 0; t < p.trail.length; t++) {
+        ctx.globalAlpha = p.alpha * (t / p.trail.length) * 0.4
+        ctx.beginPath(); ctx.arc(p.trail[t][0], p.trail[t][1], p.size * dpr * 0.5, 0, Math.PI * 2)
+        ctx.fillStyle = p.color; ctx.fill()
+      }
       ctx.globalAlpha = p.alpha
-      ctx.beginPath()
-      ctx.arc(p.x, p.y, p.size * dpr, 0, Math.PI * 2)
-      ctx.fillStyle = p.color
-      ctx.fill()
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size * dpr, 0, Math.PI * 2)
+      ctx.fillStyle = p.color; ctx.fill()
     }
     ctx.globalAlpha = 1
     raf = requestAnimationFrame(draw)
@@ -516,7 +562,6 @@ function runFireworks(canvas: HTMLCanvasElement, opts: EffectOptions): () => voi
 function runNebula(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
   const stars: { x: number; y: number; s: number; a: number }[] = []
 
   function resize() {
@@ -528,6 +573,8 @@ function runNebula(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.002 + (opts.speed - 1) * 0.002
     t += spd
     ctx.clearRect(0, 0, w, h)
@@ -566,7 +613,6 @@ function runNebula(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 function runLightning(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, tick = 0, flashTimer = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Bolt { pts: [number, number][]; alpha: number }
   const bolts: Bolt[] = []
 
@@ -588,9 +634,11 @@ function runLightning(canvas: HTMLCanvasElement, opts: EffectOptions): () => voi
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.5 + (opts.speed - 1) * 0.5
     tick++
-    ctx.fillStyle = 'rgba(0,0,0,0.25)'
+    ctx.fillStyle = bgRgba(opts, 0.25)
     ctx.fillRect(0, 0, w, h)
 
     const interval = Math.round(120 / spd)
@@ -633,7 +681,6 @@ function runLightning(canvas: HTMLCanvasElement, opts: EffectOptions): () => voi
 function runDna(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
 
   function resize() {
     const dpr = window.devicePixelRatio || 1
@@ -642,9 +689,11 @@ function runDna(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.01 + (opts.speed - 1) * 0.01
     t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.15)'
+    ctx.fillStyle = bgRgba(opts, 0.15)
     ctx.fillRect(0, 0, w, h)
 
     const cx = w / 2, amp = Math.min(w, h) * 0.18, freq = Math.PI * 2 / (h * 0.5)
@@ -696,7 +745,6 @@ function runDna(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 function runGalaxy(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Star { dist: number; angle: number; arm: number; size: number; bright: number }
   let stars: Star[] = []
 
@@ -720,9 +768,11 @@ function runGalaxy(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.0003 + (opts.speed - 1) * 0.0002
     t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.3)'
+    ctx.fillStyle = bgRgba(opts, 0.3)
     ctx.fillRect(0, 0, w, h)
 
     const cx = w / 2, cy = h / 2, maxR = Math.min(w, h) * 0.46
@@ -750,60 +800,10 @@ function runGalaxy(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   return () => { cancelAnimationFrame(raf); ro.disconnect() }
 }
 
-// ─── Lava Lamp ────────────────────────────────────────────────────────────────
-function runLavalamp(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
-  interface Blob { ox: number; oy: number; rx: number; ry: number; phase: number; speed: number; color: [number,number,number] }
-  let blobs: Blob[] = []
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-    blobs = []
-    const colors: [number,number,number][] = [[r,g,b],[Math.min(r+60,255),Math.min(b,255),Math.min(g+60,255)],[Math.min(g+60,255),Math.min(r,255),Math.min(b+80,255)]]
-    for (let i = 0; i < 8; i++) {
-      blobs.push({ ox: w * (0.2 + Math.random() * 0.6), oy: h * (0.1 + Math.random() * 0.8), rx: Math.min(w,h) * (0.08 + Math.random() * 0.12), ry: Math.min(w,h) * (0.06 + Math.random() * 0.1), phase: Math.random() * Math.PI * 2, speed: 0.3 + Math.random() * 0.7, color: colors[i % 3] })
-    }
-  }
-
-  function draw() {
-    const spd = 0.008 + (opts.speed - 1) * 0.008
-    t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.12)'
-    ctx.fillRect(0, 0, w, h)
-
-    for (const bl of blobs) {
-      const x = bl.ox + Math.sin(t * bl.speed + bl.phase) * w * 0.15
-      const y = bl.oy + Math.cos(t * bl.speed * 0.7 + bl.phase) * h * 0.3
-      const rx = bl.rx * (0.85 + 0.15 * Math.sin(t * 2 + bl.phase))
-      const ry = bl.ry * (0.85 + 0.15 * Math.cos(t * 1.7 + bl.phase))
-      const grd = ctx.createRadialGradient(x, y, 0, x, y, Math.max(rx, ry))
-      const [cr, cg, cb] = bl.color
-      grd.addColorStop(0, `rgba(${cr},${cg},${cb},0.9)`)
-      grd.addColorStop(0.5, `rgba(${cr},${cg},${cb},0.5)`)
-      grd.addColorStop(1, `rgba(${cr},${cg},${cb},0)`)
-      ctx.save()
-      ctx.translate(x, y); ctx.scale(1, ry / rx)
-      ctx.beginPath(); ctx.arc(0, 0, rx, 0, Math.PI * 2)
-      ctx.fillStyle = grd; ctx.fill()
-      ctx.restore()
-    }
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
 // ─── Geometric Flow ───────────────────────────────────────────────────────────
 function runGeometricflow(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Shape { x: number; y: number; sides: number; size: number; angle: number; vx: number; vy: number; va: number; hue: number }
   let shapes: Shape[] = []
 
@@ -827,9 +827,11 @@ function runGeometricflow(canvas: HTMLCanvasElement, opts: EffectOptions): () =>
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.2 + (opts.speed - 1) * 0.4
     t += 0.005 * spd
-    ctx.fillStyle = 'rgba(0,0,0,0.12)'
+    ctx.fillStyle = bgRgba(opts, 0.12)
     ctx.fillRect(0, 0, w, h)
 
     for (const s of shapes) {
@@ -861,7 +863,6 @@ function runGeometricflow(canvas: HTMLCanvasElement, opts: EffectOptions): () =>
 function runNeon(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
 
   function resize() {
     const dpr = window.devicePixelRatio || 1
@@ -870,9 +871,11 @@ function runNeon(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.005 + (opts.speed - 1) * 0.008
     t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.2)'
+    ctx.fillStyle = bgRgba(opts, 0.2)
     ctx.fillRect(0, 0, w, h)
 
     const cx = w / 2 + Math.sin(t * 0.3) * w * 0.05
@@ -915,66 +918,10 @@ function runNeon(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   return () => { cancelAnimationFrame(raf); ro.disconnect() }
 }
 
-// ─── Fire ─────────────────────────────────────────────────────────────────────
-function runFire(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0
-  const [r, g, b] = hexToRgb(opts.color)
-  interface Ember { x: number; y: number; vx: number; vy: number; life: number; maxLife: number; size: number }
-  let embers: Ember[] = []
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const spd = 0.5 + (opts.speed - 1) * 0.5
-    ctx.fillStyle = 'rgba(0,0,0,0.15)'
-    ctx.fillRect(0, 0, w, h)
-
-    const spawn = Math.round(4 * spd)
-    for (let i = 0; i < spawn; i++) {
-      const life = 60 + Math.random() * 80
-      embers.push({ x: w * (0.3 + Math.random() * 0.4), y: h * 0.95, vx: (Math.random() - 0.5) * 2, vy: -(2 + Math.random() * 4) * spd, life, maxLife: life, size: (4 + Math.random() * 8) })
-    }
-
-    for (let i = embers.length - 1; i >= 0; i--) {
-      const e = embers[i]
-      e.x += e.vx; e.y += e.vy
-      e.vx += (Math.random() - 0.5) * 0.3
-      e.life -= spd
-      if (e.life <= 0) { embers.splice(i, 1); continue }
-
-      const progress = e.life / e.maxLife
-      const cr = Math.min(255, r + Math.round((255 - r) * progress))
-      const cg = Math.min(255, Math.round(g * (1 - progress) + 180 * progress))
-      const cb = Math.min(255, Math.round(b * (1 - progress)))
-      const alpha = progress * 0.9
-
-      const grd = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, e.size * progress + 2)
-      grd.addColorStop(0, `rgba(255,255,200,${alpha})`)
-      grd.addColorStop(0.3, `rgba(${cr},${cg},${cb},${alpha * 0.8})`)
-      grd.addColorStop(1, `rgba(${r},0,0,0)`)
-      ctx.fillStyle = grd
-      ctx.beginPath()
-      ctx.arc(e.x, e.y, e.size * progress + 2, 0, Math.PI * 2)
-      ctx.fill()
-    }
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
 // ─── Ocean ────────────────────────────────────────────────────────────────────
 function runOcean(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
 
   function resize() {
     const dpr = window.devicePixelRatio || 1
@@ -994,6 +941,8 @@ function runOcean(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.01 + (opts.speed - 1) * 0.01
     t += spd
     ctx.clearRect(0, 0, w, h)
@@ -1030,7 +979,6 @@ function runOcean(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 function runSakura(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Petal { x: number; y: number; vx: number; vy: number; angle: number; va: number; size: number; alpha: number; swing: number; phase: number }
   let petals: Petal[] = []
 
@@ -1048,6 +996,7 @@ function runSakura(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function drawPetal(x: number, y: number, size: number, angle: number, alpha: number) {
+    const [r, g, b] = hexToRgb(opts.color)
     ctx.save(); ctx.translate(x, y); ctx.rotate(angle); ctx.globalAlpha = alpha
     const pr = Math.min(r + 80, 255), pg = Math.min(g + 60, 255), pb = Math.min(b + 80, 255)
     ctx.fillStyle = `rgb(${pr},${pg},${pb})`
@@ -1087,7 +1036,6 @@ function runSakura(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 function runBokeh(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Circle { x: number; y: number; vy: number; size: number; alpha: number; color: [number,number,number] }
   let circles: Circle[] = []
 
@@ -1100,6 +1048,8 @@ function runBokeh(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   }
 
   function spawnCircle(initial = false) {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const dpr = window.devicePixelRatio || 1
     const colors: [number,number,number][] = [[r,g,b],[Math.min(r+60,255),Math.min(g+20,255),Math.min(b+100,255)],[Math.min(r+100,255),Math.min(g+100,255),Math.min(b+50,255)]]
     circles.push({ x: Math.random() * w, y: initial ? Math.random() * h : h + 50, vy: -(0.3 + Math.random() * 0.8), size: (20 + Math.random() * 80) * dpr, alpha: 0.05 + Math.random() * 0.2, color: colors[Math.floor(Math.random() * 3)] })
@@ -1107,7 +1057,7 @@ function runBokeh(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 
   function draw() {
     const spd = 0.3 + (opts.speed - 1) * 0.3
-    ctx.fillStyle = 'rgba(0,0,0,0.08)'
+    ctx.fillStyle = bgRgba(opts, 0.08)
     ctx.fillRect(0, 0, w, h)
 
     for (let i = circles.length - 1; i >= 0; i--) {
@@ -1141,7 +1091,6 @@ function runBokeh(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
 function runConstellation(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Star { x: number; y: number; vx: number; vy: number; size: number }
   let stars: Star[] = []
 
@@ -1156,9 +1105,11 @@ function runConstellation(canvas: HTMLCanvasElement, opts: EffectOptions): () =>
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.2 + (opts.speed - 1) * 0.3
     t += 0.01 * spd
-    ctx.fillStyle = 'rgba(0,0,0,0.2)'
+    ctx.fillStyle = bgRgba(opts, 0.2)
     ctx.fillRect(0, 0, w, h)
 
     const maxDist = Math.min(w, h) * 0.18
@@ -1194,73 +1145,9 @@ function runConstellation(canvas: HTMLCanvasElement, opts: EffectOptions): () =>
 }
 
 // ─── Portal ───────────────────────────────────────────────────────────────────
-function runPortal(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
-  interface Ring { radius: number; speed: number; width: number; alpha: number }
-  const rings: Ring[] = []
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const spd = 0.01 + (opts.speed - 1) * 0.015
-    t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.15)'
-    ctx.fillRect(0, 0, w, h)
-
-    const cx = w / 2, cy = h / 2
-    const maxR = Math.min(w, h) * 0.42
-
-    // spawn rings periodically
-    if (Math.random() < 0.05) rings.push({ radius: 0, speed: 1 + Math.random() * 2, width: 1 + Math.random() * 3, alpha: 0.8 })
-    for (let i = rings.length - 1; i >= 0; i--) {
-      const ring = rings[i]
-      ring.radius += ring.speed * (0.5 + opts.speed * 0.3)
-      ring.alpha -= 0.008
-      if (ring.alpha <= 0 || ring.radius > maxR * 1.2) { rings.splice(i, 1); continue }
-      ctx.beginPath(); ctx.arc(cx, cy, ring.radius, 0, Math.PI * 2)
-      ctx.strokeStyle = `rgba(${r},${g},${b},${ring.alpha})`
-      ctx.lineWidth = ring.width; ctx.stroke()
-    }
-
-    // vortex arms
-    const arms = 6
-    for (let a = 0; a < arms; a++) {
-      ctx.beginPath()
-      for (let i = 0; i < 100; i++) {
-        const angle = (a / arms) * Math.PI * 2 + t + i * 0.08
-        const radius = (i / 100) * maxR
-        const x = cx + radius * Math.cos(angle), y = cy + radius * Math.sin(angle)
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)
-      }
-      const hue = (t * 40 + a * 60) % 360
-      ctx.strokeStyle = `hsla(${hue},100%,70%,0.25)`; ctx.lineWidth = 1.5; ctx.stroke()
-    }
-
-    // core glow
-    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR * 0.3)
-    grd.addColorStop(0, `rgba(${r},${g},${b},0.6)`)
-    grd.addColorStop(0.4, `rgba(${r},${g},${b},0.15)`)
-    grd.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = grd; ctx.beginPath(); ctx.arc(cx, cy, maxR * 0.3, 0, Math.PI * 2); ctx.fill()
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Bubbles ──────────────────────────────────────────────────────────────────
 function runBubbles(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
   let w = 0, h = 0, raf = 0
-  const [r, g, b] = hexToRgb(opts.color)
   interface Bubble { x: number; y: number; vy: number; size: number; phase: number; wobble: number }
   let bubbles: Bubble[] = []
 
@@ -1278,8 +1165,10 @@ function runBubbles(canvas: HTMLCanvasElement, opts: EffectOptions): () => void 
   }
 
   function draw() {
+    const [r, g, b] = hexToRgb(opts.color)
+
     const spd = 0.4 + (opts.speed - 1) * 0.4
-    ctx.fillStyle = 'rgba(0,0,0,0.1)'
+    ctx.fillStyle = bgRgba(opts, 0.1)
     ctx.fillRect(0, 0, w, h)
 
     for (let i = bubbles.length - 1; i >= 0; i--) {
@@ -1309,956 +1198,249 @@ function runBubbles(canvas: HTMLCanvasElement, opts: EffectOptions): () => void 
   return () => { cancelAnimationFrame(raf); ro.disconnect() }
 }
 
-// ─── Plasma ───────────────────────────────────────────────────────────────────
-function runPlasma(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const spd = 0.008 + (opts.speed - 1) * 0.01
-    t += spd
-    // Low-res plasma on offscreen, then scale up
-    const scale = 4
-    const pw = Math.ceil(w / scale), ph = Math.ceil(h / scale)
-    const img = ctx.createImageData(pw, ph)
-
-    for (let y = 0; y < ph; y++) {
-      for (let x = 0; x < pw; x++) {
-        const v = Math.sin(x * 0.08 + t) + Math.sin(y * 0.07 + t * 1.1) + Math.sin((x + y) * 0.05 + t * 0.9) + Math.sin(Math.sqrt(x * x + y * y) * 0.1 - t)
-        const n = (v + 4) / 8
-        const cr = Math.floor(r * 0.3 + (Math.min(r + 100, 255)) * 0.7 * Math.abs(Math.sin(n * Math.PI)))
-        const cg = Math.floor(g * 0.3 + (Math.min(g + 100, 255)) * 0.7 * Math.abs(Math.sin(n * Math.PI + 2.1)))
-        const cb2 = Math.floor(b * 0.3 + (Math.min(b + 150, 255)) * 0.7 * Math.abs(Math.sin(n * Math.PI + 4.2)))
-        const idx = (y * pw + x) * 4
-        img.data[idx] = cr; img.data[idx+1] = cg; img.data[idx+2] = cb2; img.data[idx+3] = 255
-      }
-    }
-
-    const tmp = document.createElement('canvas')
-    tmp.width = pw; tmp.height = ph
-    tmp.getContext('2d')!.putImageData(img, 0, 0)
-    ctx.imageSmoothingEnabled = true
-    ctx.drawImage(tmp, 0, 0, w, h)
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── 3D Grid ──────────────────────────────────────────────────────────────────
-function runGrid3d(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function project(x: number, y: number, z: number): [number, number, number] {
-    const fov = h * 0.8
-    const pz = z + fov
-    const px = (x / pz) * fov + w / 2
-    const py = (y / pz) * fov + h / 2
-    return [px, py, pz]
-  }
-
-  function draw() {
-    const spd = 0.4 + (opts.speed - 1) * 0.8
-    t = (t + spd) % 100
-    ctx.fillStyle = 'rgba(0,0,0,0.3)'
-    ctx.fillRect(0, 0, w, h)
-
-    const gridSize = 200, cols = 10, depth = 600
-    const offset = t % gridSize
-
-    // horizontal lines
-    for (let row = -2; row <= 6; row++) {
-      const y3d = (row - 2) * gridSize
-      const z0 = -offset, z1 = -offset + depth
-      const [x0, y0] = project(-cols * gridSize / 2, y3d, z0)
-      const [x1, y1] = project(cols * gridSize / 2, y3d, z0)
-      const [x2, y2] = project(cols * gridSize / 2, y3d, z1)
-      const [x3, y3] = project(-cols * gridSize / 2, y3d, z1)
-      const alpha = 0.15 + 0.5 * (1 - (row + 2) / 8)
-      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1)
-      ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`; ctx.lineWidth = 1; ctx.stroke()
-      void [x2, y2, x3, y3]
-    }
-
-    // vertical lines
-    for (let col = -cols / 2; col <= cols / 2; col++) {
-      const x3d = col * gridSize
-      const z0 = -offset, z1 = -offset + depth
-      const [x0, y0] = project(x3d, -gridSize * 2, z0)
-      const [x1, y1] = project(x3d, gridSize * 4, z0)
-      const [x2, y2] = project(x3d, -gridSize * 2, z1)
-      const [x3, y3] = project(x3d, gridSize * 4, z1)
-      void [x0, y0, x1, y1]
-      ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x3, y3)
-      ctx.strokeStyle = `rgba(${r},${g},${b},0.25)`; ctx.lineWidth = 1; ctx.stroke()
-    }
-
-    // horizon glow
-    const grd = ctx.createLinearGradient(0, h * 0.4, 0, h * 0.6)
-    grd.addColorStop(0, 'rgba(0,0,0,0)')
-    grd.addColorStop(0.5, `rgba(${r},${g},${b},0.08)`)
-    grd.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = grd; ctx.fillRect(0, 0, w, h)
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Aurora 2 (Northern Lights) ───────────────────────────────────────────────
-function runAurora2(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const spd = 0.003 + (opts.speed - 1) * 0.003
-    t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.12)'
-    ctx.fillRect(0, 0, w, h)
-
-    const bandCount = 5
-    for (let band = 0; band < bandCount; band++) {
-      const yBase = h * (0.1 + band * 0.12 + 0.05 * Math.sin(t * 0.7 + band * 2.1))
-      const bandH = h * (0.06 + 0.04 * Math.sin(t + band))
-      const phase = band * 1.2
-
-      const grad = ctx.createLinearGradient(0, yBase, 0, yBase + bandH * 4)
-      const hue = (180 + band * 30 + t * 20) % 360
-      const cr = band % 2 === 0 ? r : Math.min(r + 60, 255)
-      const cg = band % 2 === 0 ? Math.min(g + 100, 255) : g
-      const cb2 = band % 2 === 0 ? b : Math.min(b + 80, 255)
-      void hue
-      grad.addColorStop(0, `rgba(${cr},${cg},${cb2},0)`)
-      grad.addColorStop(0.15, `rgba(${cr},${cg},${cb2},0.5)`)
-      grad.addColorStop(0.5, `rgba(${cr},${cg},${cb2},0.15)`)
-      grad.addColorStop(1, `rgba(${cr},${cg},${cb2},0)`)
-
-      ctx.beginPath()
-      ctx.moveTo(0, yBase)
-      const segs = 60
-      for (let i = 0; i <= segs; i++) {
-        const x = (i / segs) * w
-        const y = yBase + bandH * Math.sin(i * 0.15 + t * 1.5 + phase) * Math.sin(i * 0.07 + t * 0.8)
-        ctx.lineTo(x, y)
-      }
-      ctx.lineTo(w, yBase + bandH * 5)
-      ctx.lineTo(0, yBase + bandH * 5)
-      ctx.closePath()
-      ctx.fillStyle = grad
-      ctx.fill()
-    }
-
-    // stars
-    ctx.fillStyle = 'rgba(255,255,255,0.6)'
-    for (let i = 0; i < 80; i++) {
-      const sx = (Math.sin(i * 137.5) * 0.5 + 0.5) * w
-      const sy = (Math.cos(i * 97.3) * 0.5 + 0.5) * h * 0.45
-      const sa = 0.3 + 0.7 * Math.abs(Math.sin(t * 2 + i))
-      ctx.globalAlpha = sa
-      ctx.beginPath(); ctx.arc(sx, sy, 1.5, 0, Math.PI * 2); ctx.fill()
-    }
-    ctx.globalAlpha = 1
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Glitch ───────────────────────────────────────────────────────────────────
-function runGlitch(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0, t = 0
-  const [r, g, b] = hexToRgb(opts.color)
-  let glitchTimer = 0
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const spd = 0.5 + (opts.speed - 1) * 0.6
-    t += spd
-    ctx.fillStyle = 'rgba(0,0,0,0.25)'
-    ctx.fillRect(0, 0, w, h)
-
-    // base scanlines
-    for (let y = 0; y < h; y += 4) {
-      const alpha = 0.02 + 0.01 * Math.sin(t * 0.3 + y * 0.05)
-      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`
-      ctx.fillRect(0, y, w, 2)
-    }
-
-    // glitch trigger
-    if (Math.random() < 0.03 * spd) glitchTimer = 5 + Math.random() * 10
-
-    if (glitchTimer > 0) {
-      glitchTimer -= spd
-      const slices = 5 + Math.floor(Math.random() * 10)
-      for (let s = 0; s < slices; s++) {
-        const sy = Math.random() * h
-        const sh = Math.random() * h * 0.1
-        const shift = (Math.random() - 0.5) * w * 0.08
-
-        // RGB shift
-        const imgData = ctx.getImageData(0, sy, w, sh)
-        ctx.putImageData(imgData, shift, sy)
-
-        // color bars
-        if (Math.random() < 0.4) {
-          ctx.fillStyle = `rgba(${r},0,0,0.15)`
-          ctx.fillRect(shift - 3, sy, w, sh)
-          ctx.fillStyle = `rgba(0,${g},0,0.15)`
-          ctx.fillRect(shift + 3, sy, w, sh)
-          ctx.fillStyle = `rgba(0,0,${b},0.15)`
-          ctx.fillRect(shift, sy, w, sh)
-        }
-      }
-    }
-
-    // digital noise blocks
-    const blocks = 3 + Math.floor(Math.random() * 4)
-    for (let i = 0; i < blocks; i++) {
-      const bx = Math.random() * w, by = Math.random() * h
-      const bw = 20 + Math.random() * 100, bh = 2 + Math.random() * 8
-      const alpha = 0.03 + Math.random() * 0.06
-      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`
-      ctx.fillRect(bx, by, bw, bh)
-    }
-
-    // horizontal lines flicker
-    if (Math.random() < 0.1) {
-      const fy = Math.random() * h
-      ctx.fillStyle = `rgba(${Math.min(r+100,255)},${Math.min(g+100,255)},255,0.5)`
-      ctx.fillRect(0, fy, w, 1)
-    }
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Moon Bagua Clock ─────────────────────────────────────────────────────────
-function runMoonBagua(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0
-
-  // 后天八卦 (Post-Heaven Bagua), clockwise from North
-  const BAGUA = [
-    { sym: '☵', name: '坎', angle: 0 },
-    { sym: '☶', name: '艮', angle: Math.PI / 4 },
-    { sym: '☳', name: '震', angle: Math.PI / 2 },
-    { sym: '☴', name: '巽', angle: 3 * Math.PI / 4 },
-    { sym: '☲', name: '离', angle: Math.PI },
-    { sym: '☷', name: '坤', angle: 5 * Math.PI / 4 },
-    { sym: '☱', name: '兑', angle: 3 * Math.PI / 2 },
-    { sym: '☰', name: '乾', angle: 7 * Math.PI / 4 },
-  ]
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function drawHand(cx: number, cy: number, angle: number, length: number, width: number, color: string, glowColor?: string) {
-    if (glowColor) { ctx.save(); ctx.shadowColor = glowColor; ctx.shadowBlur = 8 }
-    ctx.beginPath()
-    ctx.moveTo(cx - Math.cos(angle) * length * 0.15, cy - Math.sin(angle) * length * 0.15)
-    ctx.lineTo(cx + Math.cos(angle) * length, cy + Math.sin(angle) * length)
-    ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round'; ctx.stroke()
-    if (glowColor) ctx.restore()
-  }
-
-  function draw() {
-    const now = new Date()
-    const hours = now.getHours()
-    const minutes = now.getMinutes()
-    const seconds = now.getSeconds()
-    const ms = now.getMilliseconds()
-
-    const cx = w / 2, cy = h / 2
-    const size = Math.min(w, h)
-    const outerR = size * 0.43   // outermost decorative ring
-    const innerR = size * 0.33   // inner ring / bagua track
-    const baguaR = size * 0.285  // trigram symbol radius
-    const clockR = size * 0.19   // clock face radius
-
-    const [r, g, b] = hexToRgb(opts.color)
-
-    // Background
-    ctx.fillStyle = 'rgba(0,0,0,1)'
-    ctx.fillRect(0, 0, w, h)
-
-    // Ambient glow behind the whole diagram
-    const ambient = ctx.createRadialGradient(cx, cy, 0, cx, cy, outerR * 1.1)
-    ambient.addColorStop(0, `rgba(${r},${g},${b},0.07)`)
-    ambient.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = ambient
-    ctx.beginPath(); ctx.arc(cx, cy, outerR * 1.1, 0, Math.PI * 2); ctx.fill()
-
-    // Outer ring (solid)
-    ctx.beginPath(); ctx.arc(cx, cy, outerR, 0, Math.PI * 2)
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.35)`; ctx.lineWidth = 1.5; ctx.stroke()
-
-    // Spokes from outer ring to inner ring at each trigram position
-    for (let i = 0; i < 8; i++) {
-      const a = BAGUA[i].angle - Math.PI / 2
-      ctx.beginPath()
-      ctx.moveTo(cx + Math.cos(a) * innerR, cy + Math.sin(a) * innerR)
-      ctx.lineTo(cx + Math.cos(a) * outerR, cy + Math.sin(a) * outerR)
-      ctx.strokeStyle = `rgba(${r},${g},${b},0.18)`; ctx.lineWidth = 1; ctx.stroke()
-    }
-
-    // Inner dashed ring
-    ctx.save()
-    ctx.beginPath(); ctx.arc(cx, cy, innerR, 0, Math.PI * 2)
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.25)`; ctx.lineWidth = 1
-    ctx.setLineDash([4, 6]); ctx.stroke(); ctx.setLineDash([])
-    ctx.restore()
-
-    // Active trigram: each of the 8 three-hour periods (子丑寅卯...)
-    const hourSegment = Math.floor((hours % 24) / 3)
-
-    // 8 trigrams
-    const bFontSize = size * 0.05
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-
-    for (let i = 0; i < BAGUA.length; i++) {
-      const bg = BAGUA[i]
-      const angle = bg.angle - Math.PI / 2
-      const bx = cx + Math.cos(angle) * baguaR
-      const by = cy + Math.sin(angle) * baguaR
-      const isActive = i === hourSegment
-
-      // Active sector highlight arc
-      if (isActive) {
-        const spanHalf = Math.PI / 8
-        const grad = ctx.createRadialGradient(cx, cy, innerR, cx, cy, outerR)
-        grad.addColorStop(0, `rgba(${r},${g},${b},0.0)`)
-        grad.addColorStop(0.4, `rgba(${r},${g},${b},0.12)`)
-        grad.addColorStop(1, `rgba(${r},${g},${b},0.0)`)
-        ctx.beginPath()
-        ctx.moveTo(cx, cy)
-        ctx.arc(cx, cy, outerR, angle - spanHalf, angle + spanHalf)
-        ctx.closePath()
-        ctx.fillStyle = grad; ctx.fill()
-      }
-
-      ctx.save()
-      if (isActive) { ctx.shadowColor = `rgba(${r},${g},${b},1)`; ctx.shadowBlur = 20 }
-
-      // Trigram glyph
-      const symAlpha = isActive ? 1.0 : 0.45
-      ctx.fillStyle = `rgba(${Math.min(r + 90, 255)},${Math.min(g + 110, 255)},${Math.min(b + 170, 255)},${symAlpha})`
-      ctx.font = `${bFontSize}px serif`
-      ctx.fillText(bg.sym, bx, by - bFontSize * 0.18)
-
-      // Chinese name
-      ctx.fillStyle = `rgba(${Math.min(r + 60, 255)},${Math.min(g + 80, 255)},${Math.min(b + 130, 255)},${symAlpha * 0.8})`
-      ctx.font = `${bFontSize * 0.42}px serif`
-      ctx.fillText(bg.name, bx, by + bFontSize * 0.55)
-
-      ctx.restore()
-
-      // Outer ring tick
-      ctx.beginPath()
-      ctx.arc(cx + Math.cos(angle) * outerR, cy + Math.sin(angle) * outerR, isActive ? 4 : 2, 0, Math.PI * 2)
-      ctx.fillStyle = isActive ? `rgba(${r},${g},${b},1)` : `rgba(${r},${g},${b},0.35)`
-      ctx.fill()
-    }
-
-    // Clock face
-    const faceGrad = ctx.createRadialGradient(cx, cy - clockR * 0.2, 0, cx, cy, clockR)
-    faceGrad.addColorStop(0, 'rgba(10,10,30,0.97)')
-    faceGrad.addColorStop(1, 'rgba(3,3,15,0.92)')
-    ctx.beginPath(); ctx.arc(cx, cy, clockR, 0, Math.PI * 2)
-    ctx.fillStyle = faceGrad; ctx.fill()
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.5)`; ctx.lineWidth = 1.5; ctx.stroke()
-
-    // Tick marks
-    for (let i = 0; i < 60; i++) {
-      const a = (i / 60) * Math.PI * 2 - Math.PI / 2
-      const isBig = i % 15 === 0, isHour = i % 5 === 0
-      const inner = clockR * (isBig ? 0.76 : isHour ? 0.83 : 0.9)
-      ctx.beginPath()
-      ctx.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner)
-      ctx.lineTo(cx + Math.cos(a) * clockR * 0.95, cy + Math.sin(a) * clockR * 0.95)
-      ctx.strokeStyle = `rgba(${r},${g},${b},${isBig ? 0.85 : isHour ? 0.5 : 0.2})`
-      ctx.lineWidth = isBig ? 2 : isHour ? 1.5 : 0.8; ctx.stroke()
-    }
-
-    // Hands
-    const secAngle  = ((seconds + ms / 1000) / 60) * Math.PI * 2 - Math.PI / 2
-    const minAngle  = ((minutes + (seconds + ms / 1000) / 60) / 60) * Math.PI * 2 - Math.PI / 2
-    const hourAngle = (((hours % 12) + minutes / 60) / 12) * Math.PI * 2 - Math.PI / 2
-
-    drawHand(cx, cy, hourAngle, clockR * 0.54, 3.5,
-      `rgba(${Math.min(r + 80, 255)},${Math.min(g + 80, 255)},${Math.min(b + 140, 255)},0.95)`)
-    drawHand(cx, cy, minAngle, clockR * 0.76, 2,
-      `rgba(${Math.min(r + 130, 255)},${Math.min(g + 140, 255)},${Math.min(b + 200, 255)},0.92)`)
-    drawHand(cx, cy, secAngle, clockR * 0.88, 1,
-      `rgba(${r},${g},${b},0.95)`, `rgba(${r},${g},${b},0.8)`)
-
-    // Center cap
-    ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2)
-    ctx.fillStyle = `rgba(${r},${g},${b},0.9)`; ctx.fill()
-    ctx.beginPath(); ctx.arc(cx, cy, 2.5, 0, Math.PI * 2)
-    ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.fill()
-
-    // Digital time
-    const timeStr = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-    ctx.font = `${size * 0.024}px monospace`
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.fillStyle = `rgba(${Math.min(r + 80, 255)},${Math.min(g + 100, 255)},${Math.min(b + 160, 255)},0.6)`
-    ctx.fillText(timeStr, cx, cy + clockR * 0.62)
-
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
 // ─── Compass Clock ────────────────────────────────────────────────────────────
 function runCompassClock(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
   const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0
+  let cw = 0, ch = 0, raf = 0
+
+  const CHN = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+  function yearZh(y: number) { return String(y).split('').map(d => CHN[+d]).join('') }
+  function numZh(n: number): string {
+    if (n === 0) return CHN[0]
+    if (n < 10) return CHN[n]
+    if (n < 20) return '十' + (n % 10 ? CHN[n % 10] : '')
+    return CHN[Math.floor(n / 10)] + '十' + (n % 10 ? CHN[n % 10] : '')
+  }
+  function daysInMonth(y: number, m: number) { return new Date(y, m, 0).getDate() }
+
+  // Current item at RIGHT (3 o'clock = angle 0)
+  function tgtAngle(val: number, total: number) {
+    return -val * (2 * Math.PI / total)
+  }
+
+  // ── Locale-aware labels ──────────────────────────────────────────────────
+  const EN_MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+  const RU_MON = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек']
+
+  function getLangFlags(l: string) {
+    const lc = l.toLowerCase()
+    return { isZh: lc.startsWith('zh'), isJa: lc.startsWith('ja'), isKo: lc.startsWith('ko'), isRu: lc.startsWith('ru') }
+  }
+
+  function makeLabels(dim: number, l: string) {
+    const { isZh, isJa, isKo, isRu } = getLangFlags(l)
+    const pad = (n: number) => String(n).padStart(2, '0')
+    if (isZh) return {
+      months:  Array.from({ length: 12  }, (_, i) => numZh(i+1) + '月'),
+      days:    Array.from({ length: dim }, (_, i) => numZh(i+1) + '号'),
+      ampm:    ['上午', '下午'],
+      hours:   Array.from({ length: 12  }, (_, i) => numZh(i+1) + '时'),
+      minutes: Array.from({ length: 60  }, (_, i) => numZh(i) + '分'),
+      seconds: Array.from({ length: 60  }, (_, i) => numZh(i) + '秒'),
+    }
+    if (isJa) return {
+      months:  Array.from({ length: 12  }, (_, i) => (i+1) + '月'),
+      days:    Array.from({ length: dim }, (_, i) => (i+1) + '日'),
+      ampm:    ['午前', '午後'],
+      hours:   Array.from({ length: 12  }, (_, i) => (i+1) + '時'),
+      minutes: Array.from({ length: 60  }, (_, i) => i + '分'),
+      seconds: Array.from({ length: 60  }, (_, i) => i + '秒'),
+    }
+    if (isKo) return {
+      months:  Array.from({ length: 12  }, (_, i) => (i+1) + '월'),
+      days:    Array.from({ length: dim }, (_, i) => (i+1) + '일'),
+      ampm:    ['오전', '오후'],
+      hours:   Array.from({ length: 12  }, (_, i) => (i+1) + '시'),
+      minutes: Array.from({ length: 60  }, (_, i) => pad(i) + '분'),
+      seconds: Array.from({ length: 60  }, (_, i) => pad(i) + '초'),
+    }
+    return {
+      months:  isRu ? RU_MON : EN_MON,
+      days:    Array.from({ length: dim }, (_, i) => String(i+1)),
+      ampm:    ['AM', 'PM'],
+      hours:   Array.from({ length: 12  }, (_, i) => String(i+1)),
+      minutes: Array.from({ length: 60  }, (_, i) => pad(i)),
+      seconds: Array.from({ length: 60  }, (_, i) => pad(i)),
+    }
+  }
+
+  function yearLabel(y: number, l: string) {
+    const { isZh, isJa, isKo } = getLangFlags(l)
+    if (isZh) return yearZh(y) + '年'
+    if (isJa) return y + '年'
+    if (isKo) return y + '년'
+    return String(y)
+  }
+
+  interface Ring { labels: string[]; val: number; angle: number; tgt: number; r: number; fs: number }
+  let rings: Ring[] = []
+  let yearStr = ''
+  let lastSec = -1
+  let lastLang = ''
+
+  function buildRings(now: Date) {
+    const s = now.getSeconds(), mi = now.getMinutes(), hh = now.getHours()
+    const h12 = hh % 12 || 12, isAM = hh < 12
+    const d = now.getDate(), M = now.getMonth() + 1, y = now.getFullYear()
+    const dim = daysInMonth(y, M)
+    const l = opts.lang || 'zh-CN'
+    lastLang = l
+    yearStr = yearLabel(y, l)
+    const L = makeLabels(dim, l)
+    const ta = (v: number, n: number) => tgtAngle(v, n)
+    rings = [
+      { labels: L.months,  val: M-1,       angle: ta(M-1,12),      tgt: ta(M-1,12),      r:0, fs:0 },
+      { labels: L.days,    val: d-1,        angle: ta(d-1,dim),     tgt: ta(d-1,dim),     r:0, fs:0 },
+      { labels: L.ampm,    val: isAM?0:1,   angle: ta(isAM?0:1,2),  tgt: ta(isAM?0:1,2),  r:0, fs:0 },
+      { labels: L.hours,   val: h12-1,      angle: ta(h12-1,12),    tgt: ta(h12-1,12),    r:0, fs:0 },
+      { labels: L.minutes, val: mi,         angle: ta(mi,60),       tgt: ta(mi,60),       r:0, fs:0 },
+      { labels: L.seconds, val: s,          angle: ta(s,60),        tgt: ta(s,60),        r:0, fs:0 },
+    ]
+  }
+
+  function tick(now: Date) {
+    const l = opts.lang || 'zh-CN'
+    // Rebuild all labels when language changes
+    if (l !== lastLang) { buildRings(now); setSizes(); return }
+
+    const s = now.getSeconds()
+    if (s === lastSec) return
+    lastSec = s
+    const mi = now.getMinutes(), hh = now.getHours()
+    const h12 = hh % 12 || 12, isAM = hh < 12
+    const d = now.getDate(), M = now.getMonth() + 1, y = now.getFullYear()
+    const dim = daysInMonth(y, M)
+    yearStr = yearLabel(y, l)
+    const nv = [M-1, d-1, isAM?0:1, h12-1, mi, s]
+    const tot = [12, dim, 2, 12, 60, 60]
+    const mChg = nv[0] !== rings[0].val
+    for (let i = 0; i < 6; i++) {
+      if (i === 1 && mChg) rings[1].labels = makeLabels(dim, l).days
+      if (rings[i].val !== nv[i]) {
+        rings[i].val = nv[i]
+        const nt = tgtAngle(nv[i], tot[i])
+        let delta = nt - rings[i].tgt
+        while (delta > Math.PI) delta -= 2 * Math.PI
+        while (delta < -Math.PI) delta += 2 * Math.PI
+        rings[i].tgt += delta
+      }
+    }
+  }
+
+  function setSizes() {
+    const s = Math.min(cw, ch)
+    const rs = [0.09, 0.16, 0.23, 0.30, 0.38, 0.46]
+    // font sizes in px at s=800; scale with canvas
+    const basePx = [20, 17, 16, 15, 14, 14]
+    const scale = s / 800
+    for (let i = 0; i < rings.length; i++) {
+      rings[i].r = rs[i] * s
+      rings[i].fs = Math.max(10, Math.min(basePx[i] * scale, 22))
+    }
+  }
 
   function resize() {
     const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
+    canvas.width = canvas.offsetWidth * dpr
+    canvas.height = canvas.offsetHeight * dpr
+    cw = canvas.offsetWidth; ch = canvas.offsetHeight
+    setSizes()
   }
 
-  function drawRing(cx: number, cy: number, radius: number, numTicks: number, rotation: number,
-    labels: string[], r: number, g: number, b: number, alpha: number, ringW: number) {
-    ctx.save()
-    ctx.translate(cx, cy)
-    ctx.rotate(rotation)
+  buildRings(new Date())
+  const ro = new ResizeObserver(resize)
+  ro.observe(canvas); resize()
 
-    // Ring border
-    ctx.beginPath(); ctx.arc(0, 0, radius, 0, Math.PI * 2)
-    ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.4})`
-    ctx.lineWidth = ringW; ctx.stroke()
+  const FONT = '"PingFang SC","Microsoft YaHei",sans-serif'
 
-    // Ticks
-    for (let i = 0; i < numTicks; i++) {
-      const a = (i / numTicks) * Math.PI * 2 - Math.PI / 2
-      const isMajor = numTicks <= 12 || i % (numTicks / 12) === 0
-      const isQuarter = numTicks <= 4 || i % (numTicks / 4) === 0
-      const len = isQuarter ? radius * 0.12 : isMajor ? radius * 0.07 : radius * 0.035
-      const lw = isQuarter ? 2.5 : isMajor ? 1.5 : 0.8
-      const a2 = isQuarter ? alpha * 0.9 : isMajor ? alpha * 0.6 : alpha * 0.25
-      ctx.beginPath()
-      ctx.moveTo(Math.cos(a) * (radius - len), Math.sin(a) * (radius - len))
-      ctx.lineTo(Math.cos(a) * radius, Math.sin(a) * radius)
-      ctx.strokeStyle = `rgba(${r},${g},${b},${a2})`
-      ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.stroke()
+  function draw() {
+    tick(new Date())
+    const dpr = window.devicePixelRatio || 1
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+    const [bgR, bgG, bgB] = hexToRgb(opts.bgColor)
+    ctx.fillStyle = `rgb(${bgR},${bgG},${bgB})`
+    ctx.fillRect(0, 0, cw, ch)
+
+    const cx = cw / 2, cy = ch / 2
+    const [r, g, b] = hexToRgb(opts.color)
+
+    for (const ring of rings) ring.angle += (ring.tgt - ring.angle) * 0.12
+
+    // Ring guide circles
+    for (const ring of rings) {
+      ctx.beginPath(); ctx.arc(cx, cy, ring.r, 0, Math.PI * 2)
+      ctx.strokeStyle = `rgba(${r},${g},${b},0.12)`; ctx.lineWidth = 0.8; ctx.stroke()
     }
 
-    // Labels (cardinal / hour numbers)
-    if (labels.length > 0) {
-      const fs = radius * 0.16
-      ctx.font = `bold ${fs}px sans-serif`
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-      for (let i = 0; i < labels.length; i++) {
-        const a = (i / labels.length) * Math.PI * 2 - Math.PI / 2
-        const lx = Math.cos(a) * (radius - radius * 0.22)
-        const ly = Math.sin(a) * (radius - radius * 0.22)
+    // RIGHT-side indicator line (3 o'clock)
+    const outerR = (rings[5]?.r ?? 100) * 1.07
+    const innerR = (rings[0]?.r ?? 50) * 0.55
+    ctx.save()
+    ctx.beginPath(); ctx.moveTo(cx + innerR, cy); ctx.lineTo(cx + outerR, cy)
+    ctx.strokeStyle = `rgba(${r},${g},${b},0.45)`; ctx.lineWidth = 1.5; ctx.stroke()
+    ctx.restore()
+
+    // Draw ring labels
+    for (const ring of rings) {
+      const n = ring.labels.length
+      const step = (2 * Math.PI) / n
+      for (let i = 0; i < n; i++) {
+        const wa = ring.angle + i * step
+        // Angular distance from RIGHT (angle 0)
+        let dist = (wa % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI)
+        if (dist > Math.PI) dist = 2 * Math.PI - dist
+        const isCurrent = i === ring.val
+        const alpha = isCurrent ? 1 : Math.max(0.30, Math.cos(dist * 0.55) * 0.65 + 0.35)
+        // Flip text for items on the LEFT half so they read rightward
+        const isLeft = Math.cos(wa) < 0
+
         ctx.save()
-        ctx.translate(lx, ly)
-        ctx.rotate(-rotation) // keep text upright
-        ctx.fillStyle = `rgba(${r},${g},${b},${alpha * 0.85})`
-        ctx.fillText(labels[i], 0, 0)
+        ctx.translate(cx, cy)
+        ctx.rotate(wa)
+        if (isLeft) ctx.rotate(Math.PI)
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+        if (isCurrent) {
+          ctx.font = `bold ${ring.fs}px ${FONT}`
+          ctx.fillStyle = `rgb(${r},${g},${b})`
+          ctx.shadowColor = `rgb(${r},${g},${b})`; ctx.shadowBlur = ring.fs * 0.7
+        } else {
+          ctx.font = `${ring.fs * 0.80}px ${FONT}`
+          ctx.fillStyle = `rgba(190,195,215,${alpha})`; ctx.shadowBlur = 0
+        }
+        ctx.fillText(ring.labels[i], isLeft ? -ring.r : ring.r, 0)
         ctx.restore()
       }
     }
-    ctx.restore()
-  }
 
-  function draw() {
-    const now = new Date()
-    const hours = now.getHours(); const minutes = now.getMinutes()
-    const seconds = now.getSeconds(); const ms = now.getMilliseconds()
-
-    const cx = w / 2, cy = h / 2
-    const size = Math.min(w, h)
-    const [r, g, b] = hexToRgb(opts.color)
-
-    // Background
-    ctx.fillStyle = '#020208'
-    ctx.fillRect(0, 0, w, h)
-
-    // Ambient glow
-    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * 0.55)
-    glow.addColorStop(0, `rgba(${r},${g},${b},0.05)`)
-    glow.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = glow
-    ctx.fillRect(0, 0, w, h)
-
-    // Ring radii
-    const R3 = size * 0.43  // seconds (outer)
-    const R2 = size * 0.30  // minutes (middle)
-    const R1 = size * 0.18  // hours (inner)
-
-    // Rotation angles — negative so current value rises to top
-    const secRot  = -((seconds + ms / 1000) / 60) * Math.PI * 2
-    const minRot  = -((minutes + seconds / 60) / 60) * Math.PI * 2
-    const hourRot = -(((hours % 12) + minutes / 60) / 12) * Math.PI * 2
-
-    // Compass labels for outer ring (rotate with ring → appear stationary relative to seconds)
-    const compassLabels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
-    const hourLabels = ['12','1','2','3','4','5','6','7','8','9','10','11']
-
-    drawRing(cx, cy, R3, 60, secRot,  compassLabels, r, g, b, 0.85, 1.5)
-    drawRing(cx, cy, R2, 60, minRot,  [], r, g, b, 0.7, 1.2)
-    drawRing(cx, cy, R1, 12, hourRot, hourLabels, r, g, b, 0.6, 1.0)
-
-    // Fixed triangle pointer at top (12 o'clock) for each ring
-    for (const [rad, a2] of [[R3, 0.95],[R2, 0.8],[R1, 0.7]] as [number,number][]) {
-      ctx.save()
-      ctx.translate(cx, cy - rad)
-      ctx.beginPath()
-      ctx.moveTo(0, -8); ctx.lineTo(-5, 4); ctx.lineTo(5, 4); ctx.closePath()
-      ctx.fillStyle = `rgba(${r},${g},${b},${a2})`
-      ctx.shadowColor = `rgba(${r},${g},${b},0.8)`; ctx.shadowBlur = 8
-      ctx.fill()
-      ctx.restore()
+    // Dot markers at RIGHT for each ring
+    for (const ring of rings) {
+      ctx.beginPath(); ctx.arc(cx + ring.r, cy, 3, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(${r},${g},${b},0.65)`; ctx.fill()
     }
 
-    // Center face
-    const faceR = R1 * 0.72
-    const faceGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, faceR)
-    faceGrad.addColorStop(0, 'rgba(8,8,24,0.98)')
-    faceGrad.addColorStop(1, 'rgba(2,2,12,0.95)')
-    ctx.beginPath(); ctx.arc(cx, cy, faceR, 0, Math.PI * 2)
-    ctx.fillStyle = faceGrad; ctx.fill()
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.4)`; ctx.lineWidth = 1; ctx.stroke()
-
-    // Digital time
-    const hStr = String(hours).padStart(2,'0')
-    const mStr = String(minutes).padStart(2,'0')
-    const sStr = String(seconds).padStart(2,'0')
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.font = `bold ${faceR * 0.55}px monospace`
-    ctx.fillStyle = `rgba(${r},${g},${b},0.95)`
-    ctx.shadowColor = `rgba(${r},${g},${b},0.7)`; ctx.shadowBlur = 10
-    ctx.fillText(`${hStr}:${mStr}`, cx, cy - faceR * 0.12)
-    ctx.shadowBlur = 0
-    ctx.font = `${faceR * 0.3}px monospace`
-    ctx.fillStyle = `rgba(${r},${g},${b},0.55)`
-    ctx.fillText(sStr, cx, cy + faceR * 0.42)
-
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Binary Clock ─────────────────────────────────────────────────────────────
-function runBinaryClock(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const now = new Date()
-    const parts = [now.getHours(), now.getMinutes(), now.getSeconds()]
-    const [r, g, b] = hexToRgb(opts.color)
-    const cx = w / 2, cy = h / 2
-
-    ctx.fillStyle = '#000508'
-    ctx.fillRect(0, 0, w, h)
-
-    // Scanline overlay
-    for (let y = 0; y < h; y += 4) {
-      ctx.fillStyle = 'rgba(0,0,0,0.07)'
-      ctx.fillRect(0, y, w, 2)
-    }
-
-    const BITS = 6
-    const ROWS = 3
-    const dotR = Math.min(w / (BITS * 3.2), h / (ROWS * 3.5), 28)
-    const colGap = dotR * 2.8
-    const rowGap = dotR * 3.4
-    const totalW = BITS * colGap - colGap * 0.2
-    const totalH = ROWS * rowGap
-    const startX = cx - totalW / 2 + colGap * 0.5
-    const startY = cy - totalH / 2 + rowGap * 0.5
-
-    const rowLabels = ['H', 'M', 'S']
-    const bitLabels = ['32','16','8','4','2','1']
-
-    // Bit column headers
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.font = `${dotR * 0.55}px monospace`
-    ctx.fillStyle = `rgba(${r},${g},${b},0.35)`
-    for (let col = 0; col < BITS; col++) {
-      ctx.fillText(bitLabels[col], startX + col * colGap, startY - rowGap * 0.85)
-    }
-
-    for (let row = 0; row < ROWS; row++) {
-      const val = parts[row]
-      const cy2 = startY + row * rowGap
-
-      // Row label
-      ctx.font = `bold ${dotR * 0.65}px monospace`
-      ctx.fillStyle = `rgba(${r},${g},${b},0.5)`
-      ctx.textAlign = 'right'
-      ctx.fillText(rowLabels[row], startX - colGap * 0.65, cy2)
-
-      // Decimal value
-      ctx.textAlign = 'left'
-      ctx.font = `${dotR * 0.5}px monospace`
-      ctx.fillStyle = `rgba(${r},${g},${b},0.4)`
-      ctx.fillText(String(val).padStart(2,'0'), startX + BITS * colGap - colGap * 0.3, cy2)
-
-      for (let col = 0; col < BITS; col++) {
-        const bitPos = BITS - 1 - col
-        const on = (val >> bitPos) & 1
-        const cx2 = startX + col * colGap
-
-        if (on) {
-          // Glow
-          const grd = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, dotR * 1.8)
-          grd.addColorStop(0, `rgba(${r},${g},${b},0.35)`)
-          grd.addColorStop(1, 'rgba(0,0,0,0)')
-          ctx.fillStyle = grd
-          ctx.beginPath(); ctx.arc(cx2, cy2, dotR * 1.8, 0, Math.PI * 2); ctx.fill()
-
-          // Bright dot
-          const dotGrd = ctx.createRadialGradient(cx2 - dotR * 0.25, cy2 - dotR * 0.25, 0, cx2, cy2, dotR)
-          dotGrd.addColorStop(0, `rgba(255,255,255,0.95)`)
-          dotGrd.addColorStop(0.3, `rgba(${Math.min(r+80,255)},${Math.min(g+80,255)},${Math.min(b+80,255)},0.9)`)
-          dotGrd.addColorStop(1, `rgba(${r},${g},${b},0.8)`)
-          ctx.fillStyle = dotGrd
-          ctx.shadowColor = `rgba(${r},${g},${b},1)`; ctx.shadowBlur = dotR * 0.8
-          ctx.beginPath(); ctx.arc(cx2, cy2, dotR, 0, Math.PI * 2); ctx.fill()
-          ctx.shadowBlur = 0
-        } else {
-          // Dark dot with subtle ring
-          ctx.beginPath(); ctx.arc(cx2, cy2, dotR, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(${r},${g},${b},0.06)`; ctx.fill()
-          ctx.strokeStyle = `rgba(${r},${g},${b},0.18)`; ctx.lineWidth = 1; ctx.stroke()
-        }
-      }
-    }
-
-    // Date line
-    const dateStr = now.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
-    ctx.textAlign = 'center'; ctx.font = `${dotR * 0.48}px monospace`
-    ctx.fillStyle = `rgba(${r},${g},${b},0.3)`
-    ctx.fillText(dateStr, cx, startY + ROWS * rowGap + rowGap * 0.6)
-
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Gear Clock ───────────────────────────────────────────────────────────────
-function runGearClock(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function drawGear(cx: number, cy: number, outerR: number, innerR: number,
-    teeth: number, rotation: number, r: number, g: number, b: number, alpha: number, lineW: number) {
+    // Year in center — font sized to stay within innermost ring
+    const yearFs = Math.max(10, Math.min((rings[0]?.r ?? 72) * 0.32, 16))
     ctx.save()
-    ctx.translate(cx, cy)
-    ctx.rotate(rotation)
-    ctx.beginPath()
-    for (let i = 0; i < teeth; i++) {
-      const a0 = (i / teeth) * Math.PI * 2
-      const a1 = ((i + 0.35) / teeth) * Math.PI * 2
-      const a2 = ((i + 0.65) / teeth) * Math.PI * 2
-      const a3 = ((i + 1) / teeth) * Math.PI * 2
-      if (i === 0) ctx.moveTo(Math.cos(a0) * innerR, Math.sin(a0) * innerR)
-      else ctx.lineTo(Math.cos(a0) * innerR, Math.sin(a0) * innerR)
-      ctx.lineTo(Math.cos(a1) * outerR, Math.sin(a1) * outerR)
-      ctx.lineTo(Math.cos(a2) * outerR, Math.sin(a2) * outerR)
-      ctx.lineTo(Math.cos(a3) * innerR, Math.sin(a3) * innerR)
-    }
-    ctx.closePath()
-    ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`
-    ctx.lineWidth = lineW; ctx.stroke()
-
-    // Hub spokes
-    const spokeCount = Math.min(6, Math.floor(teeth / 5))
-    for (let i = 0; i < spokeCount; i++) {
-      const a = (i / spokeCount) * Math.PI * 2
-      ctx.beginPath()
-      ctx.moveTo(Math.cos(a) * innerR * 0.25, Math.sin(a) * innerR * 0.25)
-      ctx.lineTo(Math.cos(a) * innerR * 0.72, Math.sin(a) * innerR * 0.72)
-      ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.5})`
-      ctx.lineWidth = lineW * 0.7; ctx.stroke()
-    }
-    // Hub circle
-    ctx.beginPath(); ctx.arc(0, 0, innerR * 0.22, 0, Math.PI * 2)
-    ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.8})`
-    ctx.lineWidth = lineW; ctx.stroke()
-
-    ctx.restore()
-  }
-
-  function draw() {
-    const now = new Date()
-    const hours = now.getHours(); const minutes = now.getMinutes()
-    const seconds = now.getSeconds(); const ms = now.getMilliseconds()
-    const [r, g, b] = hexToRgb(opts.color)
-
-    ctx.fillStyle = '#050305'
-    ctx.fillRect(0, 0, w, h)
-
-    const size = Math.min(w, h)
-    const cx = w / 2, cy = h / 2
-
-    // Ambient glow
-    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, size * 0.6)
-    glow.addColorStop(0, `rgba(${r},${g},${b},0.04)`)
-    glow.addColorStop(1, 'rgba(0,0,0,0)')
-    ctx.fillStyle = glow; ctx.fillRect(0, 0, w, h)
-
-    const secRot  = ((seconds + ms / 1000) / 60) * Math.PI * 2
-    const minRot  = ((minutes + seconds / 60) / 60) * Math.PI * 2
-    const hourRot = (((hours % 12) + minutes / 60) / 12) * Math.PI * 2
-
-    // Gears: center=seconds (large), upper-left=minutes (medium), upper-right=hours (small)
-    // Meshes: ratio based on teeth count
-    const secR = size * 0.22; const secTeeth = 60
-    const minR = size * 0.15; const minTeeth = 40  // mesh with sec gear
-    const hrR  = size * 0.09; const hrTeeth  = 24
-
-    // Position offsets for meshing
-    const minOffset = secR + minR - size * 0.015
-    const hrOffset  = minR + hrR  - size * 0.01
-
-    const minCx = cx - minOffset * 0.7
-    const minCy = cy - minOffset * 0.5
-    const hrCx  = minCx - hrOffset * 0.65
-    const hrCy  = minCy - hrOffset * 0.6
-
-    // Rotation directions: outer gear counter-rotates
-    const minMeshRot = -minRot * (secTeeth / minTeeth)
-    const hrMeshRot  = -hourRot * (minTeeth / hrTeeth)
-
-    // Shadow/glow behind gears
-    ctx.save()
-    ctx.shadowColor = `rgba(${r},${g},${b},0.25)`; ctx.shadowBlur = size * 0.06
-    drawGear(cx,    cy,    secR, secR * 0.75, secTeeth, secRot,     r, g, b, 0.8, 1.5)
-    drawGear(minCx, minCy, minR, minR * 0.72, minTeeth, minMeshRot, r, g, b, 0.7, 1.2)
-    drawGear(hrCx,  hrCy,  hrR,  hrR * 0.68,  hrTeeth,  hrMeshRot,  r, g, b, 0.6, 1.0)
-    ctx.restore()
-
-    // Center digital time
+    ctx.font = `bold ${yearFs}px ${FONT}`
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.font = `bold ${size * 0.07}px monospace`
-    ctx.fillStyle = `rgba(${r},${g},${b},0.85)`
-    ctx.shadowColor = `rgba(${r},${g},${b},0.6)`; ctx.shadowBlur = 8
-    const hStr = String(hours).padStart(2,'0')
-    const mStr = String(minutes).padStart(2,'0')
-    const sStr = String(seconds).padStart(2,'0')
-    ctx.fillText(`${hStr}:${mStr}:${sStr}`, cx, cy + size * 0.34)
-    ctx.shadowBlur = 0
+    ctx.fillStyle = `rgb(${r},${g},${b})`
+    ctx.shadowColor = `rgb(${r},${g},${b})`; ctx.shadowBlur = 10
+    ctx.fillText(yearStr, cx, cy)
+    ctx.restore()
 
     raf = requestAnimationFrame(draw)
   }
 
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
-  return () => { cancelAnimationFrame(raf); ro.disconnect() }
-}
-
-// ─── Radar Clock ──────────────────────────────────────────────────────────────
-function runRadarClock(canvas: HTMLCanvasElement, opts: EffectOptions): () => void {
-  const ctx = canvas.getContext('2d')!
-  let w = 0, h = 0, raf = 0
-  const TRAIL_LEN = 80  // degrees of trail
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1
-    w = canvas.width = canvas.offsetWidth * dpr
-    h = canvas.height = canvas.offsetHeight * dpr
-  }
-
-  function draw() {
-    const now = new Date()
-    const hours = now.getHours(); const minutes = now.getMinutes()
-    const seconds = now.getSeconds(); const ms = now.getMilliseconds()
-    const [r, g, b] = hexToRgb(opts.color)
-
-    ctx.fillStyle = 'rgba(0,4,2,0.88)'
-    ctx.fillRect(0, 0, w, h)
-
-    const cx = w / 2, cy = h / 2
-    const size = Math.min(w, h)
-    const rad = size * 0.42
-
-    // Concentric rings
-    for (let i = 1; i <= 4; i++) {
-      ctx.beginPath(); ctx.arc(cx, cy, rad * i / 4, 0, Math.PI * 2)
-      ctx.strokeStyle = `rgba(${r},${g},${b},0.12)`
-      ctx.lineWidth = 1; ctx.stroke()
-    }
-
-    // Cross hairs
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.1)`; ctx.lineWidth = 1
-    ctx.beginPath(); ctx.moveTo(cx - rad, cy); ctx.lineTo(cx + rad, cy); ctx.stroke()
-    ctx.beginPath(); ctx.moveTo(cx, cy - rad); ctx.lineTo(cx, cy + rad); ctx.stroke()
-
-    // Outer ring
-    ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2)
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.35)`; ctx.lineWidth = 2; ctx.stroke()
-
-    // Hour tick marks (12)
-    for (let i = 0; i < 12; i++) {
-      const a = (i / 12) * Math.PI * 2 - Math.PI / 2
-      const inner = rad * 0.88
-      ctx.beginPath()
-      ctx.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner)
-      ctx.lineTo(cx + Math.cos(a) * rad, cy + Math.sin(a) * rad)
-      ctx.strokeStyle = `rgba(${r},${g},${b},0.5)`; ctx.lineWidth = 2.5; ctx.stroke()
-      // Hour number
-      const lx = cx + Math.cos(a) * (rad * 0.78)
-      const ly = cy + Math.sin(a) * (rad * 0.78)
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-      ctx.font = `${rad * 0.09}px monospace`
-      ctx.fillStyle = `rgba(${r},${g},${b},0.6)`
-      ctx.fillText(String(i === 0 ? 12 : i), lx, ly)
-    }
-
-    // Minute tick marks (60)
-    for (let i = 0; i < 60; i++) {
-      if (i % 5 === 0) continue  // skip hour positions
-      const a = (i / 60) * Math.PI * 2 - Math.PI / 2
-      ctx.beginPath()
-      ctx.moveTo(cx + Math.cos(a) * rad * 0.94, cy + Math.sin(a) * rad * 0.94)
-      ctx.lineTo(cx + Math.cos(a) * rad, cy + Math.sin(a) * rad)
-      ctx.strokeStyle = `rgba(${r},${g},${b},0.2)`; ctx.lineWidth = 1; ctx.stroke()
-    }
-
-    // Current sweep angle (seconds)
-    const sweepAngle = ((seconds + ms / 1000) / 60) * Math.PI * 2 - Math.PI / 2
-
-    // Radar sweep trail (filled pie sections fading)
-    const STEPS = 60
-    for (let i = 0; i < STEPS; i++) {
-      const t = i / STEPS  // 0=oldest 1=newest
-      const trailAngle = sweepAngle - (1 - t) * (TRAIL_LEN * Math.PI / 180)
-      const nextAngle  = sweepAngle - (1 - (i + 1) / STEPS) * (TRAIL_LEN * Math.PI / 180)
-      const fade = t * t * 0.18
-      ctx.beginPath()
-      ctx.moveTo(cx, cy)
-      ctx.arc(cx, cy, rad, trailAngle, nextAngle)
-      ctx.closePath()
-      ctx.fillStyle = `rgba(${r},${g},${b},${fade})`
-      ctx.fill()
-    }
-
-    // Sweep line
-    ctx.save()
-    ctx.shadowColor = `rgba(${r},${g},${b},0.9)`; ctx.shadowBlur = 12
-    ctx.beginPath()
-    ctx.moveTo(cx, cy)
-    ctx.lineTo(cx + Math.cos(sweepAngle) * rad, cy + Math.sin(sweepAngle) * rad)
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.9)`; ctx.lineWidth = 2; ctx.stroke()
-    ctx.restore()
-
-    // Blip at current minute position
-    const minAngle = ((minutes + seconds / 60) / 60) * Math.PI * 2 - Math.PI / 2
-    const blipR = rad * 0.9
-    ctx.beginPath()
-    ctx.arc(cx + Math.cos(minAngle) * blipR, cy + Math.sin(minAngle) * blipR, 5, 0, Math.PI * 2)
-    ctx.fillStyle = `rgba(${r},${g},${b},0.9)`
-    ctx.shadowColor = `rgba(${r},${g},${b},1)`; ctx.shadowBlur = 12
-    ctx.fill(); ctx.shadowBlur = 0
-
-    // Blip at current hour position
-    const hourAngle = (((hours % 12) + minutes / 60) / 12) * Math.PI * 2 - Math.PI / 2
-    const hrBlipR = rad * 0.55
-    ctx.beginPath()
-    ctx.arc(cx + Math.cos(hourAngle) * hrBlipR, cy + Math.sin(hourAngle) * hrBlipR, 7, 0, Math.PI * 2)
-    ctx.fillStyle = `rgba(${Math.min(r+80,255)},${Math.min(g+80,255)},${Math.min(b+80,255)},0.9)`
-    ctx.shadowColor = `rgba(${r},${g},${b},1)`; ctx.shadowBlur = 16
-    ctx.fill(); ctx.shadowBlur = 0
-
-    // Center dot
-    ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2)
-    ctx.fillStyle = `rgba(${r},${g},${b},0.8)`; ctx.fill()
-
-    // Digital display
-    const hStr = String(hours).padStart(2,'0')
-    const mStr = String(minutes).padStart(2,'0')
-    const sStr = String(seconds).padStart(2,'0')
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.font = `bold ${rad * 0.18}px monospace`
-    ctx.fillStyle = `rgba(${r},${g},${b},0.85)`
-    ctx.shadowColor = `rgba(${r},${g},${b},0.5)`; ctx.shadowBlur = 8
-    ctx.fillText(`${hStr}:${mStr}:${sStr}`, cx, cy)
-    ctx.shadowBlur = 0
-
-    raf = requestAnimationFrame(draw)
-  }
-
-  const ro = new ResizeObserver(resize)
-  ro.observe(canvas); resize(); draw()
+  draw()
   return () => { cancelAnimationFrame(raf); ro.disconnect() }
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 export type EffectName = 'stars' | 'particles' | 'aurora' | 'waves' | 'rain' | 'snow'
   | 'matrix' | 'fireworks' | 'nebula' | 'lightning' | 'dna' | 'galaxy'
-  | 'lavalamp' | 'geometricflow' | 'neon' | 'fire' | 'ocean' | 'sakura'
-  | 'bokeh' | 'constellation' | 'portal' | 'bubbles' | 'plasma' | 'grid3d'
-  | 'aurora2' | 'glitch' | 'moonbagua'
-  | 'compassclock' | 'binaryclock' | 'gearclock' | 'radarclock'
+  | 'geometricflow' | 'neon' | 'ocean' | 'sakura'
+  | 'bokeh' | 'constellation' | 'bubbles' | 'compassclock'
 
 const RUNNERS: Record<EffectName, (canvas: HTMLCanvasElement, opts: EffectOptions) => () => void> = {
   stars:         runStars,
@@ -2273,25 +1455,14 @@ const RUNNERS: Record<EffectName, (canvas: HTMLCanvasElement, opts: EffectOption
   lightning:     runLightning,
   dna:           runDna,
   galaxy:        runGalaxy,
-  lavalamp:      runLavalamp,
   geometricflow: runGeometricflow,
   neon:          runNeon,
-  fire:          runFire,
   ocean:         runOcean,
   sakura:        runSakura,
   bokeh:         runBokeh,
   constellation: runConstellation,
-  portal:        runPortal,
   bubbles:       runBubbles,
-  plasma:        runPlasma,
-  grid3d:        runGrid3d,
-  aurora2:       runAurora2,
-  glitch:        runGlitch,
-  moonbagua:     runMoonBagua,
   compassclock:  runCompassClock,
-  binaryclock:   runBinaryClock,
-  gearclock:     runGearClock,
-  radarclock:    runRadarClock,
 }
 
 export function startEffect(canvas: HTMLCanvasElement, effect: EffectName, opts: EffectOptions): () => void {

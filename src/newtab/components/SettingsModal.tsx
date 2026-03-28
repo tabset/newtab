@@ -763,34 +763,21 @@ const EFFECT_PREVIEW_COLORS: Record<string, string> = {
   lightning:     'linear-gradient(180deg, #050510 0%, #0a0a20 100%)',
   dna:           'linear-gradient(180deg, #000d1a 0%, #001a2e 100%)',
   galaxy:        'radial-gradient(ellipse at center, #08001a 0%, #020008 100%)',
-  lavalamp:      'linear-gradient(180deg, #0a0500 0%, #1a0a00 100%)',
   geometricflow: 'linear-gradient(135deg, #000a18 0%, #001020 100%)',
   neon:          'linear-gradient(135deg, #050010 0%, #0a0020 100%)',
-  fire:          'linear-gradient(180deg, #100200 0%, #200800 100%)',
   ocean:         'linear-gradient(180deg, #001020 0%, #002040 100%)',
   sakura:        'linear-gradient(180deg, #100008 0%, #1a000f 100%)',
   bokeh:         'linear-gradient(135deg, #080010 0%, #100020 100%)',
   constellation: 'radial-gradient(ellipse at center, #040410 0%, #000008 100%)',
-  portal:        'radial-gradient(ellipse at center, #08001a 0%, #000a10 100%)',
   bubbles:       'linear-gradient(180deg, #000d1a 0%, #001828 100%)',
-  plasma:        'linear-gradient(135deg, #080018 0%, #001008 100%)',
-  grid3d:        'linear-gradient(180deg, #000810 0%, #001020 100%)',
-  aurora2:       'linear-gradient(180deg, #000a08 0%, #001a10 50%, #000a18 100%)',
-  glitch:        'linear-gradient(180deg, #050005 0%, #080008 100%)',
-  moonbagua:     'radial-gradient(ellipse at 60% 35%, #0d0820 0%, #020010 60%, #000008 100%)',
-  compassclock:  'radial-gradient(ellipse at center, #020212 0%, #000008 100%)',
-  binaryclock:   'linear-gradient(180deg, #000508 0%, #001008 100%)',
-  gearclock:     'linear-gradient(135deg, #050305 0%, #0a0508 100%)',
-  radarclock:    'radial-gradient(ellipse at center, #000402 0%, #000200 100%)',
+  compassclock:  'radial-gradient(ellipse at center, #0a0a1e 0%, #000008 100%)',
 }
 
 const EFFECT_EMOJI: Record<string, string> = {
   stars: '✨', particles: '🔵', aurora: '🌌', waves: '🌊', rain: '🌧️', snow: '❄️',
   matrix: '💻', fireworks: '🎆', nebula: '🌠', lightning: '⚡', dna: '🧬', galaxy: '🌀',
-  lavalamp: '🫧', geometricflow: '🔷', neon: '💡', fire: '🔥', ocean: '🐚', sakura: '🌸',
-  bokeh: '🔆', constellation: '⭐', portal: '🔮', bubbles: '🫗', plasma: '🔬',
-  grid3d: '🔲', aurora2: '🎇', glitch: '📺', moonbagua: '☯',
-  compassclock: '🧭', binaryclock: '💾', gearclock: '⚙️', radarclock: '📡',
+  geometricflow: '🔷', neon: '💡', ocean: '🐚', sakura: '🌸',
+  bokeh: '🔆', constellation: '⭐', bubbles: '🫗', compassclock: '🧭',
 }
 
 function AnimatedEffectPicker({
@@ -3764,6 +3751,15 @@ export default function SettingsModal({ active, open, onClose, initialTab, sessi
                                 type="color"
                                 value={config.background.animatedColor || '#667eea'}
                                 onChange={(e) => setConfig({ background: { ...config.background, animatedColor: e.target.value } })}
+                                style={{ width: 40, height: 28, border: 'none', borderRadius: 6, cursor: 'pointer' }}
+                              />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+                              <span style={{ fontSize: 13, color: 'rgba(0,0,0,0.75)' }}>{t('label_anim_bg_color')}</span>
+                              <input
+                                type="color"
+                                value={config.background.animatedBgColor || '#000000'}
+                                onChange={(e) => setConfig({ background: { ...config.background, animatedBgColor: e.target.value } })}
                                 style={{ width: 40, height: 28, border: 'none', borderRadius: 6, cursor: 'pointer' }}
                               />
                             </div>
