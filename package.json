@@ -1,6 +1,6 @@
 {
   "name": "newtab",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An elegant new tab extension that refreshes every time you open a new tab.",
   "private": true,
   "scripts": {
